@@ -1,0 +1,126 @@
+#content_block_new{
+    margin-left: auto;
+    margin-right: auto;
+    width: 90em;
+    margin-top: 3%;
+    height: 1050px;
+    align-items: center;
+    background-color: #edf2f7;
+}
+.content_item_new{
+    margin-left: auto;
+    margin-right: auto;
+    width: 85em;
+}
+.content_item_new h3{
+    margin-left: 10px;
+}
+.content_name_new{
+    text-align: center;
+    padding-top: 20px;
+}
+.content_img_new{
+
+}
+.content_alias_new{
+    height: 700px;
+    width: 330px;
+    margin-left: 1030px;
+    position: absolute;
+}
+.content_alias_new h2{
+    text-align: center;
+}
+.content_character_new{
+    height: 330px;
+    width: 590px;
+    position: absolute;
+    margin-left: 400px;
+    text-align: justify;
+}
+.content_character_new h2{
+    text-align: center;
+}
+.content_character_new p{
+    margin-left: 20px;
+    width: 550px;
+}
+.content_button_new{
+    width: 290px;
+    height: 48px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #1a202c;
+    border: 0px;
+    border-radius: 2px 0 0 2px;
+    background-color: limegreen;
+    transition: 0.3s;
+}
+.content_button_busket_new{
+    margin-top: 60px;
+    position: absolute;
+    width: 160px;
+    height: 48px;
+    cursor: pointer;
+    border: 0px;
+    border-radius: 5px;
+    background-color: limegreen;
+    transition: 0.3s;
+    font-size: 20px;
+    color: white;
+}
+.content_button_busket_new:hover{
+    border: 3px solid limegreen;
+    background-color: #edf2f7;
+    transition: 0.3s;
+    color: black;
+}
+.content_button_new:hover{
+    border: 3px solid limegreen;
+    background-color: #edf2f7;
+    transition: 0.3s;
+}
+.alias_item{
+    width: 100%;
+    height: 100px;
+    margin-top: 10px;
+    border: 1px solid slategray;
+    background-color: #cbd5e0;
+}
+.alias_item:hover{
+    cursor: pointer;
+    border: 1px solid dodgerblue;
+}
+.content_feedback_new{
+    background-color: #cbd5e0;
+    height: 340px;
+    width: 1360px;
+    margin-top: 80px;
+    margin-left: 40px;
+}
+.feedback_user{
+    width: 120px;
+    height: 120px;
+    background-color: #a0aec0;
+}
+.new_icon{
+    width: 120px;
+    height: 60px;
+    margin-left: 220px;
+}
+.icon_new{
+    float: right;
+}
+.Availability{
+    margin-top: 10px;
+    height: 30px;
+    width: 160px;
+    background-color: limegreen;
+    position: absolute;
+    text-align: center;
+    border-radius: 5px;
+    opacity: 40%;
+}
+.Availability p{
+    margin-top: 5px;
+}

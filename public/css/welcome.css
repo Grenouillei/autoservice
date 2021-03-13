@@ -1,0 +1,50 @@
+
+body{
+    margin: 0;
+    font-family: "Abel",sans-serif;
+    background-color: #2d3748;
+    }
+p{
+    margin: 0;
+}
+.welcome{
+    margin-top: 280px;
+    width: 10em;
+    margin-left: auto;
+    margin-right: auto;
+}
+.welcome a{
+    color: white;
+    font-size: 20px;
+    font-weight: lighter;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.in:hover{
+    color: yellowgreen;
+    transition: 0.3s;
+}
+.out:hover{
+    color: orangered;
+    transition: 0.3s;
+}
+.welcome_img{
+    width: 18em;
+    margin-left: auto;
+    margin-right: auto;
+}
+.welcome_img2{
+    margin-top: 220px;
+    width: 9em;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.welcome_img2 img {
+    margin-left: 12px;
+    cursor: pointer;
+}
+.welcome_img2 img:hover {
+
+}
+

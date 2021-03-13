@@ -1,0 +1,20 @@
+.content_item_brand{
+    width: 330px;
+    height: 465px;
+    display: inline-block;
+    margin-left:20px;
+    margin-top: 20px;
+    text-align: center; overflow: hidden;
+    box-shadow: 0 0 3px black;
+    transition: 0.3s;
+}
+#content_block_brand{
+    margin-left: auto;
+    margin-right: auto;
+    width: 90em;
+    margin-top: 3%;
+    height: 2500px;
+    align-items: center;
+    background-color: #edf2f7;
+    overflow: hidden;
+}
