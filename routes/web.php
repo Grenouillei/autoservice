@@ -37,13 +37,13 @@ Route::get('/add','App\Http\Controllers\BasketController@addToBasket' );
 Route::get('/del','App\Http\Controllers\BasketController@delElBasket' );
 Route::get('/score','App\Http\Controllers\BasketController@basketheader' );
 
-Route::get('/brand','App\Http\Controllers\GoodsController@SortByBrand' )->name('brand');
+Route::get('/brand','App\Http\Controllers\GoodsController@openSortByBrandPage' )->name('brand');
 
 Route::get('/basket','App\Http\Controllers\BasketController@basketOpen' )->name('basket');
-Route::get('/searchForm','App\Http\Controllers\GoodsController@searchNew' )->name('search');
+Route::get('/searchForm','App\Http\Controllers\GoodsController@openSearchPage' )->name('search');
 //Route::get('/search','App\Http\Controllers\SparepartsController@searchNew' )->name('search');
-Route::get('/new','App\Http\Controllers\GoodsController@openNewBuyPage' )->name('new');
-Route::get('/home','App\Http\Controllers\GoodsController@outPuttOnPageHome' )->name('home');
+Route::get('/new','App\Http\Controllers\GoodsController@openNewPage' )->name('new');
+Route::get('/home','App\Http\Controllers\GoodsController@openHomePage' )->name('home');
 
 Route::get('/more','App\Http\Controllers\ContactController@allData' )->name('contact-data');
 Route::post('/contact/submit','App\Http\Controllers\ContactController@submit' )->name('contact-form');
@@ -52,6 +52,6 @@ Route::middleware('auth')->group(function (){
 
 });
 
-Route::get('/dashboard', 'App\Http\Controllers\GoodsController@outPuttOnPageHome')->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', 'App\Http\Controllers\GoodsController@openHomePage')->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
