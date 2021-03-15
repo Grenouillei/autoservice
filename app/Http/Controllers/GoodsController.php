@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class GoodsController extends Controller
 {
+    public $sklad1;
     public $sklad;
     public $temp;
     public $arr = array();
