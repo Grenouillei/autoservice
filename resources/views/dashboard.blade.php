@@ -39,15 +39,27 @@
             <a href="{{route('home')}}">Головна</a>
             <a href="/about">Про нас</a>
             <a href="{{route('contact')}}">Контакти</a>
-            <a href="{{route('contact-data')}}">Більше</a>
+            <a href="{{route('user')}}">Більше</a>
         </div>
     </div>
 
-    @include('basketHeader')
+    <div class="basket_block">
+        <p></p>
+        <a href="/basket">Кошик
+            <b style="color: dodgerblue;">
+                @foreach($product as $ele)
+                    @if($ele->user_id==\Illuminate\Support\Facades\Auth::user()->id)
+                        {{$res}}@break
+                    @endif
+                @endforeach
+            </b>
+        </a>
+    </div>
+
 
     <div class="reg_menu" style="margin-right: 160px;">
         <form method="POST" action="{{ route('logout') }}">
-            <a>{{\Illuminate\Support\Facades\Auth::user()->name}}</a>
+            <a href="{{route('user')}}">{{\Illuminate\Support\Facades\Auth::user()->name}}</a>
             <a>/</a>
             @csrf
             <a :href="route('logout')"

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\goods_remake;
+use App\Services\BasketService;
+use App\Services\GoodsService;
 use Illuminate\Http\Request;
-use App\Models\good;
-use App\Models\goods_brand;
 use App\Models\basket;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -13,21 +13,26 @@ use Illuminate\Support\Facades\Route;
 
 class BasketController extends Controller
 {
-    public function basketOpen()
-    {
-        $countOfBasket = $this->basketheader();
-        $product = basket::all();
-        return view('basket', ['product' => $product])->with('res',$countOfBasket);
+    public function __construct(BasketService $basketService,GoodsService $goodsService,basket $basket){
+        $this->basket = $basket;
+        $this->basketService = $basketService;
+        $this->goodService = $goodsService;
     }
 
-    public function delElBasket(Request $request)
-    {
+    public function openBasketPage(){
+        return view('basket', [
+            'res'=>$this->basketService->takeCountOfBasket(),
+            'product'=>$this->basketService->takeAllOfBasket()
+            ]);
+    }
+
+    public function deleteElementFromBasket(Request $request){
         $deleteEl = $request->id;
         DB::table('baskets')->where('id_s', '=', $deleteEl)->delete();
         return redirect()->route('basket');
     }
 
-    public function addToBasket(Request $request)
+    public function addElementToBasket(Request $request)
     {
         $user_id = Auth::user()->id;
         $basket = basket::all();
@@ -47,26 +52,13 @@ class BasketController extends Controller
                 DB::table('baskets')
                     ->insert(['id_s'=>$id,'name' => $element->name, 'code' => $element->code,
                         'price'=>$element->price,'brand'=>$element->brand, 'qty'=>1,'user_id'=>$user_id]);
-                        print ('success append');
-                        return redirect()->back();
-                }
+                print ('success append');
+                return redirect()->back();
+            }
             catch(\Illuminate\Database\QueryException $e) {
-                        print ('success append');//$e->getMessage();
-                        return redirect()->back();
-                }
+                print ('success append');//$e->getMessage();
+                return redirect()->back();
+            }
         }
     }
-
-    public function basketheader(){
-        $baskets = basket::all();
-        $result = 0;
-            foreach ($baskets as $el){
-                if ($el->user_id==Auth::user()->id){
-                   $result++;
-                }
-            }
-        $res = count($baskets);
-        return ($result);
-    }
-
 }

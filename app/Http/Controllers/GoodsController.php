@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\BasketService;
 use App\Services\GoodsService;
 use Illuminate\Http\Request;
 //use Illuminate\Support\Facades\View;
@@ -9,23 +10,20 @@ use Illuminate\Http\Request;
 
 class GoodsController extends Controller
 {
-    public $sklad2;
-    public $sklad1;
-    public $sklad;
-    public $temp;
-    public $arr = array();
+    private $basketService;
     private $goodService;
 
-    public function __construct(GoodsService $goodsService)
+    public function __construct(BasketService $basketService,GoodsService $goodsService)
     {
+        $this->basketService = $basketService;
         $this->goodService = $goodsService;
     }
 
     public function openHomePage(){
         return view('home' , [
             'parts'=>$this->goodService->getForPageHome(),
-            'res'=>$this->goodService->takeCountOfBasket(),
-            'product'=>$this->goodService->takeAllOfBasket()]);
+            'res'=>$this->basketService->takeCountOfBasket(),
+            'product'=>$this->basketService->takeAllOfBasket()]);
     }
 
     public function openNewPage(){
@@ -34,8 +32,8 @@ class GoodsController extends Controller
         $like = rand(0,30);
         return view('new',[
             'news'=>$this->goodService->takeAllOfGoods(),
-            'product'=>$this->goodService->takeAllOfBasket(),
-            'res'=>$this->goodService->takeCountOfBasket(),
+            'product'=>$this->basketService->takeAllOfBasket(),
+            'res'=>$this->basketService->takeCountOfBasket(),
             'saw'=>$saw,
             'buy'=>$buy,
             'like'=>$like]);
@@ -46,8 +44,8 @@ class GoodsController extends Controller
             return view('search', [
                 'array'=>$this->goodService->getForPageSearch($request),
                 'mass' =>$this->goodService->takeAllOfGoods(),
-                'res'=>$this->goodService->takeCountOfBasket(),
-                'product'=>$this->goodService->takeAllOfBasket()
+                'res'=>$this->basketService->takeCountOfBasket(),
+                'product'=>$this->basketService->takeAllOfBasket()
             ]);
     }
 
@@ -55,8 +53,8 @@ class GoodsController extends Controller
 
         return view('brands' , [
                 'parts' =>$this->goodService->getForPageSortByBrand($request1),
-                'res'=>$this->goodService->takeCountOfBasket(),
-                'product'=>$this->goodService->takeAllOfBasket()
+                'res'=>$this->basketService->takeCountOfBasket(),
+                'product'=>$this->basketService->takeAllOfBasket()
         ]);
     }
 }

@@ -12,13 +12,13 @@ use Illuminate\Support\Facades\DB;
 
 class GoodsService {
 
+
     public function getForPageHome(){
         //set_time_limit(300);            ->orderBy('brand','asc')
         $brands = DB::table('goods_remakes')
             ->select('brand','qty')->distinct()
             ->get();
-        foreach ($brands as $up)
-        {
+        foreach ($brands as $up) {
             $up->qty=rand(0,2);
         }
         return $brands->take(24);
@@ -26,18 +26,14 @@ class GoodsService {
 
     public function getForPageSearch(Request $request){
         $str = $request->text;
-        //$current = Route::current()->getName();
-        if($str==null)
-        {
+        if($str==null) {
             return redirect()->back();
         }
-        else
-        {
+        else {
             $mass2 = DB::table('goods')
                 ->where('name', 'like', "%$str%")->get('name')->take(24);
             return $mass2->take(16);
         }
-        //$_GET['text']
     }
 
     public function getForPageSortByBrand(Request $request1){
@@ -48,24 +44,8 @@ class GoodsService {
         return  $sort->take(15);
     }
 
-    public function takeAllOfBasket(){
-        return basket::all();
-    }
-
     public function takeAllOfGoods(){
         return goods_remake::all();
-    }
-
-    public  function takeCountOfBasket(){
-        $baskets = basket::all();
-        $result = 0;
-        foreach ($baskets as $el){
-            if ($el->user_id==Auth::user()->id){
-                $result++;
-            }
-        }
-        //$res = count($baskets);
-        return $result;
     }
 
     public static function getPrice()
