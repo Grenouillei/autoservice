@@ -1,11 +1,28 @@
 @extends('dashboard')
 
 @section('main_content')
-    <form action="/user_update" method="GET" >
-        <input type="text" name="name" style="@error('name') border: 1px solid red; @enderror" placeholder="Name">
-        <input type="email" name="email" style="@error('email') border: 1px solid red; @enderror" placeholder="Email">
-        <input type="password" name="password" style="@error('password') border: 1px solid red; @enderror" placeholder="Password">
-        <input type="password" name="confirm_password"  placeholder="Confirm password">
-        <button type="submit">update</button>
-    </form>
+    <div class="user_block">
+        <div class="user_admin_settings">
+
+        </div>
+        <div class="user_features">
+            <p>Admin : @if(\Illuminate\Support\Facades\Auth::user()->admin) Так @endif
+                @if(!\Illuminate\Support\Facades\Auth::user()->admin) Ні @endif
+            </p>
+            <p>Premium : @if(\Illuminate\Support\Facades\Auth::user()->PREMIUM)Так @endif
+                @if(!\Illuminate\Support\Facades\Auth::user()->PREMIUM)
+                    <a href="/user_premium"><button class="user_premium">КУПИТИ</button></a>
+                @endif
+            </p>
+        </div>
+        <div class="user_foto">
+            <img src="img/user.svg" width="180px" height="180px" alt="" style="margin-top: 10px;">
+            <p class="user_name">{{\Illuminate\Support\Facades\Auth::user()->name}}</p>
+        </div>
+        <div class="user_change">
+            <a href="{{route('user_s')}}"><button>Змінити Ім'я</button></a>
+            <a href="{{route('user_s')}}"><button>Змінити Пароль</button></a>
+        </div>
+
+    </div>
 @endsection

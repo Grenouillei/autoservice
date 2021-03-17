@@ -47,7 +47,9 @@
                     <div style="width: 110px; float: right; text-align: right; margin-right: 10px;">
                         <p >{{ $el->brand}}</p>
                         <p >{{$el->code}}</p>
-                        <p >{{$el->price}} грн</p>
+                        <p > @if(!\Illuminate\Support\Facades\Auth::user()->PREMIUM){{$el->price}} @endif
+                            @if(\Illuminate\Support\Facades\Auth::user()->PREMIUM){{$el->price-$el->price*0.1 }} @endif
+                            грн</p>
                     </div>
                 </div>
                 <form action="new" method="GET">

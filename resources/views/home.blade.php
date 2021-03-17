@@ -77,7 +77,7 @@
             <div style="margin-left: 355px; padding-top: 100px;">
                 @foreach($parts as $el)
                     <div class="content_item">
-                            <form action="brand" method="GET" style="position: relative">
+                            <form action="{{route('brand')}}" method="GET" style="position: relative">
                                 <input type="hidden" name="brand" value="{{$el->brand}}"/>
                                 @if($el->qty==2)
                                     <img src="img/top.png" alt="" style="position: absolute">

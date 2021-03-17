@@ -25,7 +25,7 @@ class GoodsService {
     }
 
     public function getForPageSearch(Request $request){
-        $str = $request->text;
+        $str = $request->search_text;
         if($str==null) {
             return redirect()->back();
         }

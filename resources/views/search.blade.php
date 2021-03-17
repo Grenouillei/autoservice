@@ -28,7 +28,7 @@
                     <p >{{$el->price}} грн</p>
                 </div>
              </div>
-             <form action="new" method="GET">
+             <form action="{{route('new')}}" method="GET">
                  <input type="hidden" name="brand" value="{{$el->brand}}"/>
                  <input type="hidden" name="id" value="{{$el->id}}"/>
                  <button id="{{$el->id}}" class="content_button_search"  >Більше</button>

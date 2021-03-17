@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset("css/basket.css") }}">
     <link rel="stylesheet" href="{{ asset("css/brands.css") }}">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/user.css') }}">
 
     <script src="{{ asset('js/main.js') }}" type="text/javascript"></script>
 
@@ -22,9 +23,9 @@
 <div class="header">
 
     <div class="search">
-        <form action="searchForm" method="GET">
+        <form action="{{route('search')}}" method="GET">
             <div class="search_content">
-                <input type="text" name="text"  value="" placeholder="  Пошук">
+                <input type="text" name="search_text"  value="" placeholder="  Пошук">
             </div>
             <div class="search_button"><button>Знайти</button></div>
         </form>
@@ -39,13 +40,13 @@
             <a href="{{route('home')}}">Головна</a>
             <a href="/about">Про нас</a>
             <a href="{{route('contact')}}">Контакти</a>
-            <a href="{{route('user')}}">Більше</a>
+            <a href="">Більше</a>
         </div>
     </div>
 
     <div class="basket_block">
         <p></p>
-        <a href="/basket">Кошик
+        <a href="{{route('basket')}}">Кошик
             <b style="color: dodgerblue;">
                 @foreach($product as $ele)
                     @if($ele->user_id==\Illuminate\Support\Facades\Auth::user()->id)
