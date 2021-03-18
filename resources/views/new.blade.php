@@ -79,9 +79,13 @@
                 @endforeach
 
             <div class="content_feedback_new">
+                <h3>Залиште свій коментар</h3>
                     <div class="feedback_user">
-
+                        <img src="img/user.svg" width="100px" height="100px" alt="" style="margin-top: 10px;">
+                        <p>{{\Illuminate\Support\Facades\Auth::user()->name}}</p>
                     </div>
+
+                <textarea name="comment" placeholder=" Ваш коментар..."></textarea>
             </div>
 
     </div>

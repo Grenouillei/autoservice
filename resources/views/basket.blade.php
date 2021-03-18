@@ -50,7 +50,7 @@
                         <input type="hidden" name="id" value="{{$element->id_s}}"/>
                         <button class="button_delete">ВИДАЛИТИ</button>
                     </form>
-                    <form action="new" method="GET">
+                    <form action="{{route('new')}}" method="GET">
                         <input type="hidden" name="id" value="{{$element->id_s}}"/>
                         <button class="button_more">БІЛЬШЕ</button>
                     </form>
@@ -70,7 +70,7 @@
             @endif
         @endforeach
 
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
         <script>
             var score=0;
             var sum = 0;

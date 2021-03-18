@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ asset('css/user.css') }}">
 
     <script src="{{ asset('js/main.js') }}" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
     <title>AUTIO</title>
 </head>

@@ -24,11 +24,11 @@ Route::get('/contact_page', function () {
     return view('contact');
 })->name('contact');
 
-Route::get('/user_update','App\Http\Controllers\UserController@updateUser');
+Route::post('/user_update','App\Http\Controllers\UserController@updateUser')->name('update');
+Route::get('/del','App\Http\Controllers\BasketController@deleteElementFromBasket' );
+Route::get('/score','App\Http\Controllers\BasketController@takeCountOfBasket' );
 Route::get('/add','App\Http\Controllers\BasketController@addElementToBasket' );
 Route::get('/user_premium','App\Http\Controllers\UserController@buyPremium' );
-Route::get('/score','App\Http\Controllers\BasketController@takeCountOfBasket' );
-Route::get('/del','App\Http\Controllers\BasketController@deleteElementFromBasket' );
 
 Route::middleware('auth')->group(function (){
     Route::get('/new_page','App\Http\Controllers\GoodsController@openNewPage' )->name('new');

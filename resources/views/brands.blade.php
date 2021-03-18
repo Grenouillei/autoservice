@@ -47,12 +47,12 @@
                     <div style="width: 110px; float: right; text-align: right; margin-right: 10px;">
                         <p >{{ $el->brand}}</p>
                         <p >{{$el->code}}</p>
-                        <p > @if(!\Illuminate\Support\Facades\Auth::user()->PREMIUM){{$el->price}} @endif
-                            @if(\Illuminate\Support\Facades\Auth::user()->PREMIUM){{$el->price-$el->price*0.1 }} @endif
+                        <p > @if(!$user_premium){{$el->price}} @endif
+                            @if($user_premium){{$el->price-$el->price*0.1 }} @endif
                             грн</p>
                     </div>
                 </div>
-                <form action="new" method="GET">
+                <form action="{{route('new')}}" method="GET">
                     <input type="hidden" name="brand" value="{{$el->brand}}"/>
                     <input type="hidden" name="id" value="{{$el->id}}"/>
                     <button id="{{$el->id}}" class="content_button_search"  >Більше</button>
