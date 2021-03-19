@@ -4,22 +4,20 @@ namespace App\Services;
 
 use App\Http\Requests\Auth\UserRequest;
 use App\Models\user;
+use App\Models\UserPremium;
+use ErrorException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserService{
 
-    public $tomorrow_date;
-    public $current_date;
-
     public function getAllUsers(){
         return User::all();
     }
+
     public function Userupdate($req){
         $user = User::find(Auth::user()->id);
         $user->name = $req->name;
-        //$user->email = $req->email;
-        //$user->password = $req->password;
         $user->save();
     }
     public function isAdmin(){
@@ -36,15 +34,62 @@ class UserService{
             $is_premium = false;
         return $is_premium;
     }
-    public function getPremium(){
+    public function getUserAdmin($request){
+        $allusers = User::all();
+        $user_id = User::find($request->name);
+        $user_id->admin = true;
+        $user_id->save();
+            foreach ($allusers as $user) {
+                if ($user->id!=1){
+                    if ($request->name!=$user->id) {
+                        $user_id2 = User::find($user->id);
+                        $user_id2->admin = false;
+                        $user_id2->save();
+                    }
+                }
+            }
+    }
+    public function getUserPremium(){
+        $user_p = new UserPremium();
+        $user_p->id = Auth::user()->id;
+        $user_p->on_date = mktime(date('H'), date('i'), date('s'),
+                                date("m")  , date("d"), date("Y"));
+        $user_p->off_date = mktime(date('H'), date('i'), date('s'),
+                            date("m"), date("d")+1, date("Y"));
+        $t = strtotime('+1 day');
+        $user_p->date = date('d.m.Y H:i:s',$t);
+        $user_p->save();
 
+        $user = User::find(Auth::user()->id);
+        $user->PREMIUM = true;
+        $user->save();
+    }
+    public function checkUserPremium(){
         $current_date = mktime(date('H'), date('i'), date('s'),
-            date("m")  , date("d"), date("Y"));
-        $this->current_date = $current_date;
+                            date("m")  , date("d"), date("Y"));
+        $user_premium = UserPremium::all();
+            foreach ($user_premium as $premium) {
+               if($premium->id==Auth::user()->id){
+                   if($current_date>=$premium->off_date){
+                       $user = User::find(Auth::user()->id);
+                       $user->PREMIUM = false;
+                       $user->save();
 
-        $tomorrow_date = mktime(date('H'), date('i'), date('s')+30,
-            date("m"), date("d")+1, date("Y"));
-        $this->tomorrow_date = $tomorrow_date;
+                       $user_p = UserPremium::find(Auth::user()->id);
+                       $user_p->delete();
+                   }
+               }
+            }
+    }
+    public function getDateOfEndingPremium(){
+        try{
+            $user_p = UserPremium::find(Auth::user()->id);
+            $today = $user_p->date;
+            return $today;
+        }catch (ErrorException $e)
+        {
+            return false;
+        }
 
     }
 

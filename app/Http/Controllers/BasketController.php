@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\goods_remake;
 use App\Services\BasketService;
 use App\Services\GoodsService;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use App\Models\basket;
 use Illuminate\Support\Facades\Auth;
@@ -13,14 +14,17 @@ use Illuminate\Support\Facades\Route;
 
 class BasketController extends Controller
 {
-    public function __construct(BasketService $basketService,GoodsService $goodsService,basket $basket){
+    public function __construct(BasketService $basketService,GoodsService $goodsService,basket $basket,UserService $userService){
         $this->basket = $basket;
         $this->basketService = $basketService;
         $this->goodService = $goodsService;
+        $this->userService = $userService;
     }
 
     public function openBasketPage(){
+        $this->userService->checkUserPremium();
         return view('basket', [
+            'user_premium'=>$this->userService->isPremium(),
             'res'=>$this->basketService->takeCountOfBasket(),
             'product'=>$this->basketService->takeAllOfBasket()
             ]);
@@ -44,7 +48,6 @@ class BasketController extends Controller
         foreach ($taked as $element) {
             foreach ($basket as $baskets) {
                 if($id==$baskets->id_s&&$baskets->user_id==Auth::user()->id) {
-                    //$prev = url()->previous();
                     return redirect()->back();
                 }
             }
@@ -52,11 +55,10 @@ class BasketController extends Controller
                 DB::table('baskets')
                     ->insert(['id_s'=>$id,'name' => $element->name, 'code' => $element->code,
                         'price'=>$element->price,'brand'=>$element->brand, 'qty'=>1,'user_id'=>$user_id]);
-                print ('success append');
                 return redirect()->back();
             }
             catch(\Illuminate\Database\QueryException $e) {
-                print ('success append');//$e->getMessage();
+                //$e->getMessage();
                 return redirect()->back();
             }
         }

@@ -32,7 +32,13 @@
                         <img src="img\imagecar1.jpg" width="360px" height="280" alt=""><br>
                                         <h3> Бренд : {{$el->brand}}</h3>
                                 <h3> Каталожний номер : {{$el->code}}</h3>
-                                    <h3> Ціна : {{$el->price}} грн</h3>
+                                    <h3> Ціна : @if(!$user_premium){{$el->price}} @endif
+                                        @if($user_premium)<b style="color: limegreen">{{$el->price-$el->price*0.1 }}</b> @endif грн</h3>
+                            <p style="color: red;position: absolute;margin-left: 180px; margin-top: -37px;">@if($user_premium) -10% @endif</p>
+
+
+
+
 
                             <div class="Availability">
                                 <p>В наявності</p>
@@ -84,8 +90,25 @@
                         <img src="img/user.svg" width="100px" height="100px" alt="" style="margin-top: 10px;">
                         <p>{{\Illuminate\Support\Facades\Auth::user()->name}}</p>
                     </div>
+                <form action="" method="post">
+                    <textarea name="comment" placeholder=" Ваш коментар..."></textarea>
+                    <button>Опублікувати</button>
+                </form>
+            </div>
 
-                <textarea name="comment" placeholder=" Ваш коментар..."></textarea>
+            <div class="all_feedback">
+                <h2>Всі коментарі</h2>
+                <div class="feedback_content">
+                    <div class="feedback_inner">
+
+                    </div>
+                    <div class="feedback_inner2">
+
+                    </div>
+                </div>
+                <div class="feedback_content">
+
+                </div>
             </div>
 
     </div>

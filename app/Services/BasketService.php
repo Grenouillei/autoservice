@@ -22,7 +22,6 @@ class BasketService {
                 $result++;
             }
         }
-        //$res = count($baskets);
         return $result;
     }
 

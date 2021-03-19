@@ -61,7 +61,7 @@
 
     <div class="reg_menu" style="margin-right: 160px;">
         <form method="POST" action="{{ route('logout') }}">
-            <a href="{{route('user')}}">{{\Illuminate\Support\Facades\Auth::user()->name}}</a>
+            <a href="{{route('user')}}" @if(\Illuminate\Support\Facades\Auth::user()->PREMIUM)style="color: orange" @endif>{{\Illuminate\Support\Facades\Auth::user()->name}}</a>
             <a>/</a>
             @csrf
             <a :href="route('logout')"

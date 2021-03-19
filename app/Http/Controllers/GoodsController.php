@@ -23,6 +23,7 @@ class GoodsController extends Controller
     }
 
     public function openHomePage(){
+        $this->userService->checkUserPremium();
         return view('home' , [
             'parts'=>$this->goodService->getForPageHome(),
             'res'=>$this->basketService->takeCountOfBasket(),
@@ -30,20 +31,24 @@ class GoodsController extends Controller
     }
 
     public function openNewPage(){
+        $this->userService->checkUserPremium();
         $saw = rand(0,500);
         $buy = rand(0,100);
         $like = rand(0,30);
         return view('new',[
             'news'=>$this->goodService->takeAllOfGoods(),
-            'product'=>$this->basketService->takeAllOfBasket(),
+            'user_premium'=>$this->userService->isPremium(),
             'res'=>$this->basketService->takeCountOfBasket(),
+            'product'=>$this->basketService->takeAllOfBasket(),
             'saw'=>$saw,
             'buy'=>$buy,
             'like'=>$like]);
     }
 
     public function openSearchPage(Request $request){
+        $this->userService->checkUserPremium();
             return view('search', [
+                'user_premium'=>$this->userService->isPremium(),
                 'array'=>$this->goodService->getForPageSearch($request),
                 'mass' =>$this->goodService->takeAllOfGoods(),
                 'res'=>$this->basketService->takeCountOfBasket(),
@@ -52,6 +57,7 @@ class GoodsController extends Controller
     }
 
     public function openSortByBrandPage(Request $request1){
+        $this->userService->checkUserPremium();
         return view('brands' , [
                 'user_premium'=>$this->userService->isPremium(),
                 'parts' =>$this->goodService->getForPageSortByBrand($request1),

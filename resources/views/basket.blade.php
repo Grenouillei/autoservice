@@ -36,7 +36,8 @@
                         <button id="plus{{$element->id}}">+</button>
                 </div>
                 <div class="content_char_basket">
-                    <p>{{$element->price}}₴</p>
+                    <p>@if(!$user_premium){{$element->price}} @endif
+                        @if($user_premium)<b style="color: lime">{{$element->price-$element->price*0.1 }}</b> @endif₴</p>
                     грн / шт.
                 </div>
                 <div class="content_char1_basket">
@@ -63,7 +64,8 @@
                 @foreach($product as $element)
                     @if($element->user_id==\Illuminate\Support\Facades\Auth::user()->id)
                         id.push({{$element->id}});
-                        arr.push({{$element->price}});
+                        @if(!$user_premium)arr.push({{$element->price}});@endif
+                        @if($user_premium)arr.push({{$element->price-$element->price*0.1}});@endif
                     @endif
                 @endforeach
             </script>
@@ -82,9 +84,9 @@
                  }
             }
             score=score+1;
-            console.log(sum);
+            //console.log(sum);
             $(document).ready(function() {
-                $('#total').append(sum+' грн');
+                $('#total').append(sum.toFixed(2)+' грн');
                 $('#content_block_basket').css('height',''+score*+'100px');
 
             });
@@ -92,7 +94,7 @@
             for (var i =0;i<=id.length;i++)
             {
                  var temp = $('#minus'+i+'').bind("click", function minus(){
-                        console.log('123');
+                        //console.log('123');
                  });
             }
             function plus(){
