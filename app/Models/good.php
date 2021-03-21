@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class good extends Model
 {
     use HasFactory;
+
 }

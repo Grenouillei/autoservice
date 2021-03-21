@@ -36,7 +36,7 @@ class UserService{
     }
     public function getUserAdmin($request){
         $allusers = User::all();
-        $user_id = User::find($request->name);
+        $user_id = User::find($request->id);
         $user_id->admin = true;
         $user_id->save();
             foreach ($allusers as $user) {
@@ -54,8 +54,8 @@ class UserService{
         $user_p->id = Auth::user()->id;
         $user_p->on_date = mktime(date('H'), date('i'), date('s'),
                                 date("m")  , date("d"), date("Y"));
-        $user_p->off_date = mktime(date('H'), date('i'), date('s'),
-                            date("m"), date("d")+1, date("Y"));
+        $user_p->off_date = mktime(date('H'), date('i'), date('s')+60,
+                            date("m"), date("d"), date("Y"));
         $t = strtotime('+1 day');
         $user_p->date = date('d.m.Y H:i:s',$t);
         $user_p->save();

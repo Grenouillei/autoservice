@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\basket;
+use App\Models\UserComment;
 use Illuminate\Http\Request;
 use App\Models\good;
 use App\Models\goods_brand;
@@ -48,6 +49,10 @@ class GoodsService {
         return goods_remake::all();
     }
 
+    public function createComment(){
+        $comment = new UserComment();
+    }
+
     public static function getPrice()
     {
         for($i=1;$i<=1000;$i++)
@@ -91,4 +96,5 @@ class GoodsService {
             ->where('goods_brands.g_id', '=', "$id")->get();
         return ($sklad);
     }
+
 }

@@ -25,7 +25,7 @@
                         <div class="users_name"><p>{{$user->name}}</p>
                             <div class="users_checkbox">
                                 <label for="isadmin{{$user->id}}">ADMIN</label>
-                                <input type="checkbox" id="isadmin{{$user->id}}" name="name" value="{{$user->id}}" @if($user->admin) checked @endif>
+                                <input type="checkbox" id="isadmin{{$user->id}}" name="id" value="{{$user->id}}" @if($user->admin) checked @endif>
                             </div>
                         </div>
                     @endif

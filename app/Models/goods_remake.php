@@ -17,4 +17,8 @@ class goods_remake extends Model
         'code',
         'qty'
     ];
+
+    public function comments(){
+        return $this->hasMany(UserComment::class, 'id_good', 'id');
+    }
 }
