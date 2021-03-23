@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/user.css') }}">
 
-    <script src="{{ asset('js/main.js') }}" type="text/javascript"></script>
+    <!--<script src="{{ asset('js/main.js') }}" type="text/javascript"></script>-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
     <title>AUTIO</title>
@@ -59,12 +59,14 @@
     </div>
 
 
-    <div class="reg_menu" style="margin-right: 160px;">
+    <div class="reg_menu" style="margin-right: 110px;">
         <form method="POST" action="{{ route('logout') }}">
-            <a href="{{route('user')}}" @if(\Illuminate\Support\Facades\Auth::user()->PREMIUM)style="color: orange" @endif>{{\Illuminate\Support\Facades\Auth::user()->name}}</a>
+            <a class="reg_name" href="{{route('user')}}" @if(\Illuminate\Support\Facades\Auth::user()->PREMIUM)style="color: orange" @endif>
+                {{\Illuminate\Support\Facades\Auth::user()->name}}
+            </a>
             <a>/</a>
             @csrf
-            <a :href="route('logout')"
+            <a class="reg_log" :href="route('logout')"
                                    onclick="event.preventDefault();
                                 this.closest('form').submit();">
                 {{ __('Вихід') }}

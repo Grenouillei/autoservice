@@ -19,18 +19,19 @@
         <div class="user_admin_content">
             <div class="user_admin_inner" style="display: none;">
                 <br><br>
-                <form action="/user_admin" method="get" >
+                <form action="{{route('admin')}}" method="POST" >
+                    @csrf
                 @foreach($users as $user)
                     @if($user->id!=1)
                         <div class="users_name"><p>{{$user->name}}</p>
                             <div class="users_checkbox">
-                                <label for="isadmin{{$user->id}}">ADMIN</label>
-                                <input type="checkbox" id="isadmin{{$user->id}}" name="id" value="{{$user->id}}" @if($user->admin) checked @endif>
+                                <label for="is_admin{{$user->id}}">ADMIN</label>
+                                <input type="checkbox" id="is_admin{{$user->id}}" name="id" value="{{$user->id}}" @if($user->admin) checked @endif>
                             </div>
                         </div>
                     @endif
                 @endforeach
-                    <button>confirm</button>
+                    <button class="button_admin_update">confirm</button>
                 </form>
             </div>
         </div>
@@ -46,12 +47,12 @@
         </div>
 
         <div class="user_features">
-            <p>Admin : @if($user_admin) Так @endif
-                @if(!$user_admin) Ні @endif
+            <p>Admin : @if($user_admin) Так
+                @else Ні @endif
             </p>
-            <p>Premium : @if($user_premium)<i>до {{$today}}</i>@endif
-                @if(!$user_premium)
-                    <a href="/user_premium"><button class="user_premium">КУПИТИ</button></a>
+            <p>Premium : @if($user_premium)<i>до {{$today}}</i>
+                @else
+                    <a href="/user_premium"><button class="user_premium">Купити</button></a>
                 @endif
             </p>
         </div>

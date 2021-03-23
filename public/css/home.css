@@ -8,6 +8,7 @@
     align-items: center;
     background-color: #edf2f7;
     overflow: hidden;
+    box-shadow: 0 0 15px black;
 }
 .content_categories_home{
     height: 400px;

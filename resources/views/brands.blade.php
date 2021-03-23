@@ -49,6 +49,7 @@
                         <p >{{$el->code}}</p>
                         <p @if($user_premium)style="color: limegreen"@endif>
                             @if(!$user_premium){{$el->price}} @endif
+
                             @if($user_premium){{$el->price-$el->price*0.1 }} @endif
                             грн </p>
                         <p style="color: red;position: absolute;margin-left: 70px;">@if($user_premium) -10% @endif</p>

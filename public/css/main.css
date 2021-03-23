@@ -1,6 +1,10 @@
 body{
     margin: 0;
     background-color: #f7fafc;
+    background-image: url(/img/fon3.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     font-family: "Abel",sans-serif;
 }
 p{
@@ -13,7 +17,7 @@ p{
     color: #cbd5e0;
 }
 .footer{
-    margin-top: 10%;
+    margin-top: 12%;
     width: 100%; height: 50px;
     background-color: #2d3748;
 }
@@ -102,11 +106,11 @@ p{
 }
 /*HOVER*/
 .main_menu a:hover{
-    color: #718096;
+    color: dodgerblue;/* #718096*/
     transition: 0.3s;
 }
 .basket_block:hover a{
-    color: #718096;
+    color: dodgerblue;
     transition: 0.3s;
 }
 .reg_item:hover{
@@ -117,4 +121,11 @@ p{
     background-color: dodgerblue;
     color: white;
 }
-
+.reg_name:hover{
+    color: dodgerblue;
+    transition: 0.3s;
+}
+.reg_log:hover{
+    color: orangered;
+    transition: 0.3s;
+}

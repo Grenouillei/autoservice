@@ -2,9 +2,12 @@
 
 @section('main_content')
     @if(count($array)<1)
-            <h1 style="text-align: center">Нічого не знайдено!</h1>
-        @endif
+            <div style="height: 460px"><h1 style="text-align: center">Нічого не знайдено!</h1></div>
+    @else
+
+
     <div id="content_block_search">
+        <h1 style="text-align: center">Результати пошуку : {{$_GET['search_text']}}</h1>
             <div style="margin-left: 45px;">
     @foreach($array as $ele)
      @foreach($mass as $el)
@@ -47,4 +50,5 @@
                 </button>
             </div>
     </div>
+    @endif
    @endsection

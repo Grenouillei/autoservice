@@ -25,5 +25,15 @@ class BasketService {
         return $result;
     }
 
+    public function checkNullOfBasket(){
+        $allbasket = $this->takeAllOfBasket();
+        foreach ($allbasket as $item) {
+                if($item->user_id==Auth::user()->id){
+                    return true;
+                }
+            }
+        return false;
+    }
+
 
 }

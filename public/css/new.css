@@ -85,11 +85,11 @@
     height: 100px;
     margin-top: 10px;
     border: 1px solid slategray;
-    background-color: #cbd5e0;
+    background-color: #4D586A;
 }
 .alias_item:hover{
     cursor: pointer;
-    border: 1px solid dodgerblue;
+    outline: 2px solid dodgerblue;
 }
 .content_feedback_new{
     background-color: #cbd5e0;

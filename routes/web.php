@@ -25,7 +25,7 @@ Route::get('/contact_page', function () {
 })->name('contact');
 
 Route::post('/user_update','App\Http\Controllers\UserController@updateUser')->name('update');
-Route::get('/user_admin','App\Http\Controllers\UserController@takeUserAdmin');
+Route::post('/user_admin','App\Http\Controllers\UserController@takeUserAdmin')->name('admin');
 Route::get('/del','App\Http\Controllers\BasketController@deleteElementFromBasket' );
 Route::get('/user_premium','App\Http\Controllers\UserController@buyUserPremium' );
 Route::get('/score','App\Http\Controllers\BasketController@takeCountOfBasket' );

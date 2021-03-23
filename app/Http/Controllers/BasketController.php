@@ -23,7 +23,9 @@ class BasketController extends Controller
 
     public function openBasketPage(){
         $this->userService->checkUserPremium();
+
         return view('basket', [
+            'empty'=>$this->basketService->checkNullOfBasket(),
             'user_premium'=>$this->userService->isPremium(),
             'res'=>$this->basketService->takeCountOfBasket(),
             'product'=>$this->basketService->takeAllOfBasket()

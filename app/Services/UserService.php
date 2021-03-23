@@ -35,19 +35,10 @@ class UserService{
         return $is_premium;
     }
     public function getUserAdmin($request){
-        $allusers = User::all();
         $user_id = User::find($request->id);
         $user_id->admin = true;
         $user_id->save();
-            foreach ($allusers as $user) {
-                if ($user->id!=1){
-                    if ($request->name!=$user->id) {
-                        $user_id2 = User::find($user->id);
-                        $user_id2->admin = false;
-                        $user_id2->save();
-                    }
-                }
-            }
+
     }
     public function getUserPremium(){
         $user_p = new UserPremium();
