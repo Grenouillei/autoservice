@@ -9,9 +9,10 @@ p{
 }
 .welcome{
     margin-top: 280px;
-    width: 10em;
+    width: 15em;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
 }
 .welcome a{
     color: white;

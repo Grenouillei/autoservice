@@ -6,7 +6,6 @@ use App\Services\BasketService;
 use App\Services\GoodsService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\View;
 
 
 class GoodsController extends Controller
@@ -36,7 +35,8 @@ class GoodsController extends Controller
         $buy = rand(0,100);
         $like = rand(0,30);
         return view('new',[
-            'news'=>$this->goodService->takeAllOfGoods(),
+            'news'=>$this->goodService->getAllOfGoods(),
+            'user_admin'=>$this->userService->isAdmin(),
             'user_premium'=>$this->userService->isPremium(),
             'res'=>$this->basketService->takeCountOfBasket(),
             'product'=>$this->basketService->takeAllOfBasket(),
@@ -50,7 +50,7 @@ class GoodsController extends Controller
             return view('search', [
                 'user_premium'=>$this->userService->isPremium(),
                 'array'=>$this->goodService->getForPageSearch($request),
-                'mass' =>$this->goodService->takeAllOfGoods(),
+                'mass' =>$this->goodService->getAllOfGoods(),
                 'res'=>$this->basketService->takeCountOfBasket(),
                 'product'=>$this->basketService->takeAllOfBasket()
             ]);

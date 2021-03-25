@@ -7,10 +7,12 @@
                 @foreach($news as $el)
                     @if($el->id==$_GET['id'])
                     <div class="content_item_new">
-                        <form action="{{route('change')}}" method="get">
-                            <input type="hidden" name="id" value="{{$el->id}}"/>
-                            <button class="change_able">Change evidence</button>
-                        </form>
+                        @if($user_admin)
+                            <form action="{{route('change')}}" method="get">
+                                <input type="hidden" name="id" value="{{$el->id}}"/>
+                                <button class="change_able">Change evidence</button>
+                            </form>
+                        @endif
                         <h1  class="content_name_new">{{$el->name}}</h1>
                         <div style="padding-top: 20px;" >
 
@@ -40,9 +42,6 @@
                                         @if($user_premium)<b style="color: limegreen">{{$el->price-$el->price*0.1 }}</b> @endif грн</h3>
                             <p style="color: red;position: absolute;margin-left: 180px; margin-top: -37px;">@if($user_premium) -10% @endif</p>
 
-
-
-
                             @if($el->able)
                             <div class="Availability">
                                 <p>В наявності</p>
@@ -53,11 +52,18 @@
                                 </div>
                             @endif
                             <form action="/add" method="GET">
-                                <input type="hidden" name="id" value="{{$el->id}}"/>
-                                <button id="{{$el->id}}" class="content_button_busket_new" type="">
-                                   <!-- <img src="img\cart.svg" height="30px" width="30px" style=""  alt="">-->
-                                    Купити
-                                </button>
+                                @if($el->able)
+                                    <input type="hidden" name="id" value="{{$el->id}}"/>
+                                    <button id="{{$el->id}}" class="content_button_busket_new" type="">
+                                       <!-- <img src="img\cart.svg" height="30px" width="30px" style=""  alt="">-->
+                                        Купити
+                                    </button>
+                                @else
+                                    <input type="hidden" name="id" value="{{$el->id}}"/>
+                                    <button id="button_disabled" type="" disabled >
+                                        --------
+                                    </button>
+                                @endif
                             </form>
 
                             <div class="new_icon">
@@ -79,8 +85,8 @@
                         <script>
                             let temp;
                          @foreach($product as $element)
-                          temp = {{$element->id_s}};
-                             @if($el->id==$element->id_s&&$element->user_id==\Illuminate\Support\Facades\Auth::user()->id)
+                          temp = {{$element->id_g}};
+                             @if($el->id==$element->id_g&&$element->user_id==\Illuminate\Support\Facades\Auth::user()->id)
                                         $('#'+temp+'').prop('disabled', true);
                                         $('#'+temp+'').css('background-color', '#edf2f7');
                                         $('#'+temp+'').css('border', '3px solid limegreen');
@@ -119,10 +125,7 @@
 
                 </div>
             </div>
-
     </div>
-
-
 @endsection
 
 

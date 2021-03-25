@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Http\Requests\Auth\UserRequest;
-use App\Models\user;
+use App\Models\User;
 use App\Models\UserPremium;
 use ErrorException;
 use Illuminate\Http\Request;
@@ -34,7 +34,7 @@ class UserService{
             $is_premium = false;
         return $is_premium;
     }
-    public function getUserAdmin($request){
+    public function setUserAdmin($request){
         $id = $request->id;
         if($id!=null){
             $arr_id = explode(',',$id);
@@ -58,7 +58,7 @@ class UserService{
             }
         }
     }
-    public function getUserPremium(){
+    public function setUserPremium(){
         $user_p = new UserPremium();
         $user_p->id = Auth::user()->id;
         $user_p->on_date = mktime(date('H'), date('i'), date('s'),

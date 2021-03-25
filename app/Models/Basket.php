@@ -5,20 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class goods_remake extends Model
+class Basket extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'id',
+        'id_s',
         'name',
-        'brand',
+        'qty',
         'price',
+        'brand',
         'code',
-        'qty'
+        'user_id'
     ];
-
-    public function comments(){
-        return $this->hasMany(UserComment::class, 'id_good', 'id');
-    }
 }

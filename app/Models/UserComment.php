@@ -16,7 +16,7 @@ class UserComment extends Model
         'comment'
     ];
 
-    public function good_remake(){
-        return $this->belongsTo(goods_remake::class, 'id', 'id_good');
+    public function goods(){
+        return $this->belongsTo(Good::class, 'id', 'id_good');
     }
 }

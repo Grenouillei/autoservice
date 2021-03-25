@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
-use App\Models\User;
-use App\Models\UserPremium;
 use App\Services\BasketService;
 use App\Services\GoodsService;
 use App\Services\UserService;
@@ -45,11 +43,11 @@ class UserController extends Controller
         return redirect()->route('user');
     }
     public function buyUserPremium(){
-        $this->userService->getUserPremium();
+        $this->userService->setUserPremium();
         return redirect()->route('user');
     }
     public function takeUserAdmin(Request $request){
-        $this->userService->getUserAdmin($request);
+        $this->userService->setUserAdmin($request);
         return redirect()->route('user');
     }
 }

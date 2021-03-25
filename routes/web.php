@@ -24,13 +24,14 @@ Route::get('/contact_page', function () {
     return view('contact');
 })->name('contact');
 
-Route::post('/user_update','App\Http\Controllers\UserController@updateUser')->name('update');
+Route::get('/change','App\Http\Controllers\GoodsController@ChangeAvailabilityOfGoods' )->name('change');
 Route::post('/user_admin','App\Http\Controllers\UserController@takeUserAdmin')->name('admin');
-Route::get('/del','App\Http\Controllers\BasketController@deleteElementFromBasket' );
+Route::post('/user_update','App\Http\Controllers\UserController@updateUser')->name('update');
 Route::get('/user_premium','App\Http\Controllers\UserController@buyUserPremium' );
+
+Route::get('/del','App\Http\Controllers\BasketController@deleteElementFromBasket' );
 Route::get('/score','App\Http\Controllers\BasketController@takeCountOfBasket' );
 Route::get('/add','App\Http\Controllers\BasketController@addElementToBasket' );
-Route::get('/change','App\Http\Controllers\GoodsController@ChangeAvailabilityOfGoods' )->name('change');
 
 Route::middleware('auth')->group(function (){
     Route::get('/new_page','App\Http\Controllers\GoodsController@openNewPage' )->name('new');

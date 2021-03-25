@@ -40,7 +40,7 @@
     <div class="container_menu">
         <div class="main_menu">
             <a href="{{route('home')}}">Головна</a>
-            <a href="{{route('buy')}}">Про нас</a>
+            <a href="">Про нас</a>
             <a href="">Контакти</a>
             <a href="">Більше</a>
         </div>

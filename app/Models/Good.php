@@ -5,19 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class basket extends Model
+class Good extends Model
 {
+    public $timestamps = false;
     use HasFactory;
 
     protected $fillable = [
         'id',
-        'id_s',
         'name',
-        'qty',
-        'price',
         'brand',
+        'price',
         'code',
-        'user_id'
+        'qty',
+        'able'
     ];
 
+    public function comments(){
+        return $this->hasMany(UserComment::class, 'id_good', 'id');
+    }
 }

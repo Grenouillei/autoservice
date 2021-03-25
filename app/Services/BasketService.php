@@ -3,19 +3,17 @@
 namespace App\Services;
 
 use Illuminate\Http\Request;
-use App\Models\basket;
+use App\Models\Basket;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Route;
 
 class BasketService {
 
     public function takeAllOfBasket(){
-        return basket::all();
+        return Basket::all();
     }
 
     public  function takeCountOfBasket(){
-        $baskets = basket::all();
+        $baskets = $this->takeAllOfBasket();
         $result = 0;
         foreach ($baskets as $el){
             if ($el->user_id==Auth::user()->id){
@@ -26,8 +24,8 @@ class BasketService {
     }
 
     public function checkNullOfBasket(){
-        $allbasket = $this->takeAllOfBasket();
-        foreach ($allbasket as $item) {
+        $baskets = $this->takeAllOfBasket();
+        foreach ($baskets as $item) {
                 if($item->user_id==Auth::user()->id){
                     return true;
                 }
