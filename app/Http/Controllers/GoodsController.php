@@ -65,4 +65,9 @@ class GoodsController extends Controller
                 'product'=>$this->basketService->takeAllOfBasket()
         ]);
     }
+
+    public function ChangeAvailabilityOfGoods(Request $request){
+        $this->goodService->getAvailability($request);
+        return redirect()->back();
+    }
 }

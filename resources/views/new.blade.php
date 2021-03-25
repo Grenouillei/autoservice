@@ -7,6 +7,10 @@
                 @foreach($news as $el)
                     @if($el->id==$_GET['id'])
                     <div class="content_item_new">
+                        <form action="{{route('change')}}" method="get">
+                            <input type="hidden" name="id" value="{{$el->id}}"/>
+                            <button class="change_able">Change evidence</button>
+                        </form>
                         <h1  class="content_name_new">{{$el->name}}</h1>
                         <div style="padding-top: 20px;" >
 
@@ -39,10 +43,15 @@
 
 
 
-
+                            @if($el->able)
                             <div class="Availability">
                                 <p>В наявності</p>
                             </div>
+                            @else
+                                <div class="AvailabilityN">
+                                    <p>Нема наявності</p>
+                                </div>
+                            @endif
                             <form action="/add" method="GET">
                                 <input type="hidden" name="id" value="{{$el->id}}"/>
                                 <button id="{{$el->id}}" class="content_button_busket_new" type="">

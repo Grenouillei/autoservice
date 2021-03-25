@@ -49,10 +49,7 @@ class UserController extends Controller
         return redirect()->route('user');
     }
     public function takeUserAdmin(Request $request){
-
-        $keys = $request->all();
-        print_r ($keys);
-        //$this->userService->getUserAdmin($request);
-        //return redirect()->route('user');
+        $this->userService->getUserAdmin($request);
+        return redirect()->route('user');
     }
 }

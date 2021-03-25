@@ -20,6 +20,12 @@ class BasketController extends Controller
         $this->goodService = $goodsService;
         $this->userService = $userService;
     }
+    public function openBuyPage(){
+        return view('buy', [
+            'res'=>$this->basketService->takeCountOfBasket(),
+            'product'=>$this->basketService->takeAllOfBasket()
+        ]);
+    }
 
     public function openBasketPage(){
         $this->userService->checkUserPremium();
@@ -34,7 +40,10 @@ class BasketController extends Controller
 
     public function deleteElementFromBasket(Request $request){
         $deleteEl = $request->id;
-        DB::table('baskets')->where('id_s', '=', $deleteEl)->delete();
+        DB::table('baskets')
+            ->where('id_s', '=', $deleteEl)
+            ->where('user_id', '=', Auth::user()->id)
+            ->delete();
         return redirect()->route('basket');
     }
 

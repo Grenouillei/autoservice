@@ -30,9 +30,11 @@ Route::get('/del','App\Http\Controllers\BasketController@deleteElementFromBasket
 Route::get('/user_premium','App\Http\Controllers\UserController@buyUserPremium' );
 Route::get('/score','App\Http\Controllers\BasketController@takeCountOfBasket' );
 Route::get('/add','App\Http\Controllers\BasketController@addElementToBasket' );
+Route::get('/change','App\Http\Controllers\GoodsController@ChangeAvailabilityOfGoods' )->name('change');
 
 Route::middleware('auth')->group(function (){
     Route::get('/new_page','App\Http\Controllers\GoodsController@openNewPage' )->name('new');
+    Route::get('/buy_page','App\Http\Controllers\BasketController@openBuyPage' )->name('buy');
     Route::get('/user_page','App\Http\Controllers\UserController@openUserPage')->name('user');
     Route::get('/home_page','App\Http\Controllers\GoodsController@openHomePage' )->name('home');
     Route::get('/dashboard', 'App\Http\Controllers\GoodsController@openHomePage')->name('dashboard');

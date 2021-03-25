@@ -31,8 +31,9 @@ class GoodsService {
             return redirect()->back();
         }
         else {
-            $mass2 = DB::table('goods')
-                ->where('name', 'like', "%$str%")->get('name')->take(24);
+            $mass2 = DB::table('goods_remakes')
+                ->select('*')
+                ->where('name', 'like', "%$str%")->get();
             return $mass2->take(16);
         }
     }
@@ -43,6 +44,16 @@ class GoodsService {
             ->select('*')
             ->where('brand', '=', "$brand")->get();
         return  $sort->take(15);
+    }
+
+    public function getAvailability($request){
+        $good = goods_remake::find($request->id);
+            if($good->able){
+                $good->able = false;
+            }else{
+                $good->able = true;
+            }
+            $good->save();
     }
 
     public function takeAllOfGoods(){
