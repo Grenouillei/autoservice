@@ -59,7 +59,7 @@
 
     <div class="reg_menu" style="margin-right: 110px;">
         <form method="POST" action="{{ route('logout') }}">
-            <a class="reg_name" href="{{route('user')}}" @if(\Illuminate\Support\Facades\Auth::user()->PREMIUM)style="color: orange" @endif>
+            <a class="reg_name" href="{{route('user')}}" @if(\Illuminate\Support\Facades\Auth::user()->premium)style="color: orange" @endif>
                 {{\Illuminate\Support\Facades\Auth::user()->name}}
             </a>
             <a>/</a>

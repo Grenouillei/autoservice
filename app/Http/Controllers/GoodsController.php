@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
+use App\Models\Basket;
 use App\Models\Good;
 use App\Services\BasketService;
 use App\Services\GoodsService;
@@ -82,6 +83,12 @@ class GoodsController extends Controller
     }
     public function removeProduct(Request $request){
         $product = Good::find($request->id);
+        $baskets = $this->basketService->takeAllOfBasket();
+            foreach ($baskets as $item) {
+                    if($item->id_g==$product->id){
+                        $item->delete();
+                    }
+                }
         $product->delete();
         return redirect()->route('home');
     }

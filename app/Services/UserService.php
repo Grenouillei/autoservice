@@ -49,7 +49,7 @@ class UserService{
         return $is_admin;
     }
     public function isPremium(){
-        if(Auth::user()->PREMIUM)
+        if(Auth::user()->premium)
             $is_premium = true;
         else
             $is_premium = false;
@@ -91,7 +91,7 @@ class UserService{
         $user_p->save();
 
         $user = User::find(Auth::user()->id);
-        $user->PREMIUM = true;
+        $user->premium = true;
         $user->save();
     }
     public function checkUserPremium(){
@@ -102,7 +102,7 @@ class UserService{
                if($premium->id==Auth::user()->id){
                    if($current_date>=$premium->off_date){
                        $user = User::find(Auth::user()->id);
-                       $user->PREMIUM = false;
+                       $user->premium = false;
                        $user->save();
 
                        $user_p = UserPremium::find(Auth::user()->id);
