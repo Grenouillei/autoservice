@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/user.css') }}">
     <link rel="stylesheet" href="{{ asset('css/buy.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/product.css') }}">
 
     <!--<script src="{{ asset('js/main.js') }}" type="text/javascript"></script>-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -50,11 +51,7 @@
         <p></p>
         <a href="{{route('basket')}}">Кошик
             <b style="color: dodgerblue;">
-                @foreach($product as $ele)
-                    @if($ele->user_id==\Illuminate\Support\Facades\Auth::user()->id)
-                        {{$res}}@break
-                    @endif
-                @endforeach
+                {{$res}}
             </b>
         </a>
     </div>

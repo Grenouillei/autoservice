@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserRequest;
 use App\Services\BasketService;
 use App\Services\GoodsService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -21,7 +21,6 @@ class UserController extends Controller
         $this->goodService = $goodsService;
         $this->userService = $userService;
     }
-
     public function openUserPage(){
         $this->userService->checkUserPremium();
         return view('user',[
@@ -29,17 +28,27 @@ class UserController extends Controller
             'user_admin'=>$this->userService->isAdmin(),
             'user_premium'=>$this->userService->isPremium(),
             'res'=>$this->basketService->takeCountOfBasket(),
-            'product'=>$this->basketService->takeAllOfBasket(),
             'today'=>$this->userService->getDateOfEndingPremium()]);
     }
     public function openUserSettingsPage(){
         $this->userService->checkUserPremium();
         return view('user_setting',[
-            'res'=>$this->basketService->takeCountOfBasket(),
-            'product'=>$this->basketService->takeAllOfBasket()]);
+            'res'=>$this->basketService->takeCountOfBasket(),]);
+    }
+    public function openNewUserPage(){
+        return view('create_user',[
+            'res'=>$this->basketService->takeCountOfBasket(),]);
     }
     public function updateUser(UserRequest $req){
-        $this->userService->Userupdate($req);
+        $this->userService->UserUpdate($req);
+        return redirect()->route('user');
+    }
+    public function removeUser(Request $request){
+        $this->userService->UserDelete($request);
+        return redirect()->route('user');
+    }
+    public function createUser(UserRequest $request){
+        $this->userService->UserAdd($request);
         return redirect()->route('user');
     }
     public function buyUserPremium(){

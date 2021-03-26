@@ -43,7 +43,7 @@
     font-size: 22px;
 }
 .user_change{
-    margin-top: 270px;
+    margin-top: 230px;
     width: 180px;
     height: 100px;
     margin-left: 13px;
@@ -162,8 +162,17 @@
 }
 .users_checkbox{
     margin-right: 10px;
-    margin-top: 10px;
+    margin-top: 5px;
     float: right;
+}
+.users_checkbox input{
+    width: 17px;
+    height: 17px;
+}
+.users_checkbox label{
+    position: absolute;
+    margin-top: 20px;
+    margin-left: -5px;
 }
 .user_admin_settings p{
     width: 100%;
@@ -202,4 +211,50 @@
     margin-top: 5%;
     height: 25px;
     width: 80px;
+}
+.user_delete_button{
+    position: absolute;
+    margin-left: 190px;
+    margin-top: 10px;
+    width: 50px;
+    height: 20px;
+    font-size: 8px;
+    font-weight: bold;
+    background-color: orangered;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.user_create_button{
+    margin-bottom: 15px;
+    width: 120px;
+    height: 25px;
+    border-radius: 5px;
+    color: white;
+    border: 0;cursor: pointer;
+    background-color: dodgerblue;
+}
+.new_user_content{
+    margin-left: auto;
+    margin-right: auto;
+    width: 30em;
+    height: 550px;
+    background-color: #edf2f7;
+    border-radius: 7px;
+    align-items: center;
+    margin-top: 5%;
+}
+.new_user_content h1{
+    text-align: center;
+    padding-top: 5%;
+}
+.new_user_content input{
+    margin-top: 10px;
+    margin-left: 30px;
+    width: 80%;
+    height: 25px;
+}
+.new_user_content label{
+    margin-left: 20px;
+    font-size: 20px;
 }

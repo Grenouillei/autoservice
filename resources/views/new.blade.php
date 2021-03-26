@@ -12,6 +12,10 @@
                                 <input type="hidden" name="id" value="{{$el->id}}"/>
                                 <button class="change_able">Change evidence</button>
                             </form>
+                            <form action="{{route('delete_pr')}}" method="get">
+                                <input type="hidden" name="id" value="{{$el->id}}"/>
+                                <button class="delete_product">DELETE PRODUCT</button>
+                            </form>
                         @endif
                         <h1  class="content_name_new">{{$el->name}}</h1>
                         <div style="padding-top: 20px;" >

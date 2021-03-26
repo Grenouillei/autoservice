@@ -2,22 +2,43 @@
 
 namespace App\Services;
 
-use App\Http\Requests\Auth\UserRequest;
+use App\Models\Basket;
 use App\Models\User;
 use App\Models\UserPremium;
 use ErrorException;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserService{
 
     public function getAllUsers(){
         return User::all();
     }
-
-    public function Userupdate($req){
+    public function UserUpdate($req){
         $user = User::find(Auth::user()->id);
         $user->name = $req->name;
+        $user->save();
+    }
+    public function UserDelete($request){
+        $user = User::find($request->id);
+        $baskets = Basket::all();
+        foreach ($baskets as $item) {
+                if ($item->user_id==$user->id){
+                    $item->delete();
+                }
+            }
+        $user_premium = UserPremium::find($request->id);
+        try {
+            if ($user_premium->id==$user->id)
+                $user_premium->delete();
+        }catch (ErrorException $errorException){}
+        $user->delete();
+    }
+    public function UserAdd($request){
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
         $user->save();
     }
     public function isAdmin(){

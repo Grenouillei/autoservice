@@ -211,6 +211,15 @@
     background-color: dodgerblue;
     border-radius: 4px;color: white;
 }
+.delete_product{
+    position: absolute;
+    margin-top: 40px;
+    margin-left: 140px;
+    border: 0;
+    height: 25px;
+    background-color: orangered;
+    border-radius: 4px;color: white;
+}
 #button_disabled{
     margin-top: 60px;
     position: absolute;

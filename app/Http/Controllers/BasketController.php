@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Good;
+use Illuminate\Support\Facades\Auth;
 use App\Services\BasketService;
 use App\Services\GoodsService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use App\Models\Basket;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Good;
 
 class BasketController extends Controller
 {
@@ -20,9 +20,7 @@ class BasketController extends Controller
     }
     public function openBuyPage(){
         return view('buy', [
-            'res'=>$this->basketService->takeCountOfBasket(),
-            'product'=>$this->basketService->takeAllOfBasket()
-        ]);
+            'res'=>$this->basketService->takeCountOfBasket(),]);
     }
 
     public function openBasketPage(){

@@ -12,7 +12,7 @@
                 <label for="email" class="label">Прізвище</label><br>
                 <input class="input" type="email" name="email" @error('email')style="border: 1px solid orangered"@enderror placeholder=" Прізвище"><br><br>
                 <label for="password" class="label">Мобільний телефон</label><br>
-                <input class="input" type="password" name="password" @error('password')style="border: 1px solid orangered"@enderror placeholder=" Мобільний телефон"><br><br>
+                <input class="input" type="password" name="password" @error('password')style="border: 1px solid orangered"@enderror placeholder=" +(380)..."><br><br>
                 <label for="confirm_password" class="label">Місто</label><br>
                 <input class="input" type="password" name="confirm_password" @error('password')style="border: 1px solid orangered"@enderror placeholder=" Місто"><br><br>
 

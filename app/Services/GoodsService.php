@@ -57,4 +57,15 @@ class GoodsService {
         $comment = new UserComment();
     }
 
+    public function setNewProduct($request){
+        $good = new Good();
+        $good->name = $request->name;
+        $good->brand = $request->brand;
+        $good->price = $request->price;
+        $good->code = $request->code;
+        $good->qty = $request->qty;
+        $good->able = $request->able;
+        $good->save();
+    }
+
 }

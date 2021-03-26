@@ -6,7 +6,8 @@
 
         <div class="user_admin_settings">
             <br><br>
-            @if($user_admin)<p id="user">Користувачі</p>@endif
+            @if($user_admin)<p id="user">Користувачі</p>
+            <a href="{{route('product')}}" style="text-decoration: none"><p>Ств. нової поз.</p></a>@endif
             <p>Обране</p>
             <p>Історія</p>
             <p>Історія покупок</p>
@@ -18,12 +19,15 @@
         </div>
         <div class="user_admin_content">
             <div class="user_admin_inner" style="display: none;">
-                <br><br>
-
-
+                <br>
+                <a href="{{route('new_user')}}"><button class="user_create_button">CreateNewUser</button></a>
                 @foreach($users as $user)
                     @if($user->id!=1)
                         <div class="users_name"><p>{{$user->name}}</p>
+                            <form action="{{route('remove')}}" method="get">
+                                <input type="hidden" name="id" value="{{$user->id}}"/>
+                                <button class="user_delete_button">DELETE</button>
+                            </form>
                             <div class="users_checkbox">
                                 <label for="is_admin{{$user->id}}">ADMIN</label>
                                 <input type="checkbox" id="is_admin{{$user->id}}" name="id" value="{{$user->id}}" @if($user->admin) checked @endif>
@@ -34,7 +38,7 @@
                 <form action="{{route('admin')}}" method="POST" >
                     @csrf
                         <input class="check_id" type="hidden" name="id" value=""/>
-                    <button class="button_admin_update" onclick="getCheckedCheckBoxes()">confirm</button>
+                    <button class="button_admin_update" onclick="getCheckedCheckBoxes()">Confirm</button>
                 </form>
              </div>
          </div>
@@ -86,11 +90,11 @@
         $("#user").click(function () {
             var width = $('.user_admin_content').width();
             if (width>=240){
-                $('.user_admin_content').animate({"width": '-=230'});
+                $('.user_admin_content').animate({"width": '-=270'});
                 $('.user_admin_inner').css("display", "none");
             }
             else{
-                $('.user_admin_content').animate({"width": '+=230'});
+                $('.user_admin_content').animate({"width": '+=270'});
                 setTimeout( function(){
                     $('.user_admin_inner').css("display", "block");
                 },300);

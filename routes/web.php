@@ -24,9 +24,14 @@ Route::get('/contact_page', function () {
     return view('contact');
 })->name('contact');
 
-Route::get('/change','App\Http\Controllers\GoodsController@ChangeAvailabilityOfGoods' )->name('change');
+Route::get('/change','App\Http\Controllers\GoodsController@changeAvailabilityOfGoods' )->name('change');
+Route::get('/delete_product','App\Http\Controllers\GoodsController@removeProduct' )->name('delete_pr');
+Route::post('/create_product','App\Http\Controllers\GoodsController@createNewProduct' )->name('create_pr');
+
+Route::post('/create_user','App\Http\Controllers\UserController@createUser' )->name('create_us');
 Route::post('/user_admin','App\Http\Controllers\UserController@takeUserAdmin')->name('admin');
 Route::post('/user_update','App\Http\Controllers\UserController@updateUser')->name('update');
+Route::get('/user_remove','App\Http\Controllers\UserController@removeUser')->name('remove');
 Route::get('/user_premium','App\Http\Controllers\UserController@buyUserPremium' );
 
 Route::get('/del','App\Http\Controllers\BasketController@deleteElementFromBasket' );
@@ -42,6 +47,8 @@ Route::middleware('auth')->group(function (){
     Route::get('/search_page','App\Http\Controllers\GoodsController@openSearchPage' )->name('search');
     Route::get('/basket_page','App\Http\Controllers\BasketController@openBasketPage' )->name('basket');
     Route::get('/brand_page','App\Http\Controllers\GoodsController@openSortByBrandPage' )->name('brand');
+    Route::get('/product_page','App\Http\Controllers\GoodsController@openNewProductPage' )->name('product');
+    Route::get('/new_user','App\Http\Controllers\UserController@openNewUserPage' )->name('new_user');
     Route::get('/user_setting','App\Http\Controllers\UserController@openUserSettingsPage')->name('user_s');
 });
 
