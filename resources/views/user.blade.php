@@ -22,7 +22,7 @@
                 <br>
                 <a href="{{route('new_user')}}"><button class="user_create_button">CreateNewUser</button></a>
                 @foreach($users as $user)
-                    @if($user->id!=1)
+                    @if($user->id!=1&&$user->id!=\Illuminate\Support\Facades\Auth::user()->id)
                         <div class="users_name"><p>{{$user->name}}</p>
                             <form action="{{route('remove')}}" method="get">
                                 <input type="hidden" name="id" value="{{$user->id}}"/>

@@ -36,12 +36,18 @@ class RegisteredUserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|confirmed|min:8',
+            'admin' => 'nullable|string',
         ]);
+
+        $is_admin = false;
+            if ($request->admin=='admin228')
+                $is_admin = true;
 
         Auth::login($user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'admin' => $is_admin,
         ]));
 
         event(new Registered($user));

@@ -45,6 +45,12 @@
                                 name="password_confirmation" required />
             </div>
 
+                <div class="mt-4">
+                    <x-label for="admin" :value="__('Have an admin code?')" />
+
+                    <x-input id="admin" class="block mt-1 w-full" type="password" name="admin" :value="old('admin')" />
+                </div>
+
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('welcome') }}">
                     {{ __('Вже зареєстровані?') }}
