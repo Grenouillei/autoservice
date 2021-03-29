@@ -28,7 +28,6 @@ class UserController extends Controller
             'users'=>$this->userService->getAllUsers(),
             'user_admin'=>$this->userService->isAdmin(),
             'user_premium'=>$this->userService->isPremium(),
-            'cum'=>$this->userService->xzxzxz(),
             'res'=>$this->basketService->takeCountOfBasket(),
             'today'=>$this->userService->getDateOfEndingPremium()]);
     }

@@ -134,20 +134,20 @@
             @if($comment->id_good==$_GET['id'])
                 <div class="feedback_content">
                     <div class="feedback_inner">
-                        <p class="feedback_name">{{$comment->id_user}}</p>
+                        <p class="feedback_name">{{$comment->getUser()[0]['name']}}</p>
                         <p style="float: right;font-size: 15px;margin-top: 20px;margin-right: 10px;">{{$comment->created_at}}</p>
                     </div>
                     <div class="feedback_inner2">
                         <p >{{$comment->comment}}</p>
                     </div>
                     <div class="feedback_settings">
-                        @if($user_admin||$comment->id_user==\Illuminate\Support\Facades\Auth::user()->id)
+                        @if($user_admin||$comment->id_user==auth()->user()->id)
                             <form action="{{route('remove_com')}}" method="get">
                                 <input type="hidden" name="id" value="{{$comment->id}}"/>
                                 <button class="delete_comment">Видалити</button>
                             </form>
                         @endif
-                        @if($comment->id_user==\Illuminate\Support\Facades\Auth::user()->id)
+                        @if($comment->id_user==auth()->user()->id)
                             <form action="" method="">
                                 <input type="hidden" name="id" value="{{$comment->id}}"/>
                                 <button class="change_comment">Змінити</button>

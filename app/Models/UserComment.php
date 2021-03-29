@@ -17,10 +17,13 @@ class UserComment extends Model
     ];
 
     public function good(){
-        return $this->belongsTo(Good::class, 'id', 'id_good');
+        return $this->belongsTo(Good::class, 'id_good', 'id');
     }
 
     public function user(){
-        return $this->belongsTo(User::class, 'id', 'id_user');
+        return $this->belongsTo(User::class, 'id_user', 'id');
+    }
+    public function getUser(){
+        return $this->user()->get()->toArray();
     }
 }

@@ -17,18 +17,11 @@ class UserService{
     }
     public function getAllComments(){
         return UserComment::all();
-
     }
     public function UserUpdate($req){
         $user = User::find(Auth::user()->id);
         $user->name = $req->name;
         $user->save();
-    }
-    public function xzxzxz(){
-        //$users = UserComment::find(1);
-        //$comments = User::find(1)->comments;
-        //123
-        return false;
     }
     public function UserDelete($request){
         $user = User::find($request->id);
