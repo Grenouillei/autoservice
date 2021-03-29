@@ -63,6 +63,7 @@
                 @endif
             </p>
         </div>
+        {{$cum}}
         <div class="result"></div>
         <div style="margin-top: 10%;margin-left: 10px;">
             <i><p>Зареєстрований з : {{\Illuminate\Support\Facades\Auth::user()->created_at}}</p></i>

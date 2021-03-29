@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Models\UserComment;
 use Illuminate\Http\Request;
 use App\Models\Good;
 use Illuminate\Support\Facades\DB;
@@ -51,10 +50,6 @@ class GoodsService {
 
     public function getAllOfGoods(){
         return Good::all();
-    }
-
-    public function createComment(){
-        $comment = new UserComment();
     }
 
     public function setNewProduct($request){

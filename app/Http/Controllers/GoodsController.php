@@ -48,6 +48,7 @@ class GoodsController extends Controller
             'news'=>$this->goodService->getAllOfGoods(),
             'user_admin'=>$this->userService->isAdmin(),
             'user_premium'=>$this->userService->isPremium(),
+            'comments'=>$this->userService->getAllComments(),
             'res'=>$this->basketService->takeCountOfBasket(),
             'product'=>$this->basketService->takeAllOfBasket(),
             'saw'=>$saw,

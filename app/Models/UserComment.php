@@ -16,7 +16,11 @@ class UserComment extends Model
         'comment'
     ];
 
-    public function goods(){
+    public function good(){
         return $this->belongsTo(Good::class, 'id', 'id_good');
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class, 'id', 'id_user');
     }
 }

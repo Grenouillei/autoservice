@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Basket;
 use App\Models\User;
+use App\Models\UserComment;
 use App\Models\UserPremium;
 use ErrorException;
 use Illuminate\Support\Facades\Auth;
@@ -14,19 +15,33 @@ class UserService{
     public function getAllUsers(){
         return User::all();
     }
+    public function getAllComments(){
+        return UserComment::all();
+    }
     public function UserUpdate($req){
         $user = User::find(Auth::user()->id);
         $user->name = $req->name;
         $user->save();
     }
+    public function xzxzxz(){
+        //$users = UserComment::find(1);
+        //$comments = User::find(1)->comments;
+        return false;
+    }
     public function UserDelete($request){
         $user = User::find($request->id);
         $baskets = Basket::all();
+        $comments = $this->getAllComments();
         foreach ($baskets as $item) {
                 if ($item->user_id==$user->id){
                     $item->delete();
                 }
             }
+        foreach ($comments as $item) {
+            if ($item->id_user==$user->id){
+                $item->delete();
+            }
+        }
         $user_premium = UserPremium::find($request->id);
         try {
             if ($user_premium->id==$user->id)
@@ -57,22 +72,23 @@ class UserService{
     }
     public function setUserAdmin($request){
         $id = $request->id;
+        $all_users = $this->getAllUsers();
         if($id!=null){
             $arr_id = explode(',',$id);
-                foreach ($arr_id as $dude) {
-                    $user_id = User::find($dude);
-                    if($user_id->id==$dude){
-                        $user_id->admin = true;
-                        $user_id->save();
+            foreach ($all_users as $user){
+                if($user->id!=1&&$user->id!=Auth::user()->id){
+                    if (in_array($user->id, $arr_id)){
+                        $user->admin = true;
+                        $user->save();
                     }else{
-                        $user_id->admin = false;
-                        $user_id->save();
+                        $user->admin = false;
+                        $user->save();
                     }
                 }
+            }
         }else{
-            $all_users = $this->getAllUsers();
             foreach ($all_users as $user) {
-                if($user->id!=1){
+                if($user->id!=1&&$user->id!=Auth::user()->id){
                     $user->admin = false;
                     $user->save();
                 }
@@ -120,5 +136,16 @@ class UserService{
         {
             return false;
         }
+    }
+    public function setComment($reg){
+        $comment = new UserComment();
+        $comment->id_user = $reg->id_user;
+        $comment->id_good = $reg->id_good;
+        $comment->comment = $reg->comment;
+        $comment->save();
+    }
+    public function deleteComment($reg){
+        $comment = UserComment::find($reg->id);
+        $comment->delete();
     }
 }

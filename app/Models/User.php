@@ -23,6 +23,13 @@ class User extends Authenticatable
         'admin',
     ];
 
+    public function comments(){
+        return $this->hasMany(UserComment::class, 'id_user', 'id');
+    }
+
+    public function premium(){
+        return $this->hasOne(UserPremium::class, 'id', 'id');
+    }
     /**
      * The attributes that should be hidden for arrays.
      *

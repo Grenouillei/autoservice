@@ -25,7 +25,7 @@
                 <label for="quantity" >Quantity</label><br>
                 <input  type="number" name="qty" min="0"  @error('qty')style="border: 1px solid orangered"@enderror ><br><br>
                 <label for="able" >Active (1,0)</label><br>
-                <input  type="text" name="able" @error('able')style="border: 1px solid orangered"@enderror ><br><br>
+                <input  type="text" name="able" @error('able')style="border: 1px solid orangered"@enderror value="1"><br><br>
                 <button type="submit" class="buy_button_confirm">Підтвердити</button>
             </form>
             <a href="{{route('user')}}"><button type="submit" class="buy_button_back">Назад</button></a>

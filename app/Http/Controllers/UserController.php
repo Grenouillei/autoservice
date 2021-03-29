@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CommentRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserRequest;
 use App\Services\BasketService;
@@ -27,6 +28,7 @@ class UserController extends Controller
             'users'=>$this->userService->getAllUsers(),
             'user_admin'=>$this->userService->isAdmin(),
             'user_premium'=>$this->userService->isPremium(),
+            'cum'=>$this->userService->xzxzxz(),
             'res'=>$this->basketService->takeCountOfBasket(),
             'today'=>$this->userService->getDateOfEndingPremium()]);
     }
@@ -58,5 +60,13 @@ class UserController extends Controller
     public function takeUserAdmin(Request $request){
         $this->userService->setUserAdmin($request);
         return redirect()->route('user');
+    }
+    public function createComment(CommentRequest $reg){
+        $this->userService->setComment($reg);
+        return redirect()->back();
+    }
+    public function removeComment(Request $reg){
+        $this->userService->deleteComment($reg);
+        return redirect()->back();
     }
 }
