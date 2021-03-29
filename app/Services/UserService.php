@@ -17,6 +17,7 @@ class UserService{
     }
     public function getAllComments(){
         return UserComment::all();
+
     }
     public function UserUpdate($req){
         $user = User::find(Auth::user()->id);
