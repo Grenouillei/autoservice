@@ -8,6 +8,10 @@
     box-shadow: 0 0 3px black;
     transition: 0.3s;
 }
+.content_item_brand:hover{
+    box-shadow: 0 0 3px dodgerblue;
+    transition: 0.3s;
+}
 #content_block_brand{
     margin-left: auto;
     margin-right: auto;

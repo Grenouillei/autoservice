@@ -39,12 +39,12 @@
                         <img src="img\details.jpg" width="100" height="100" alt="" style="opacity: 70%">
                     </div>
                 </div>
-                <img src="img\imagecar1.jpg" width="360px" height="280" alt=""><br>
+                <img src="img\imagecar1.jpg" width="360px" height="280" alt="" @if(!$el->able) style=" filter: grayscale(100%);" @endif><br>
                                 <h3> Бренд : {{$el->brand}}</h3>
                         <h3> Каталожний номер : {{$el->code}}</h3>
                             <h3> Ціна : @if(!$user_premium){{$el->price}} @endif
-                                @if($user_premium)<b style="color: limegreen">{{$el->price-$el->price*0.1 }}</b> @endif грн</h3>
-                    <p style="color: red;position: absolute;margin-left: 180px; margin-top: -37px;">@if($user_premium) -10% @endif</p>
+                                @if($user_premium&&$el->able)<b style="color: limegreen">{{$el->price-$el->price*0.1 }}</b> @endif грн</h3>
+                    <p style="color: red;position: absolute;margin-left: 180px; margin-top: -37px;">@if($user_premium&&$el->able) -10% @endif</p>
 
                     @if($el->able)
                     <div class="Availability">
@@ -138,7 +138,7 @@
                         <p style="float: right;font-size: 15px;margin-top: 20px;margin-right: 10px;">{{$comment->created_at}}</p>
                     </div>
                     <div class="feedback_inner2">
-                        <p >{{$comment->comment}}</p>
+                        <textarea id="textarea" class="text{{$comment->id}}" name="comment" placeholder="" disabled>{{$comment->comment}}</textarea>
                     </div>
                     <div class="feedback_settings">
                         @if($user_admin||$comment->id_user==auth()->user()->id)
@@ -148,10 +148,12 @@
                             </form>
                         @endif
                         @if($comment->id_user==auth()->user()->id)
-                            <form action="" method="">
+                            <form action="{{route('update_com')}}" method="get" id="form_change_comment" class="form_change_comment{{$comment->id}}" style="display: none;">
+                                <input type="hidden" id="comment{{$comment->id}}" name="comment" value=""/>
                                 <input type="hidden" name="id" value="{{$comment->id}}"/>
-                                <button class="change_comment">Змінити</button>
+                                <button id="{{$comment->id}}" class="change_comment1" >Змінити</button>
                             </form>
+                                <button id="{{$comment->id}}" class="change_comment">Змінити</button>
                         @endif
                             <div class="likes_comment">
                                 <img src="img\like.svg" height="18px" width="18px" alt="" >
@@ -161,9 +163,35 @@
                     </div>
                 </div>
 
+                 <script>
+          //          var $menu{{$comment->id}} = $('.text{{$comment->id}}');
+          //          $(document).mouseup(e => {
+          //              if (!$menu{{$comment->id}}.is(e.target) // if the target of the click isn't the container...
+          //                  && $menu{{$comment->id}}.has(e.target).length === 0 && $menu{{$comment->id}}.prop('disabled', false)) // ... nor a descendant of the container
+          //              {
+          //                  $('.text{{$comment->id}}').prop('disabled', true);
+          //                  $('.form_change_comment{{$comment->id}}').css("display", "none");
+          //                  $('.change_comment').css("display", "unset");
+          //              }
+          //          });
+                </script>
+
             @endif
         @endforeach
+        <script>
+            $(".change_comment").click(function () {
+                var clickId = $(this).attr('id');
+                $('.text'+clickId+'').prop('disabled', false);
+                $('.form_change_comment'+clickId+'').css("display", "block");
+                $(this).css("display", "none");
+            });
+            $(".change_comment1").click(function () {
+                var clickId = $(this).attr('id');
+                var text = $('.text'+clickId+'').val();
+                $('#comment'+clickId+'').val(text);
+            });
 
+        </script>
     </div>
     </div>
 @endsection

@@ -212,11 +212,15 @@
     background-color: #e2e8f0;
     border: 1px solid black;
 }
-.feedback_inner2 p{
+.feedback_inner2 textarea{
+    resize: none;
+    height: 100px;
     text-align: left;
     width: 700px;
-    margin-left: 20px;
+    font-size: 16px;
+    font-family: "Abel",sans-serif;
     margin-top: 20px;
+    border: 0;
 }
 .change_able{
     position: absolute;
@@ -266,7 +270,21 @@
     border: 2px solid limegreen;
     transition: 0.3s;color: black;
 }
+.change_comment1:hover{
+    background-color: #e2e8f0;
+    border: 2px solid limegreen;
+    transition: 0.3s;color: black;
+}
 .change_comment{
+    border: 0;
+    border-radius: 4px;
+    background-color: limegreen;
+    color: white;
+    height: 23px;
+    width: 90px;
+    margin-top: 10px;cursor: pointer;
+}
+.change_comment1{
     border: 0;
     border-radius: 4px;
     background-color: limegreen;

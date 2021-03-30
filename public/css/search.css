@@ -19,6 +19,9 @@
     box-shadow: 0 0 3px black;
     transition: 0.3s;
 }
+.content_item_search:hover{
+    box-shadow: 0 0 3px dodgerblue;
+}
 .content_button_search{
     margin-top: 18px;
     width: 100%;
@@ -28,6 +31,11 @@
     color: #1a202c;
     border: 0px;
     background-color: dodgerblue;
+    transition: 0.3s;
+}
+.content_button_search:hover{
+    color: white;
+    background-color: cornflowerblue;
     transition: 0.3s;
 }
 .content_char_search{

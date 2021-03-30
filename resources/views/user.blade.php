@@ -24,10 +24,12 @@
                 @foreach($users as $user)
                     @if($user->id!=1&&$user->id!=\Illuminate\Support\Facades\Auth::user()->id)
                         <div class="users_name"><p>{{$user->name}}</p>
-                            <form action="{{route('remove')}}" method="get">
-                                <input type="hidden" name="id" value="{{$user->id}}"/>
-                                <button class="user_delete_button">DELETE</button>
-                            </form>
+                            <div class="block_button_delete">
+                                <form action="{{route('remove')}}" method="get">
+                                    <input type="hidden" name="id" value="{{$user->id}}"/>
+                                    <button class="user_delete_button">DELETE</button>
+                                </form>
+                            </div>
                             <div class="users_checkbox">
                                 <label for="is_admin{{$user->id}}">ADMIN</label>
                                 <input type="checkbox" id="is_admin{{$user->id}}" name="id" value="{{$user->id}}" @if($user->admin) checked @endif>
@@ -90,11 +92,11 @@
         $("#user").click(function () {
             var width = $('.user_admin_content').width();
             if (width>=240){
-                $('.user_admin_content').animate({"width": '-=270'});
+                $('.user_admin_content').animate({"width": '-=320'});
                 $('.user_admin_inner').css("display", "none");
             }
             else{
-                $('.user_admin_content').animate({"width": '+=270'});
+                $('.user_admin_content').animate({"width": '+=320'});
                 setTimeout( function(){
                     $('.user_admin_inner').css("display", "block");
                 },300);

@@ -30,6 +30,7 @@ Route::post('/create_product','App\Http\Controllers\GoodsController@createNewPro
 
 Route::post('/create_user','App\Http\Controllers\UserController@createUser' )->name('create_us');
 Route::post('/create_comment','App\Http\Controllers\UserController@createComment')->name('create_com');
+Route::get('/update_comment','App\Http\Controllers\UserController@updateComment')->name('update_com');
 Route::post('/user_admin','App\Http\Controllers\UserController@takeUserAdmin')->name('admin');
 Route::post('/user_update','App\Http\Controllers\UserController@updateUser')->name('update');
 Route::get('/delete_comment','App\Http\Controllers\UserController@removeComment')->name('remove_com');

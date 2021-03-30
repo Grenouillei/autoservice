@@ -14,7 +14,7 @@
          @if($el->name==$ele->name)
          <div class="content_item_search">
              <div class="content_inner_search">
-                 <img src="img/imagecar1.jpg" width="100%" height="100%" alt="">
+                 <img src="img/imagecar1.jpg" width="100%" height="100%" alt="" @if(!$el->able) style=" filter: grayscale(100%);" @endif>
                  </div>
              <div style="height: 15%">
                  <h1 class="content_name_search">{{$el->name}}</h1>
@@ -38,7 +38,7 @@
              <form action="{{route('new')}}" method="GET">
                  <input type="hidden" name="brand" value="{{$el->brand}}"/>
                  <input type="hidden" name="id" value="{{$el->id}}"/>
-                 <button id="{{$el->id}}" class="content_button_search"  >Більше</button>
+                 <button id="{{$el->id}}" class="content_button_search"  @if(!$el->able) style=" background-color: #a0aec0" @endif >Більше</button>
              </form>
 
          </div>

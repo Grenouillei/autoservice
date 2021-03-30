@@ -68,4 +68,8 @@ class UserController extends Controller
         $this->userService->deleteComment($reg);
         return redirect()->back();
     }
+    public function updateComment(Request $reg){
+        $this->userService->updateComment($reg);
+        return redirect()->back();
+    }
 }

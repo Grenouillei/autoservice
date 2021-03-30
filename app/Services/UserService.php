@@ -53,17 +53,15 @@ class UserService{
     }
     public function isAdmin(){
         if(Auth::user()->admin)
-            $is_admin = true;
+            return  true;
         else
-            $is_admin = false;
-        return $is_admin;
+            return  false;
     }
     public function isPremium(){
         if(Auth::user()->premium)
-            $is_premium = true;
+            return  true;
         else
-            $is_premium = false;
-        return $is_premium;
+            return false;
     }
     public function setUserAdmin($request){
         $id = $request->id;
@@ -143,4 +141,15 @@ class UserService{
         $comment = UserComment::find($reg->id);
         $comment->delete();
     }
+    public function updateComment($reg){
+        $comment = UserComment::find($reg->id);
+        $comment->comment = $reg->comment;
+        $comment->save();
+    }
+   // public function randomComment(){
+   //     $posts = UserComment::factory()
+   //         ->count(1)
+   //         ->for( User::factory(),'user')
+   //         ->create();
+   // }
 }

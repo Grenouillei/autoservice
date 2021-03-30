@@ -141,7 +141,11 @@
     width: 20px;
     background-color: #718096;
     text-align: center;
-    overflow: hidden;
+}
+.user_admin_inner{
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
 }
 .users_name {
     text-align: left;
@@ -153,7 +157,6 @@
 }
 .users_name p{
     margin-left: 10px;
-    position: absolute;
     margin-top: 10px;
 }
 .users_name label{
@@ -162,7 +165,7 @@
 }
 .users_checkbox{
     margin-right: 10px;
-    margin-top: 5px;
+    margin-top: -20px;
     float: right;
 }
 .users_checkbox input{
@@ -170,7 +173,6 @@
     height: 17px;
 }
 .users_checkbox label{
-    position: absolute;
     margin-top: 20px;
     margin-left: -5px;
 }
@@ -202,6 +204,7 @@
     transition: 0.3s;
 }
 .button_admin_update{
+    margin-bottom: 30px;
     border: 0;
     border-radius: 4px;
     cursor: pointer;
@@ -213,9 +216,7 @@
     width: 80px;
 }
 .user_delete_button{
-    position: absolute;
     margin-left: 190px;
-    margin-top: 10px;
     width: 50px;
     height: 20px;
     font-size: 8px;
@@ -224,6 +225,9 @@
     color: white;
     border-radius: 4px;
     cursor: pointer;
+}
+.block_button_delete{
+    margin-top: -25px;
 }
 .user_create_button{
     margin-bottom: 15px;
