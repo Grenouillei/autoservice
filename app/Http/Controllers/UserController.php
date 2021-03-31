@@ -29,6 +29,7 @@ class UserController extends Controller
             'user_admin'=>$this->userService->isAdmin(),
             'user_premium'=>$this->userService->isPremium(),
             'res'=>$this->basketService->takeCountOfBasket(),
+            'favorites'=>$this->userService->getAllFavorites(),
             'today'=>$this->userService->getDateOfEndingPremium()]);
     }
     public function openUserSettingsPage(){
@@ -70,6 +71,14 @@ class UserController extends Controller
     }
     public function updateComment(Request $reg){
         $this->userService->updateComment($reg);
+        return redirect()->back();
+    }
+    public function addFavorite(Request $reg){
+        $this->userService->setFavorite($reg);
+        return redirect()->back();
+    }
+    public function deleteFavorite(Request $reg){
+        $this->userService->deleteFavorite($reg);
         return redirect()->back();
     }
 }

@@ -1,5 +1,13 @@
 @extends('dashboard')
 
 @section('main_content')
-    <div style="width: 100%; height: 100%; margin-bottom: 20px;"><p>CONTACT</p></div>
+    <div id="contact_block">
+        <img src="img/Logo2.svg" alt="" style="float: left; width: 200px; height: 200px; margin-left: 60px">
+        <div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
 @endsection

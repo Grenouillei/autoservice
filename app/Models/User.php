@@ -27,6 +27,10 @@ class User extends Authenticatable
         return $this->hasMany(UserComment::class, 'id_user', 'id');
     }
 
+    public function favorites(){
+        return $this->hasMany(Favorite::class, 'id_user', 'id');
+    }
+
     public function premium(){
         return $this->hasOne(UserPremium::class, 'id', 'id');
     }

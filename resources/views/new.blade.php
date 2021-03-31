@@ -69,7 +69,20 @@
                             </button>
                         @endif
                     </form>
-
+                    @foreach($favorites as $favorite)
+                        @if($favorite->id_user==auth()->user()->id&&$favorite->id_good==$el->id)
+                            <form action="{{route('del_favor')}}" method="GET">
+                                <input type="hidden" name="id" value="{{$favorite->id}}"/>
+                                <button  class="add_favorite_new1" >Обране</button>
+                            </form>
+                            @break
+                        @else
+                            <form action="{{route('add_favor')}}" method="GET">
+                                <input type="hidden" name="id_good" value="{{$el->id}}"/>
+                                <button  class="add_favorite_new" >Обране</button>
+                            </form>
+                        @endif
+                    @endforeach
                     <div class="new_icon">
                         <div style="float: left; text-align: center">
                             <img src="img\cart.svg" height="19px" width="19px" alt="" >

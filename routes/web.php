@@ -24,16 +24,18 @@ Route::get('/contact_page', function () {
     return view('contact');
 })->name('contact');
 
+Route::post('/create_product','App\Http\Controllers\GoodsController@createNewProduct' )->name('create_pr');
 Route::get('/change','App\Http\Controllers\GoodsController@changeAvailabilityOfGoods' )->name('change');
 Route::get('/delete_product','App\Http\Controllers\GoodsController@removeProduct' )->name('delete_pr');
-Route::post('/create_product','App\Http\Controllers\GoodsController@createNewProduct' )->name('create_pr');
 
-Route::post('/create_user','App\Http\Controllers\UserController@createUser' )->name('create_us');
 Route::post('/create_comment','App\Http\Controllers\UserController@createComment')->name('create_com');
-Route::get('/update_comment','App\Http\Controllers\UserController@updateComment')->name('update_com');
+Route::post('/create_user','App\Http\Controllers\UserController@createUser' )->name('create_us');
 Route::post('/user_admin','App\Http\Controllers\UserController@takeUserAdmin')->name('admin');
 Route::post('/user_update','App\Http\Controllers\UserController@updateUser')->name('update');
+Route::get('/update_comment','App\Http\Controllers\UserController@updateComment')->name('update_com');
 Route::get('/delete_comment','App\Http\Controllers\UserController@removeComment')->name('remove_com');
+Route::get('/del_favorite','App\Http\Controllers\UserController@deleteFavorite')->name('del_favor');
+Route::get('/add_favorite','App\Http\Controllers\UserController@addFavorite')->name('add_favor');
 Route::get('/user_remove','App\Http\Controllers\UserController@removeUser')->name('remove');
 Route::get('/user_premium','App\Http\Controllers\UserController@buyUserPremium' );
 
@@ -52,6 +54,8 @@ Route::middleware('auth')->group(function (){
     Route::get('/brand_page','App\Http\Controllers\GoodsController@openSortByBrandPage' )->name('brand');
     Route::get('/product_page','App\Http\Controllers\GoodsController@openNewProductPage' )->name('product');
     Route::get('/new_user','App\Http\Controllers\UserController@openNewUserPage' )->name('new_user');
+    Route::get('/about_page','App\Http\Controllers\GoodsController@openAboutPage' )->name('about');
+    Route::get('/contact_page','App\Http\Controllers\GoodsController@openContactPage' )->name('contact');
     Route::get('/user_setting','App\Http\Controllers\UserController@openUserSettingsPage')->name('user_s');
 });
 

@@ -308,3 +308,36 @@
     cursor: pointer;
     margin-left: 20px;
 }
+.add_favorite_new{
+    position: absolute;
+    margin-top: 60px;
+    margin-left: 220px;
+    width: 140px;
+    height: 45px;
+    cursor: pointer;
+    border: 0px;
+    border-radius: 5px;
+    background-color: orange;
+    transition: 0.3s;
+    font-size: 20px;
+    color: white;
+}
+.add_favorite_new1{
+    position: absolute;
+    margin-top: 60px;
+    margin-left: 220px;
+    width: 140px;
+    height: 45px;
+    cursor: pointer;
+    border: 0px;
+    border-radius: 5px;
+    border: 3px solid orange;
+    transition: 0.3s;
+    font-size: 20px;
+}
+.add_favorite_new:hover {
+    border: 3px solid orange;
+    background-color: #edf2f7;
+    transition: 0.3s;
+    color: black;
+}

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Basket;
+use App\Models\Favorite;
 use App\Models\User;
 use App\Models\UserComment;
 use App\Models\UserPremium;
@@ -17,6 +18,9 @@ class UserService{
     }
     public function getAllComments(){
         return UserComment::all();
+    }
+    public function getAllFavorites(){
+        return Favorite::all();
     }
     public function UserUpdate($req){
         $user = User::find(Auth::user()->id);
@@ -145,6 +149,16 @@ class UserService{
         $comment = UserComment::find($reg->id);
         $comment->comment = $reg->comment;
         $comment->save();
+    }
+    public function setFavorite($reg){
+        $favorite = new Favorite();
+        $favorite->id_good = $reg->id_good;
+        $favorite->id_user = Auth::user()->id;
+        $favorite->save();
+    }
+    public function deleteFavorite($reg){
+        $favorite = Favorite::find($reg->id);
+        $favorite->delete();
     }
    // public function randomComment(){
    //     $posts = UserComment::factory()

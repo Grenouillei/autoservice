@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="{{ asset('css/user.css') }}">
     <link rel="stylesheet" href="{{ asset('css/buy.css') }}">
     <link rel="stylesheet" href="{{ asset('css/product.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/about.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
 
     <!--<script src="{{ asset('js/main.js') }}" type="text/javascript"></script>-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -41,8 +43,8 @@
     <div class="container_menu">
         <div class="main_menu">
             <a href="{{route('home')}}">Головна</a>
-            <a href="">Про нас</a>
-            <a href="">Контакти</a>
+            <a href="{{route('about')}}">Про нас</a>
+            <a href="{{route('contact')}}">Контакти</a>
             <a href="">Більше</a>
         </div>
     </div>

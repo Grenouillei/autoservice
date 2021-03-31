@@ -8,13 +8,13 @@
             <br><br>
             @if($user_admin)<p id="user">Користувачі</p>
             <a href="{{route('product')}}" style="text-decoration: none"><p>Ств. нової поз.</p></a>@endif
-            <p>Обране</p>
+            <p id="favorite">Обране</p>
             <p>Історія</p>
-            <p>Історія покупок</p>
+            <p>Зв'язок з менеджером</p>
 
             <div class="user_change">
                 <a href="{{route('user_s')}}"><button>Змінити Ім'я</button></a>
-                <a><button>Змінити Пароль</button></a>
+                <button>Змінити Пароль</button>
             </div>
         </div>
         <div class="user_admin_content">
@@ -43,7 +43,31 @@
                     <button class="button_admin_update" onclick="getCheckedCheckBoxes()">Confirm</button>
                 </form>
              </div>
+            <div class="user_favorite_block" style="display: none">
+                @foreach($favorites as $favorite)
+                    @if($favorite->id_user==auth()->user()->id)
+                        <div class="favorite_content">
+                            <form action="{{route('new')}}" method="get">
+                                <input type="hidden" name="id" value="{{$favorite->id_good}}"/>
+                                <button class="favorite_inner">
+                                    <p>{{$favorite->getGood()[0]['name']}}</p>
+                                    <p>{{$favorite->getGood()[0]['code']}}</p>
+                                    @if(!$user_premium)<p>{{$favorite->getGood()[0]['price']}} ₴</p>@else
+                                                    <p>{{$favorite->getGood()[0]['price']-$favorite->getGood()[0]['price']*0.1}} ₴</p>@endif
+                                </button>
+                            </form>
+                            <form action="{{route('del_favor')}}" method="get">
+                                <input type="hidden" name="id" value="{{$favorite->id}}"/>
+                                <button class="favorite_delete">
+                                    Видалити
+                                </button>
+                            </form>
+                        </div>
+                    @endif
+                @endforeach
+            </div>
          </div>
+
          <!--<div class="premium_img">
              <img src="img/exclamation.svg" width="18px" height="18px" alt="" >
              <div class="ahtung">
@@ -65,8 +89,11 @@
                 @endif
             </p>
         </div>
-        <div class="result"></div>
-        <div style="margin-top: 10%;margin-left: 10px;">
+        <div style="margin-left: 30px;">
+            <p style="margin-top: 10px;">1$ - 27,90 грн</p>
+            <p style="margin-top: 10px;">1€ - 33,00 грн</p>
+        </div>
+        <div style="margin-top: 6%;margin-left: 10px;">
             <i><p>Зареєстрований з : {{\Illuminate\Support\Facades\Auth::user()->created_at}}</p></i>
         </div>
 
@@ -94,12 +121,27 @@
             if (width>=240){
                 $('.user_admin_content').animate({"width": '-=320'});
                 $('.user_admin_inner').css("display", "none");
+                $('.user_favorite_block').css("display", "none");
             }
             else{
                 $('.user_admin_content').animate({"width": '+=320'});
                 setTimeout( function(){
                     $('.user_admin_inner').css("display", "block");
                 },300);
+            }
+        });
+        $("#favorite").click(function () {
+            var width = $('.user_admin_content').width();
+            if (width>=240){
+                $('.user_admin_content').animate({"width": '-=320'});
+                $('.user_favorite_block').css("display", "none");
+                $('.user_admin_inner').css("display", "none");
+            }
+            else{
+                $('.user_admin_content').animate({"width": '+=320'});
+                setTimeout( function(){
+                    $('.user_favorite_block').css("display", "block");
+                },330);
             }
         });
     </script>

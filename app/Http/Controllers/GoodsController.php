@@ -50,6 +50,7 @@ class GoodsController extends Controller
             'user_premium'=>$this->userService->isPremium(),
             'comments'=>$this->userService->getAllComments(),
             'res'=>$this->basketService->takeCountOfBasket(),
+            'favorites'=>$this->userService->getAllFavorites(),
             'product'=>$this->basketService->takeAllOfBasket(),
             'saw'=>$saw,
             'buy'=>$buy,
@@ -93,8 +94,19 @@ class GoodsController extends Controller
         $product->delete();
         return redirect()->route('home');
     }
+
     public function openNewProductPage( ){
         return view('create_product',[
+            'res'=>$this->basketService->takeCountOfBasket()]);
+    }
+
+    public function openAboutPage( ){
+        return view('about',[
+            'res'=>$this->basketService->takeCountOfBasket()]);
+    }
+
+    public function openContactPage( ){
+        return view('contact',[
             'res'=>$this->basketService->takeCountOfBasket()]);
     }
 

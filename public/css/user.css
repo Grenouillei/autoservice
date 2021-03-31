@@ -262,3 +262,50 @@
     margin-left: 20px;
     font-size: 20px;
 }
+.user_favorite_block{
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+.favorite_content{
+    width: 100%;
+    height: 100px;
+}
+.favorite_inner{
+    float: left;
+    border: 0;
+    text-align: center;
+    width: 90%;
+    height: 100px;
+    background-color: #4a5568;
+    color: white;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-size: 16px;transition: 0.3s;
+}
+.favorite_inner p{
+    padding-top: 5px;
+}
+.favorite_inner:hover{
+    color: dodgerblue;
+    transition: 0.3s;
+}
+.favorite_delete{
+    margin-top: -69px;
+    margin-right: -35px;
+    width: 100px;
+    height: 28px;
+    float: right;
+    color: white;
+    background-color: orangered;
+    border: 0;
+    font-weight: bold;
+    cursor: pointer;
+    transform: rotate(270deg);
+}
+.favorite_delete:hover{
+    border: 3px solid orangered;
+    color: white;
+    background-color: #718096;
+    transition: 0.3s;
+}
