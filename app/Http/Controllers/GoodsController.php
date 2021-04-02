@@ -27,9 +27,12 @@ class GoodsController extends Controller
     public function openHomePage(){
         $this->userService->checkUserPremium();
             if (!$this->goodService->getForPageHome()){
+                $this->userService->checkNullofCurrency();
                 return view('user',[
                     'users'=>$this->userService->getAllUsers(),
                     'user_admin'=>$this->userService->isAdmin(),
+                    'usd'=>$this->userService->takeCurrencyUsd(),
+                    'eur'=>$this->userService->takeCurrencyEur(),
                     'user_premium'=>$this->userService->isPremium(),
                     'res'=>$this->basketService->takeCountOfBasket(),
                     'today'=>$this->userService->getDateOfEndingPremium()]);

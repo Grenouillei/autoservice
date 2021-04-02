@@ -23,10 +23,13 @@ class UserController extends Controller
         $this->userService = $userService;
     }
     public function openUserPage(){
+        $this->userService->checkNullofCurrency();
         $this->userService->checkUserPremium();
         return view('user',[
             'users'=>$this->userService->getAllUsers(),
             'user_admin'=>$this->userService->isAdmin(),
+            'usd'=>$this->userService->takeCurrencyUsd(),
+            'eur'=>$this->userService->takeCurrencyEur(),
             'user_premium'=>$this->userService->isPremium(),
             'res'=>$this->basketService->takeCountOfBasket(),
             'favorites'=>$this->userService->getAllFavorites(),
@@ -79,6 +82,14 @@ class UserController extends Controller
     }
     public function deleteFavorite(Request $reg){
         $this->userService->deleteFavorite($reg);
+        return redirect()->back();
+    }
+    public function updateAdminPassword(Request $reg){
+        $this->userService->changeAdminPassword($reg);
+        return redirect()->back();
+    }
+    public function updateCurrencies(){
+        $this->userService->updateCurrencies();
         return redirect()->back();
     }
 }

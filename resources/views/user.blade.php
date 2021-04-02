@@ -13,6 +13,7 @@
             <p>Зв'язок з менеджером</p>
 
             <div class="user_change">
+                @if(auth()->user()->id==1)<button id="change_admin_pass">ChangeAdmPas</button>@endif
                 <a href="{{route('user_s')}}"><button>Змінити Ім'я</button></a>
                 <button>Змінити Пароль</button>
             </div>
@@ -22,7 +23,7 @@
                 <br>
                 <a href="{{route('new_user')}}"><button class="user_create_button">CreateNewUser</button></a>
                 @foreach($users as $user)
-                    @if($user->id!=1&&$user->id!=\Illuminate\Support\Facades\Auth::user()->id)
+                    @if($user->id!=1&&$user->id!=auth()->user()->id)
                         <div class="users_name"><p>{{$user->name}}</p>
                             <div class="block_button_delete">
                                 <form action="{{route('remove')}}" method="get">
@@ -44,6 +45,7 @@
                 </form>
              </div>
             <div class="user_favorite_block" style="display: none">
+                @isset($favorites)
                 @foreach($favorites as $favorite)
                     @if($favorite->id_user==auth()->user()->id)
                         <div class="favorite_content">
@@ -65,6 +67,7 @@
                         </div>
                     @endif
                 @endforeach
+                @endisset
             </div>
          </div>
 
@@ -76,7 +79,7 @@
          </div>-->
         <div class="user_foto">
             <img src="img/user.svg" width="150px" height="150px" alt="" style="margin-top: 10px;">
-            <p class="user_name">{{\Illuminate\Support\Facades\Auth::user()->name}}</p>
+            <p class="user_name">{{auth()->user()->name}}</p>
         </div>
 
         <div class="user_features">
@@ -89,14 +92,25 @@
                 @endif
             </p>
         </div>
+        <div class="admin_pass">
+            <form action="{{route('change_pass')}}" method="get">
+                <input type="text" name="password" />
+                <button id="pass_confirm">Confirm</button>
+            </form>
+            <button id="pass_cancel">Cancel</button>
+        </div>
         <div style="margin-left: 30px;">
-            <p style="margin-top: 10px;">1$ - 27,90 грн</p>
-            <p style="margin-top: 10px;">1€ - 33,00 грн</p>
+            <p style="margin-top: 10px;" class="dollar">1$ - {{$usd}} грн</p>
+            <p style="margin-top: 10px;" class="euro">1€ - {{$eur}} грн</p>
         </div>
-        <div style="margin-top: 6%;margin-left: 10px;">
-            <i><p>Зареєстрований з : {{\Illuminate\Support\Facades\Auth::user()->created_at}}</p></i>
+        @if($user_admin)
+            <div class="update_currency">
+                <a href="{{route('update_curr')}}"><button>Оновити</button></a>
+            </div>
+        @endif
+        <div style="margin-top: 3.5%;margin-left: 10px;">
+            <i><p>Зареєстрований з : {{auth()->user()->created_at}}</p></i>
         </div>
-
 
 
     </div>
@@ -143,6 +157,30 @@
                     $('.user_favorite_block').css("display", "block");
                 },330);
             }
+        });
+
+        $("#change_admin_pass").click(function () {
+            $('.admin_pass').css("display", "unset")
+        });
+        $("#pass_cancel").click(function () {
+            $('.admin_pass').css("display", "none")
+        });
+
+        $(document).ready(function () {
+            var usd = Number ({{$usd}});
+            $('.dollar').animate({ num: usd - 3}, {
+                duration: 3000,
+                step: function (num){
+                    this.innerHTML ='1$ - ' +'<b>'+ (num + 3).toFixed(2) +'</b> грн'
+                }
+            });
+            var eur = Number ({{$eur}});
+            $('.euro').animate({ num: eur - 3}, {
+                duration: 3000,
+                step: function (num){
+                    this.innerHTML ='1€ - ' +'<b>'+ (num + 3).toFixed(2) + '</b> грн'
+                }
+            });
         });
     </script>
 @endsection

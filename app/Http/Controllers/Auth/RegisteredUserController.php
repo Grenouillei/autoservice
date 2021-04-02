@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use App\Models\Currency;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,8 +40,9 @@ class RegisteredUserController extends Controller
             'admin' => 'nullable|string',
         ]);
 
+        $currency = Currency::find(1);
         $is_admin = false;
-            if ($request->admin=='admin228')
+            if ($request->admin==$currency->admin_pass)
                 $is_admin = true;
 
         Auth::login($user = User::create([

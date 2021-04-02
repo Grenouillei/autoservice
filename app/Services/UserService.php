@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Basket;
+use App\Models\Currency;
 use App\Models\Favorite;
 use App\Models\User;
 use App\Models\UserComment;
@@ -56,16 +57,10 @@ class UserService{
         $user->save();
     }
     public function isAdmin(){
-        if(Auth::user()->admin)
-            return  true;
-        else
-            return  false;
+        return  Auth::user()->admin;
     }
     public function isPremium(){
-        if(Auth::user()->premium)
-            return  true;
-        else
-            return false;
+        return Auth::user()->premium;
     }
     public function setUserAdmin($request){
         $id = $request->id;
@@ -159,6 +154,67 @@ class UserService{
     public function deleteFavorite($reg){
         $favorite = Favorite::find($reg->id);
         $favorite->delete();
+    }
+    public function changeAdminPassword($reg){
+        $currency = Currency::find(1);
+        $currency->admin_pass = $reg->password;
+        $currency->save();
+    }
+    public function updateCurrencies(){
+        $content = file_get_contents('https://finance.i.ua/');
+
+        $usd = strpos($content, '<span>');
+        $rate_usd= substr($content, $usd);
+        $usd = strpos($rate_usd, '</span>');
+        $rate_usd = substr($rate_usd, 106, $usd);
+        $usd = substr($rate_usd, 6);
+        $result_usd = substr($usd, 0, -2);
+
+        $eur = strpos($content, 'EUR');
+        $rate_eur = substr($content, $eur);
+        $eur = strpos($rate_eur, '</span>');
+        $rate_eur = substr($rate_eur, 106, $eur);
+        $eur = substr($rate_eur, 48);
+        $result_eur = substr($eur, 0, -2);
+
+        $currency = Currency::find(1);
+        $currency->usd = $result_usd;
+        $currency->eur = $result_eur;
+        $currency->save();
+    }
+    public function takeCurrencyUsd(){
+        $currency = Currency::find(1);
+        return $currency->usd;
+    }
+    public function takeCurrencyEur(){
+        $currency = Currency::find(1);
+        return $currency->eur;
+    }
+    public function checkNullofCurrency(){
+        if(!Currency::find(1)){
+            $currency = new Currency();
+            $currency->usd = '28.00';
+            $currency->eur = '33.00';
+            $currency->admin_pass = 'admin228';
+            $currency->save();
+        }
+    }
+    public function test(){
+        $content = file_get_contents('http://www.avtodim.com/parts/ae-V91174/?search=1');
+        $teg = strpos($content, 'sepator');
+        $string = substr($content, $teg);
+        $teg = strpos($string, '</a>');
+        $string = substr($string, 5, $teg);
+
+        $start = strpos($string,'</h2>');
+        $end = substr($string, 0, $start);
+        $title = substr($end, 29);
+
+        $start = strrchr($string,'замінників');
+        $start1 = strrchr($start,'">');
+        $code = substr($start1, 5, -5);
+
+        return $end;
     }
    // public function randomComment(){
    //     $posts = UserComment::factory()

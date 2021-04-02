@@ -36,6 +36,8 @@ Route::get('/update_comment','App\Http\Controllers\UserController@updateComment'
 Route::get('/delete_comment','App\Http\Controllers\UserController@removeComment')->name('remove_com');
 Route::get('/del_favorite','App\Http\Controllers\UserController@deleteFavorite')->name('del_favor');
 Route::get('/add_favorite','App\Http\Controllers\UserController@addFavorite')->name('add_favor');
+Route::get('/change_admin_pass','App\Http\Controllers\UserController@updateAdminPassword')->name('change_pass');
+Route::get('/update_currency','App\Http\Controllers\UserController@updateCurrencies')->name('update_curr');
 Route::get('/user_remove','App\Http\Controllers\UserController@removeUser')->name('remove');
 Route::get('/user_premium','App\Http\Controllers\UserController@buyUserPremium' );
 

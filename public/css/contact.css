@@ -6,4 +6,43 @@
     height: 600px;
     background-color: #edf2f7;
 }
+.content_right{
+    float: right;
+    height: 100%;
+    width: 500px;
+    background-color: darkorange;
+}
+.contact_content{
+    height: 120px;
+    width: 100%; transition: 0.5s;
+}
+.contact_content h1{
+    width: 150px;
+    float: left;
+    margin: 0;
+    font-size: 27px;
+    font-weight: bold;
+    padding: 20px;
+}
+.contact_content p{
+    position: absolute;
+    text-align: justify;
+    width: 275px;
+    padding: 20px;
+    margin-left: 190px;
+    font-weight: lighter;
+    color: white;
+}
+.contact_inner{
+    float: right;
+    height: 100%;
+    width: 62%;
+    background-color: black;
+    opacity: 20%;
+}
+.contact_content:hover {
+    margin-left: 20px;
+    transition: 0.5s;
+    box-shadow: 0 0 10px white;
+}
 

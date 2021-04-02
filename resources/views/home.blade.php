@@ -75,48 +75,50 @@
 
             <div style="position: absolute; margin-left: 710px; color: dodgerblue; font-size: 25px;"><h1>ТОП БРЕНДІВ</h1></div>
             <div style="margin-left: 355px; padding-top: 100px;">
-                @foreach($parts as $el)
-                    <div class="content_item">
-                            <form action="{{route('brand')}}" method="GET" style="position: relative">
-                                <input type="hidden" name="brand" value="{{$el->brand}}"/>
-                                @if($el->qty==2)
-                                    <img src="img/top.png" alt="" style="position: absolute">
-                                @endif
-                                @if($el->brand=='CHAMPION')
-                                    <img src="img/new.png" alt="" style="position: absolute">
-                                @endif
-                                <button>
-                                    {{$el->brand}}
-                                </button>
+                @isset($parts)
+                    @foreach($parts as $el)
+                        <div class="content_item">
+                                <form action="{{route('brand')}}" method="GET" style="position: relative">
+                                    <input type="hidden" name="brand" value="{{$el->brand}}"/>
+                                    @if($el->qty==2)
+                                        <img src="img/top.png" alt="" style="position: absolute">
+                                    @endif
+                                    @if($el->brand=='CHAMPION')
+                                        <img src="img/new.png" alt="" style="position: absolute">
+                                    @endif
+                                    <button>
+                                        {{$el->brand}}
+                                    </button>
 
-                            </form>
-                        <div class="circle_full">
-                            <div class="circle_home"></div>
-                            <div class="circle_home"></div>
-                            <div class="circle_home"></div>
+                                </form>
+                            <div class="circle_full">
+                                <div class="circle_home"></div>
+                                <div class="circle_home"></div>
+                                <div class="circle_home"></div>
+                            </div>
+                        <!--  <div style="height: 20%; margin-top: 10px;">
+                                 <p class="content_name"></p>
+                             </div>
+                                 <div class="content_char_name">
+                                     <p >Бренд : </p>
+                                     <p >Каталожний номер : </p>
+                                     <p>Ціна : </p>
+                                 </div>
+
+                                 <div class="content_char_name2">
+
+                                      <p > </p>
+                                     <p >{</p>
+                                      <p > грн</p>
+                                 </div>
+
+                               <form action="new" method="GET">
+                                    <input type="hidden" name="id" value=""/>
+                                    <button id="" class="content_button"  >Більше</button>
+                                </form>-->
                         </div>
-                    <!--  <div style="height: 20%; margin-top: 10px;">
-                             <p class="content_name"></p>
-                         </div>
-                             <div class="content_char_name">
-                                 <p >Бренд : </p>
-                                 <p >Каталожний номер : </p>
-                                 <p>Ціна : </p>
-                             </div>
-
-                             <div class="content_char_name2">
-
-                                  <p > </p>
-                                 <p >{</p>
-                                  <p > грн</p>
-                             </div>
-
-                           <form action="new" method="GET">
-                                <input type="hidden" name="id" value=""/>
-                                <button id="" class="content_button"  >Більше</button>
-                            </form>-->
-                    </div>
-                @endforeach
+                    @endforeach
+                @endisset
                         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
                         <script>
                                 var id;

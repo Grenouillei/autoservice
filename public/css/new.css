@@ -92,7 +92,7 @@
     outline: 2px solid dodgerblue;
 }
 .content_feedback_new{
-    background-color: #cbd5e0;
+    background-color: #e2e8f0;
     height: 340px;
     width: 1000px;
     margin-top: 80px;
@@ -180,11 +180,13 @@
     margin-left: 40px;
     padding-bottom: 50px;
     width: 1000px;
-    background-color: #cbd5e0;
+    background-color: #e2e8f0;
     text-align: center;
 }
 .all_feedback h2{
     padding-top: 20px;
+    color: black;
+    text-align: center;
 }
 .feedback_content{
     width: 900px;

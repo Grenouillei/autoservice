@@ -22,7 +22,12 @@
     background-color: #2d3748;
     float: right;
 }
-.about_progress h1,h2{
+.about_progress h1{
+    margin-left: 60px;
+    text-align: left;
+    color: dodgerblue;
+}
+.about_progress h2{
     margin-left: 60px;
     text-align: left;
     color: dodgerblue;
