@@ -13,6 +13,6 @@ class UserCommentsTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\UserComment::factory(1)->create();
+        \App\Models\UserComment::factory(12)->create();
     }
 }

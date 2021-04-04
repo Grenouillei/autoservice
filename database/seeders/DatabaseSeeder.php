@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserTableSeeder::class,
             GoodTableSeeder::class,
-            //UserCommentsTableSeeder::class,
+            UserCommentsTableSeeder::class,
         ]);
     }
 }

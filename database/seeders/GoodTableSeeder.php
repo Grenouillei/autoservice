@@ -13,6 +13,6 @@ class GoodTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Good::factory(1)->create();
+        \App\Models\Good::factory(20)->create();
     }
 }

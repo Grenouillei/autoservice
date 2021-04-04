@@ -60,7 +60,7 @@
                         <button class="button_delete">ВИДАЛИТИ</button>
                     </form>
                     <form action="{{route('new')}}" method="GET">
-                        <input type="hidden" name="id" value="{{$element->id}}"/>
+                        <input type="hidden" name="id" value="{{$element->id_g}}"/>
                         <button class="button_more">БІЛЬШЕ</button>
                     </form>
                 </div>

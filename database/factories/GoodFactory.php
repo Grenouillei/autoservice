@@ -27,7 +27,7 @@ class GoodFactory extends Factory
             'price' => $this->faker->numberBetween(50,10000),
             'code' => $this->faker->postcode,
             'qty' => $this->faker->numberBetween(1,20),
-            'able' => $this->faker->boolean,
+            'able' => $this->faker->boolean(70),
         ];
     }
 }
