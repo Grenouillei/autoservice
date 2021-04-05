@@ -23,25 +23,12 @@ class GoodsController extends Controller
         $this->goodService = $goodsService;
         $this->userService = $userService;
     }
-
     public function openHomePage(){
         $this->userService->checkUserPremium();
-            if (!$this->goodService->getForPageHome()){
-                $this->userService->checkNullofCurrency();
-                return view('user',[
-                    'users'=>$this->userService->getAllUsers(),
-                    'user_admin'=>$this->userService->isAdmin(),
-                    'usd'=>$this->userService->takeCurrencyUsd(),
-                    'eur'=>$this->userService->takeCurrencyEur(),
-                    'user_premium'=>$this->userService->isPremium(),
-                    'res'=>$this->basketService->takeCountOfBasket(),
-                    'today'=>$this->userService->getDateOfEndingPremium()]);
-            }
         return view('home' , [
             'parts'=>$this->goodService->getForPageHome(),
             'res'=>$this->basketService->takeCountOfBasket()]);
     }
-
     public function openNewPage(){
         $this->userService->checkUserPremium();
         $saw = rand(0,500);
@@ -59,29 +46,24 @@ class GoodsController extends Controller
             'buy'=>$buy,
             'like'=>$like]);
     }
-
     public function openSearchPage(Request $request){
         $this->userService->checkUserPremium();
             return view('search', [
                 'user_premium'=>$this->userService->isPremium(),
                 'array'=>$this->goodService->getForPageSearch($request),
-                'mass' =>$this->goodService->getAllOfGoods(),
                 'res'=>$this->basketService->takeCountOfBasket()]);
     }
-
     public function openSortByBrandPage(Request $request1){
         $this->userService->checkUserPremium();
-        return view('brands' , [
+            return view('brands' , [
                 'user_premium'=>$this->userService->isPremium(),
                 'parts' =>$this->goodService->getForPageSortByBrand($request1),
                 'res'=>$this->basketService->takeCountOfBasket()]);
     }
-
     public function changeAvailabilityOfGoods(Request $request){
         $this->goodService->getAvailability($request);
         return redirect()->back();
     }
-
     public function createNewProduct(ProductRequest $request){
         $this->goodService->setNewProduct($request);
         return redirect()->route('user');
@@ -97,17 +79,14 @@ class GoodsController extends Controller
         $product->delete();
         return redirect()->route('home');
     }
-
     public function openNewProductPage( ){
         return view('create_product',[
             'res'=>$this->basketService->takeCountOfBasket()]);
     }
-
     public function openAboutPage( ){
         return view('about',[
             'res'=>$this->basketService->takeCountOfBasket()]);
     }
-
     public function openContactPage( ){
         return view('contact',[
             'res'=>$this->basketService->takeCountOfBasket()]);

@@ -22,7 +22,6 @@ class BasketController extends Controller
         return view('buy', [
             'res'=>$this->basketService->takeCountOfBasket(),]);
     }
-
     public function openBasketPage(){
         $this->userService->checkUserPremium();
         return view('basket', [
@@ -32,13 +31,11 @@ class BasketController extends Controller
             'product'=>$this->basketService->takeAllOfBasket()
             ]);
     }
-
     public function deleteElementFromBasket(Request $request){
         $basket = Basket::find($request->id);
         $basket->delete();
         return redirect()->route('basket');
     }
-
     public function addElementToBasket(Request $request){
         $goods = Good::find($request->id);
         $basket_el = new Basket();
@@ -52,5 +49,4 @@ class BasketController extends Controller
         $basket_el->save();
         return redirect()->back();
     }
-
 }

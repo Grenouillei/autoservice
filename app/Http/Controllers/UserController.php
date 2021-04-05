@@ -23,7 +23,6 @@ class UserController extends Controller
         $this->userService = $userService;
     }
     public function openUserPage(){
-        $this->userService->checkNullofCurrency();
         $this->userService->checkUserPremium();
         return view('user',[
             'users'=>$this->userService->getAllUsers(),

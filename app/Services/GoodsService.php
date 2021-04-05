@@ -10,14 +10,12 @@ class GoodsService {
 
 
     public function getForPageHome(){
-        //set_time_limit(300);
         $goods = $this->getAllOfGoods();
         foreach ($goods as $good) {
             $good->qty=rand(0,2);
         }
         return $goods->unique('brand')->take(24);
     }
-
     public function getForPageSearch(Request $request){
         $str = $request->search_text;
         if($str==null) {
@@ -26,11 +24,10 @@ class GoodsService {
         else {
             $mass2 = DB::table('goods')
                 ->select('*')
-                ->where('name', 'like', "%$str%")->get();
-            return $mass2->take(16);
+                ->where('name', 'like', "%$str%")->paginate(16);
+            return $mass2;
         }
     }
-
     public function getForPageSortByBrand(Request $request1){
         $brand = $request1->brand;
         $sort = DB::table('goods')
@@ -38,7 +35,6 @@ class GoodsService {
             ->where('brand', '=', "$brand")->get();
         return  $sort->take(15);
     }
-
     public function getAvailability($request){
         $good = Good::find($request->id);
         if ($good->able)
@@ -47,11 +43,9 @@ class GoodsService {
             $good->able = true;
         $good->save();
     }
-
     public function getAllOfGoods(){
         return Good::all();
     }
-
     public function setNewProduct($request){
         $good = new Good();
         $good->name = $request->name;
@@ -62,5 +56,4 @@ class GoodsService {
         $good->able = $request->able;
         $good->save();
     }
-
 }

@@ -190,36 +190,21 @@ class UserService{
         $currency = Currency::find(1);
         return $currency->eur;
     }
-    public function checkNullofCurrency(){
-        if(!Currency::find(1)){
-            $currency = new Currency();
-            $currency->usd = '28.00';
-            $currency->eur = '33.00';
-            $currency->admin_pass = 'admin228';
-            $currency->save();
-        }
-    }
-    public function test(){
-        $content = file_get_contents('http://www.avtodim.com/parts/ae-V91174/?search=1');
-        $teg = strpos($content, 'sepator');
-        $string = substr($content, $teg);
-        $teg = strpos($string, '</a>');
-        $string = substr($string, 5, $teg);
-
-        $start = strpos($string,'</h2>');
-        $end = substr($string, 0, $start);
-        $title = substr($end, 29);
-
-        $start = strrchr($string,'замінників');
-        $start1 = strrchr($start,'">');
-        $code = substr($start1, 5, -5);
-
-        return $end;
-    }
-   // public function randomComment(){
-   //     $posts = UserComment::factory()
-   //         ->count(1)
-   //         ->for( User::factory(),'user')
-   //         ->create();
-   // }
+//    public function test(){
+//        $content = file_get_contents('http://www.avtodim.com/parts/ae-V91174/?search=1');
+//        $teg = strpos($content, 'sepator');
+//        $string = substr($content, $teg);
+//        $teg = strpos($string, '</a>');
+//        $string = substr($string, 5, $teg);
+//
+//        $start = strpos($string,'</h2>');
+//        $end = substr($string, 0, $start);
+//        $title = substr($end, 29);
+//
+//        $start = strrchr($string,'замінників');
+//        $start1 = strrchr($start,'">');
+//        $code = substr($start1, 5, -5);
+//
+//        return $end;
+//    }
 }

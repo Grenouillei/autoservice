@@ -11,7 +11,6 @@ class BasketService {
     public function takeAllOfBasket(){
         return Basket::all();
     }
-
     public  function takeCountOfBasket(){
         $baskets = $this->takeAllOfBasket();
         $result = 0;
@@ -25,7 +24,6 @@ class BasketService {
         }
         return $result;
     }
-
     public function checkNullOfBasket(){
         $baskets = $this->takeAllOfBasket();
         foreach ($baskets as $item) {
@@ -35,6 +33,4 @@ class BasketService {
             }
         return false;
     }
-
-
 }

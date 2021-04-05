@@ -27,7 +27,7 @@ class AddForeignkeysToFavorites extends Migration
     public function down()
     {
         Schema::table('favorites', function (Blueprint $table) {
-            //
+            $table->dropForeign('favorites_id_good_foreign');
         });
     }
 }

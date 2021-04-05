@@ -60,19 +60,6 @@
                 </div>
 
             </div>
-            <!--<form action="/sort" method="GET" class="list_form">
-                <select name="list" size="1" id="list_home">
-                    <option  value="AE">AE</option>
-                    <option  value="ABS">ABS</option>
-                    <option  value="AJUSA">AJUSA</option><option  value="SPIDAN">SPIDAN</option>
-                    <option  value="FPS">FPS</option>
-                    <option  value="CTR">CTR</option><option  value="FEBI">FEBI</option>
-                    <option  value="COMPLEX">COMPLEX</option>
-                    <option  value="CHAMPION">CHAMPION</option>
-                </select>
-                <button>ВИБРАТИ</button>
-            </form>-->
-
             <div style="position: absolute; margin-left: 710px; color: dodgerblue; font-size: 25px;"><h1>ТОП БРЕНДІВ</h1></div>
             <div style="margin-left: 355px; padding-top: 100px;">
                 @isset($parts)
@@ -96,26 +83,6 @@
                                 <div class="circle_home"></div>
                                 <div class="circle_home"></div>
                             </div>
-                        <!--  <div style="height: 20%; margin-top: 10px;">
-                                 <p class="content_name"></p>
-                             </div>
-                                 <div class="content_char_name">
-                                     <p >Бренд : </p>
-                                     <p >Каталожний номер : </p>
-                                     <p>Ціна : </p>
-                                 </div>
-
-                                 <div class="content_char_name2">
-
-                                      <p > </p>
-                                     <p >{</p>
-                                      <p > грн</p>
-                                 </div>
-
-                               <form action="new" method="GET">
-                                    <input type="hidden" name="id" value=""/>
-                                    <button id="" class="content_button"  >Більше</button>
-                                </form>-->
                         </div>
                     @endforeach
                 @endisset
