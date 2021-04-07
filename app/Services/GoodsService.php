@@ -8,7 +8,18 @@ use Illuminate\Support\Facades\DB;
 
 class GoodsService {
 
+    /**
+     * return all goods
+     * @return mixed
+     */
+    public function getAllOfGoods(){
+        return Good::all();
+    }
 
+    /**
+     * return unique value of brands from goods table for home page
+     * @return mixed
+     */
     public function getForPageHome(){
         $goods = $this->getAllOfGoods();
         foreach ($goods as $good) {
@@ -16,25 +27,39 @@ class GoodsService {
         }
         return $goods->unique('brand')->take(24);
     }
+
+    /**
+     * search by name in goods table with Query builder
+     * @return mixed
+     */
     public function getForPageSearch(Request $request){
         $str = $request->search_text;
-        if($str==null) {
+        if($str==null){
             return redirect()->back();
-        }
-        else {
-            $mass2 = DB::table('goods')
-                ->select('*')
-                ->where('name', 'like', "%$str%")->paginate(16);
-            return $mass2;
+        } else {
+            return DB::table('goods')
+                    ->select('*')
+                    ->where('name', 'like', "%$str%")
+                    ->paginate(16);
         }
     }
+
+    /**
+     * search by brand in goods table with Query builder
+     * @return mixed
+     */
     public function getForPageSortByBrand(Request $request1){
         $brand = $request1->brand;
         $sort = DB::table('goods')
-            ->select('*')
-            ->where('brand', '=', "$brand")->get();
+                ->select('*')
+                ->where('brand', '=', "$brand")->get();
         return  $sort->take(15);
     }
+
+    /**
+     * changing available of products
+     * @return mixed
+     */
     public function getAvailability($request){
         $good = Good::find($request->id);
         if ($good->able)
@@ -43,9 +68,12 @@ class GoodsService {
             $good->able = true;
         $good->save();
     }
-    public function getAllOfGoods(){
-        return Good::all();
-    }
+
+    /**
+     * create new product in goods table
+     * @param $request
+     * @return mixed
+     */
     public function setNewProduct($request){
         $good = new Good();
         $good->name = $request->name;

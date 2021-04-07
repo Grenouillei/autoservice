@@ -7,14 +7,14 @@
         @foreach($news as $el)
             @if($el->id==$_GET['id'])
             <div class="content_item_new">
-                @if($user_admin)
+                @if(auth()->user()->admin)
                     <form action="{{route('change')}}" method="get">
                         <input type="hidden" name="id" value="{{$el->id}}"/>
-                        <button class="change_able">Change evidence</button>
+                        <button class="change_able">Change able</button>
                     </form>
                     <form action="{{route('delete_pr')}}" method="get">
                         <input type="hidden" name="id" value="{{$el->id}}"/>
-                        <button class="delete_product">DELETE PRODUCT</button>
+                        <button class="delete_product">Delete product</button>
                     </form>
                 @endif
                 <h1  class="content_name_new">{{$el->name}}</h1>
@@ -42,9 +42,9 @@
                 <img src="img\imagecar1.jpg" width="360px" height="280" alt="" @if(!$el->able) style=" filter: grayscale(100%);" @endif><br>
                                 <h3> Бренд : {{$el->brand}}</h3>
                         <h3> Каталожний номер : {{$el->code}}</h3>
-                            <h3> Ціна : @if(!$user_premium){{$el->price}} @endif
-                                @if($user_premium&&$el->able)<b style="color: limegreen">{{$el->price-$el->price*0.1 }}</b> @endif грн</h3>
-                    <p style="color: red;position: absolute;margin-left: 180px; margin-top: -37px;">@if($user_premium&&$el->able) -10% @endif</p>
+                            <h3> Ціна : @if(!auth()->user()->premium){{$el->price}} @endif
+                                @if(auth()->user()->premium&&$el->able)<b style="color: limegreen">{{$el->price-$el->price*0.1 }}</b> @endif грн</h3>
+                    <p style="color: red;position: absolute;margin-left: 180px; margin-top: -37px;">@if(auth()->user()->premium&&$el->able) -10% @endif</p>
 
                     @if($el->able)
                     <div class="Availability">
@@ -55,11 +55,10 @@
                             <p>Нема наявності</p>
                         </div>
                     @endif
-                    <form action="/add" method="GET">
+                    <form action="{{route('add_cart')}}" method="GET">
                         @if($el->able)
                             <input type="hidden" name="id" value="{{$el->id}}"/>
                             <button id="{{$el->id}}" class="content_button_busket_new" type="">
-                               <!-- <img src="img\cart.svg" height="30px" width="30px" style=""  alt="">-->
                                 Купити
                             </button>
                         @else
@@ -102,8 +101,8 @@
                 <script>
                     let temp;
                  @foreach($product as $element)
-                  temp = {{$element->id_g}};
-                     @if($el->id==$element->id_g&&$element->user_id==\Illuminate\Support\Facades\Auth::user()->id)
+                  temp = {{$element->id_good}};
+                     @if($el->id==$element->id_good&&$element->id_user==auth()->user()->id)
                                 $('#'+temp+'').prop('disabled', true);
                                 $('#'+temp+'').css('background-color', '#edf2f7');
                                 $('#'+temp+'').css('border', '3px solid limegreen');
@@ -119,11 +118,11 @@
                     <h3>Залиште свій коментар</h3>
                         <div class="feedback_user">
                             <img src="img/user.svg" width="100px" height="100px" alt="" style="margin-top: 10px;">
-                            <p>{{\Illuminate\Support\Facades\Auth::user()->name}}</p>
+                            <p>{{auth()->user()->name}}</p>
                         </div>
                     <form action="{{route('create_com')}}" method="post">
                         @csrf
-                        <input type="hidden" name="id_user" value="{{\Illuminate\Support\Facades\Auth::user()->id}}"/>
+                        <input type="hidden" name="id_user" value="{{auth()->user()->id}}"/>
                         <input type="hidden" name="id_good" value="{{$el->id}}"/>
                         <textarea name="comment" placeholder=" Ваш коментар..."@error('comment')style="border: 1px solid orangered"@enderror></textarea>
                         <button>Опублікувати</button>
@@ -154,7 +153,7 @@
                         <textarea id="textarea" class="text{{$comment->id}}" name="comment" placeholder="" disabled>{{$comment->comment}}</textarea>
                     </div>
                     <div class="feedback_settings">
-                        @if($user_admin||$comment->id_user==auth()->user()->id)
+                        @if(auth()->user()->admin||$comment->id_user==auth()->user()->id)
                             <form action="{{route('remove_com')}}" method="get">
                                 <input type="hidden" name="id" value="{{$comment->id}}"/>
                                 <button class="delete_comment">Видалити</button>
@@ -175,19 +174,6 @@
 
                     </div>
                 </div>
-
-                 <script>
-          //          var $menu{{$comment->id}} = $('.text{{$comment->id}}');
-          //          $(document).mouseup(e => {
-          //              if (!$menu{{$comment->id}}.is(e.target) // if the target of the click isn't the container...
-          //                  && $menu{{$comment->id}}.has(e.target).length === 0 && $menu{{$comment->id}}.prop('disabled', false)) // ... nor a descendant of the container
-          //              {
-          //                  $('.text{{$comment->id}}').prop('disabled', true);
-          //                  $('.form_change_comment{{$comment->id}}').css("display", "none");
-          //                  $('.change_comment').css("display", "unset");
-          //              }
-          //          });
-                </script>
 
             @endif
         @endforeach

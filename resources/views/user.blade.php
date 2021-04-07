@@ -6,7 +6,7 @@
 
         <div class="user_admin_settings">
             <br><br>
-            @if($user_admin)<p id="user">Користувачі</p>
+            @if(auth()->user()->admin)<p id="user">Користувачі</p>
             <a href="{{route('product')}}" style="text-decoration: none"><p>Ств. нової поз.</p></a>@endif
             <p id="favorite">Обране</p>
             <p>Історія</p>
@@ -20,29 +20,33 @@
         </div>
         <div class="user_admin_content">
             <div class="user_admin_inner" style="display: none;">
-                <br>
-                <a href="{{route('new_user')}}"><button class="user_create_button">CreateNewUser</button></a>
                 @foreach($users as $user)
                     @if($user->id!=1&&$user->id!=auth()->user()->id)
-                        <div class="users_name"><p>{{$user->name}}</p>
-                            <div class="block_button_delete">
-                                <form action="{{route('remove')}}" method="get">
-                                    <input type="hidden" name="id" value="{{$user->id}}"/>
-                                    <button class="user_delete_button">DELETE</button>
-                                </form>
-                            </div>
-                            <div class="users_checkbox">
-                                <label for="is_admin{{$user->id}}">ADMIN</label>
-                                <input type="checkbox" id="is_admin{{$user->id}}" name="id" value="{{$user->id}}" @if($user->admin) checked @endif>
+                        <div class="users_block">
+                            <p class="user_name1">{{$user->name}}</p>
+                            <p style="font-size: 10px; text-align: left;margin-left: 10px;">{{$user->created_at}}</p>
+                            <div>
+                                <div class="block_button_delete">
+                                    <form action="{{route('remove')}}" method="get">
+                                        <input type="hidden" name="id" value="{{$user->id}}"/>
+                                        <button class="user_delete_button">Видалити</button>
+                                    </form>
+                                </div>
+                                <div class="users_checkbox">
+                                    <label for="is_admin{{$user->id}}">ADMIN</label>
+                                    <input type="checkbox" id="is_admin{{$user->id}}" name="id" value="{{$user->id}}" @if($user->admin) checked @endif>
+                                </div>
                             </div>
                         </div>
                     @endif
                 @endforeach
+                <a href="{{route('new_user')}}"><button class="user_create_button">Новий Корист.</button></a>
                 <form action="{{route('admin')}}" method="POST" >
                     @csrf
                         <input class="check_id" type="hidden" name="id" value=""/>
-                    <button class="button_admin_update" onclick="getCheckedCheckBoxes()">Confirm</button>
+                    <button class="button_admin_update" onclick="getCheckedCheckBoxes()">Готово</button>
                 </form>
+                    <div style="margin-bottom: 55px; width: 100%;height: 10px;"></div>
              </div>
             <div class="user_favorite_block" style="display: none">
                 @isset($favorites)
@@ -54,7 +58,7 @@
                                 <button class="favorite_inner">
                                     <p>{{$favorite->getGood()[0]['name']}}</p>
                                     <p>{{$favorite->getGood()[0]['code']}}</p>
-                                    @if(!$user_premium)<p>{{$favorite->getGood()[0]['price']}} ₴</p>@else
+                                    @if(!auth()->user()->premium)<p>{{$favorite->getGood()[0]['price']}} ₴</p>@else
                                                     <p>{{$favorite->getGood()[0]['price']-$favorite->getGood()[0]['price']*0.1}} ₴</p>@endif
                                 </button>
                             </form>
@@ -83,10 +87,10 @@
         </div>
 
         <div class="user_features">
-            <p>Admin : @if($user_admin) Так
+            <p>Admin : @if(auth()->user()->admin) Так
                 @else Ні @endif
             </p>
-            <p>Premium : @if($user_premium)<i>до {{$today}}</i>
+            <p>Premium : @if(auth()->user()->premium)<i>до {{$today}}</i>
                 @else
                     <a href="/user_premium"><button class="user_premium">Купити</button></a>
                 @endif
@@ -103,7 +107,7 @@
             <p style="margin-top: 10px;" class="dollar">1$ - {{$usd}} грн</p>
             <p style="margin-top: 10px;" class="euro">1€ - {{$eur}} грн</p>
         </div>
-        @if($user_admin)
+        @if(auth()->user()->admin)
             <div class="update_currency">
                 <a href="{{route('update_curr')}}"><button>Оновити</button></a>
             </div>

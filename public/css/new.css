@@ -227,6 +227,7 @@
 .change_able{
     position: absolute;
     margin-top: 40px;
+    margin-left: 20px;
     border: 0;
     height: 25px;
     background-color: dodgerblue;

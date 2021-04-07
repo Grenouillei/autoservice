@@ -23,7 +23,12 @@ class Good extends Model
     public function comments(){
         return $this->hasMany(UserComment::class, 'id_good', 'id');
     }
+
     public function favorites(){
         return $this->hasMany(Favorite::class, 'id_good', 'id');
+    }
+
+    public function carts(){
+        return $this->hasMany(Cart::class, 'id_good', 'id');
     }
 }

@@ -24,7 +24,7 @@
     </div>
     <div id="content_block_basket">
         @foreach($product as $element)
-            @if($element->user_id==\Illuminate\Support\Facades\Auth::user()->id)
+            @if($element->id_user==auth()->user()->id)
             <div class="content_item_basket">
                 <div class="content_image_basket">
                     @if($element->id%2==0)
@@ -35,24 +35,24 @@
                         @endif
                 </div>
                  <div class="content_name_basket">
-                     <p>{{$element->name}}</p>
+                     <p>{{$element->getGoods()[0]['name']}}</p>
                  </div>
                 <div class="content_char1_basket">
-                    <p class="{{$element->id}}" id="quantity">{{$element->qty}}</p>
+                    <p class="{{$element->id}}" id="quantity">1</p>
                         <button id="{{$element->id}}" class="minus">-</button>
                                 штук
                         <button id="{{$element->id}}" class="plus">+</button>
                 </div>
                 <div class="content_char_basket">
-                   @if(!$user_premium) <p>{{$element->price }} ₴</p>@endif
-                    @if($user_premium)<p style="color: lime">{{$element->price-$element->price*0.1 }}₴</p>@endif
+                   @if(!auth()->user()->premium) <p>{{$element->getGoods()[0]['price']}} ₴</p>@endif
+                    @if(auth()->user()->premium)<p style="color: lime">{{$element->getGoods()[0]['price']-$element->getGoods()[0]['price']*0.1 }}₴</p>@endif
                     грн / шт.
                 </div>
                 <div class="content_char1_basket">
-                    <p>{{$element->brand}}</p>
+                    <p>{{$element->getGoods()[0]['brand']}}</p>
                 </div>
                 <div class="content_char_basket">
-                    <p>{{$element->code}}</p>
+                    <p>{{$element->getGoods()[0]['code']}}</p>
                 </div>
                 <div class="content_navigation_basket">
                     <form action="/del" method="GET">
@@ -60,7 +60,7 @@
                         <button class="button_delete">ВИДАЛИТИ</button>
                     </form>
                     <form action="{{route('new')}}" method="GET">
-                        <input type="hidden" name="id" value="{{$element->id_g}}"/>
+                        <input type="hidden" name="id" value="{{$element->id_good}}"/>
                         <button class="button_more">БІЛЬШЕ</button>
                     </form>
                 </div>
@@ -111,13 +111,13 @@
                    var temp = 0;
                    var tempx = 0;
                    @foreach($product as $element)
-                       @if($element->user_id==\Illuminate\Support\Facades\Auth::user()->id)
+                       @if($element->id_user==auth()->user()->id)
                             temp = $('.{{$element->id}}').text();
                             tempx = Number(temp);
                             qty.push(tempx);
                             id.push({{$element->id}});
-                            @if(!$user_premium)arr.push({{$element->price}});@endif
-                            @if($user_premium)arr.push({{$element->price-$element->price*0.1}});@endif
+                            @if(!auth()->user()->premium)arr.push({{$element->getGoods()[0]['price']}});@endif
+                            @if(auth()->user()->premium)arr.push({{$element->getGoods()[0]['price']-$element->getGoods()[0]['price']*0.1}});@endif
                         @endif
                    @endforeach
                    var score = 0;

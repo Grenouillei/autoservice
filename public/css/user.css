@@ -147,25 +147,31 @@
     width: 100%;
     overflow-y: scroll;
 }
-.users_name {
-    text-align: left;
-    border: 1px solid black;
+.users_block {
+    background-color: #4D586A;
     color: white;
     font-size: 18px;
-    height: 40px;
-    margin-top: 1%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 17em;
+    height: 80px;
+    margin-top: 6px;
 }
-.users_name p{
+.user_name1{
+    width: 90%;
+    text-align: left;
     margin-left: 10px;
-    margin-top: 10px;
+    padding-top: 10px;
 }
-.users_name label{
+.users_block label{
     font-size: 10px;
     font-weight: bold;
 }
 .users_checkbox{
-    margin-right: 10px;
-    margin-top: -20px;
+    margin-right: 25px;
+    margin-top: -15px;
+    width: 50px;
+    height: 40px;
     float: right;
 }
 .users_checkbox input{
@@ -173,8 +179,7 @@
     height: 17px;
 }
 .users_checkbox label{
-    margin-top: 20px;
-    margin-left: -5px;
+
 }
 .user_admin_settings p{
     width: 100%;
@@ -204,39 +209,45 @@
     transition: 0.3s;
 }
 .button_admin_update{
-    margin-bottom: 30px;
+    margin-right: 20px;
+    margin-top: 20px;
+    float: right;
     border: 0;
     border-radius: 4px;
     cursor: pointer;
     transition: 0.3s;
     background-color: limegreen;
     color: white;
-    margin-top: 5%;
     height: 25px;
     width: 80px;
 }
 .user_delete_button{
-    margin-left: 190px;
-    width: 50px;
-    height: 20px;
-    font-size: 8px;
+    width: 70px;
+    height: 21px;
+    font-size: 12px;
     font-weight: bold;
     background-color: orangered;
     color: white;
     border-radius: 4px;
     cursor: pointer;
+    border: 0;
 }
 .block_button_delete{
-    margin-top: -25px;
+    float: left;
+    margin-left: 20px;
+    margin-top: 5px;
+    text-align: left;
 }
 .user_create_button{
-    margin-bottom: 15px;
+    margin-left: 20px;
+    margin-top: 20px;
     width: 120px;
     height: 25px;
     border-radius: 5px;
     color: white;
     border: 0;cursor: pointer;
     background-color: dodgerblue;
+    float: left;
 }
 .new_user_content{
     margin-left: auto;

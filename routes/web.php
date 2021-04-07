@@ -41,18 +41,17 @@ Route::get('/update_currency','App\Http\Controllers\UserController@updateCurrenc
 Route::get('/user_remove','App\Http\Controllers\UserController@removeUser')->name('remove');
 Route::get('/user_premium','App\Http\Controllers\UserController@buyUserPremium' );
 
-Route::get('/del','App\Http\Controllers\BasketController@deleteElementFromBasket' );
-Route::get('/score','App\Http\Controllers\BasketController@takeCountOfBasket' );
-Route::get('/add','App\Http\Controllers\BasketController@addElementToBasket' );
+Route::get('/del_cart','App\Http\Controllers\CartController@removeCart' )->name('del_cart');
+Route::get('/add_cart','App\Http\Controllers\CartController@addCart' )->name('add_cart');
 
 Route::middleware('auth')->group(function (){
     Route::get('/new_page','App\Http\Controllers\GoodsController@openNewPage' )->name('new');
-    Route::get('/buy_page','App\Http\Controllers\BasketController@openBuyPage' )->name('buy');
+    Route::get('/buy_page','App\Http\Controllers\CartController@openBuyPage' )->name('buy');
     Route::get('/user_page','App\Http\Controllers\UserController@openUserPage')->name('user');
     Route::get('/home_page','App\Http\Controllers\GoodsController@openHomePage' )->name('home');
     Route::get('/dashboard', 'App\Http\Controllers\GoodsController@openHomePage')->name('dashboard');
     Route::get('/search_page','App\Http\Controllers\GoodsController@openSearchPage' )->name('search');
-    Route::get('/basket_page','App\Http\Controllers\BasketController@openBasketPage' )->name('basket');
+    Route::get('/cart_page','App\Http\Controllers\CartController@openCartPage' )->name('basket');
     Route::get('/brand_page','App\Http\Controllers\GoodsController@openSortByBrandPage' )->name('brand');
     Route::get('/product_page','App\Http\Controllers\GoodsController@openNewProductPage' )->name('product');
     Route::get('/new_user','App\Http\Controllers\UserController@openNewUserPage' )->name('new_user');

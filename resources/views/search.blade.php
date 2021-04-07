@@ -22,11 +22,11 @@
                     <div style="width: 110px; float: right; text-align: right; margin-right: 10px;">
                         <p >{{ $ele->brand}}</p>
                         <p >{{$ele->code}}</p>
-                        <p @if($user_premium)style="color: limegreen"@endif>
-                            @if(!$user_premium){{$ele->price}} @endif
-                            @if($user_premium){{$ele->price-$ele->price*0.1 }} @endif
+                        <p @if(auth()->user()->premium)style="color: limegreen"@endif>
+                            @if(!auth()->user()->premium){{$ele->price}} @endif
+                            @if(auth()->user()->premium){{$ele->price-$ele->price*0.1 }} @endif
                             грн </p>
-                        <p style="color: red;position: absolute;margin-left: 70px;">@if($user_premium) -10% @endif</p>
+                        <p style="color: red;position: absolute;margin-left: 70px;">@if(auth()->user()->premium) -10% @endif</p>
                     </div>
                  </div>
                  <form action="{{route('new')}}" method="GET">

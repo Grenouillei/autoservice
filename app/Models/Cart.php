@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Favorite extends Model
+class Cart extends Model
 {
     use HasFactory;
 
@@ -23,7 +23,7 @@ class Favorite extends Model
         return $this->belongsTo(User::class, 'id_user', 'id');
     }
 
-    public function getGood(){
+    public function getGoods(){
         return $this->good()->get()->toArray();
     }
 }

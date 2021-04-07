@@ -2,37 +2,62 @@
 
 namespace App\Services;
 
-use App\Models\Basket;
+use App\Models\Cart;
+use ErrorException;
+use App\Models\User;
 use App\Models\Currency;
 use App\Models\Favorite;
-use App\Models\User;
 use App\Models\UserComment;
 use App\Models\UserPremium;
-use ErrorException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserService{
 
+    /**
+     * return all users
+     * @return mixed
+    */
     public function getAllUsers(){
         return User::all();
     }
+
+    /**
+     * return all comments
+     * @return mixed
+     */
     public function getAllComments(){
         return UserComment::all();
     }
+
+    /**
+     * return all favorites
+     * @return mixed
+     */
     public function getAllFavorites(){
         return Favorite::all();
     }
+
+    /**
+     * change user name
+     * @param $req
+     */
     public function UserUpdate($req){
         $user = User::find(Auth::user()->id);
         $user->name = $req->name;
         $user->save();
     }
+
+    /**
+     * remove user and everything related with
+     * @param $request
+     * @throws \Exception
+     */
     public function UserDelete($request){
         $user = User::find($request->id);
-        $baskets = Basket::all();
+        $carts = Cart::all();
         $comments = $this->getAllComments();
-        foreach ($baskets as $item) {
+        foreach ($carts as $item) {
                 if ($item->user_id==$user->id){
                     $item->delete();
                 }
@@ -49,6 +74,11 @@ class UserService{
         }catch (ErrorException $errorException){}
         $user->delete();
     }
+
+    /**
+     * create new user
+     * @param $request
+     */
     public function UserAdd($request){
         $user = new User();
         $user->name = $request->name;
@@ -56,12 +86,11 @@ class UserService{
         $user->password = Hash::make($request->password);
         $user->save();
     }
-    public function isAdmin(){
-        return  Auth::user()->admin;
-    }
-    public function isPremium(){
-        return Auth::user()->premium;
-    }
+
+    /**
+     * set/remove admin for users
+     * @param $request
+     */
     public function setUserAdmin($request){
         $id = $request->id;
         $all_users = $this->getAllUsers();
@@ -87,6 +116,10 @@ class UserService{
             }
         }
     }
+
+    /**
+     * set premium for user
+     */
     public function setUserPremium(){
         $user_p = new UserPremium();
         $user_p->id = Auth::user()->id;
@@ -102,6 +135,10 @@ class UserService{
         $user->premium = true;
         $user->save();
     }
+
+    /**
+     * checking user premium for further remove
+     */
     public function checkUserPremium(){
         $current_date = mktime(date('H'), date('i'), date('s'),
                             date("m")  , date("d"), date("Y"));
@@ -119,16 +156,25 @@ class UserService{
                }
             }
     }
+
+    /**
+     * return date of ending premium for user page
+     * @throws \Exception
+     * @return mixed
+     */
     public function getDateOfEndingPremium(){
         try{
             $user_p = UserPremium::find(Auth::user()->id);
-            $today = $user_p->date;
-            return $today;
-        }catch (ErrorException $e)
-        {
+            return $user_p->date;
+        }catch (ErrorException $e) {
             return false;
         }
     }
+
+    /**
+     * create new comment by user
+     * @param $reg
+     */
     public function setComment($reg){
         $comment = new UserComment();
         $comment->id_user = $reg->id_user;
@@ -136,30 +182,60 @@ class UserService{
         $comment->comment = $reg->comment;
         $comment->save();
     }
+
+    /**
+     * remove comment
+     * @param $reg
+     */
     public function deleteComment($reg){
         $comment = UserComment::find($reg->id);
         $comment->delete();
     }
+
+    /**
+     * update comment
+     * @param $reg
+     */
     public function updateComment($reg){
         $comment = UserComment::find($reg->id);
         $comment->comment = $reg->comment;
         $comment->save();
     }
+
+    /**
+     * add product to favorites
+     * @param $reg
+     */
     public function setFavorite($reg){
         $favorite = new Favorite();
         $favorite->id_good = $reg->id_good;
         $favorite->id_user = Auth::user()->id;
         $favorite->save();
     }
+
+    /**
+     * remove product from favorites
+     * @param $reg
+     */
     public function deleteFavorite($reg){
         $favorite = Favorite::find($reg->id);
         $favorite->delete();
     }
+
+    /**
+     * change admin password
+     * @param $reg
+     */
     public function changeAdminPassword($reg){
         $currency = Currency::find(1);
         $currency->admin_pass = $reg->password;
         $currency->save();
     }
+
+    /**
+     * update currencies by parsing another site
+     * with strpos and substr methods
+     */
     public function updateCurrencies(){
         $content = file_get_contents('https://finance.i.ua/');
 
@@ -182,14 +258,25 @@ class UserService{
         $currency->eur = $result_eur;
         $currency->save();
     }
+
+    /**
+     * return currency usd for user page
+     * @return string
+     */
     public function takeCurrencyUsd(){
         $currency = Currency::find(1);
         return $currency->usd;
     }
+
+    /**
+     * return currency euro for user page
+     * @return string
+     */
     public function takeCurrencyEur(){
         $currency = Currency::find(1);
         return $currency->eur;
     }
+
 //    public function test(){
 //        $content = file_get_contents('http://www.avtodim.com/parts/ae-V91174/?search=1');
 //        $teg = strpos($content, 'sepator');
