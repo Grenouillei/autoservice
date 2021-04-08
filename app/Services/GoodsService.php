@@ -30,6 +30,7 @@ class GoodsService {
 
     /**
      * search by name in goods table with Query builder
+     * @param $request
      * @return mixed
      */
     public function getForPageSearch(Request $request){
@@ -46,6 +47,7 @@ class GoodsService {
 
     /**
      * search by brand in goods table with Query builder
+     * @param $request1
      * @return mixed
      */
     public function getForPageSortByBrand(Request $request1){
@@ -58,6 +60,7 @@ class GoodsService {
 
     /**
      * changing available of products
+     * @param $request
      * @return mixed
      */
     public function getAvailability($request){

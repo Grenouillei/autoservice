@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Cart;
+use Carbon\Carbon;
 use ErrorException;
 use App\Models\User;
 use App\Models\Currency;
@@ -11,6 +12,7 @@ use App\Models\UserComment;
 use App\Models\UserPremium;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Symfony\Component\VarDumper\Cloner\Data;
 
 class UserService{
 
@@ -123,12 +125,9 @@ class UserService{
     public function setUserPremium(){
         $user_p = new UserPremium();
         $user_p->id = Auth::user()->id;
-        $user_p->on_date = mktime(date('H'), date('i'), date('s'),
-                                date("m")  , date("d"), date("Y"));
-        $user_p->off_date = mktime(date('H'), date('i'), date('s')+60,
-                            date("m"), date("d"), date("Y"));
-        $t = strtotime('+1 day');
-        $user_p->date = date('d.m.Y H:i:s',$t);
+        $user_p->on_date = strtotime('now');
+        $user_p->off_date = strtotime("+1 minutes");
+        $user_p->date = Carbon::now()->addDay()->addHours(3);
         $user_p->save();
 
         $user = User::find(Auth::user()->id);
@@ -140,21 +139,20 @@ class UserService{
      * checking user premium for further remove
      */
     public function checkUserPremium(){
-        $current_date = mktime(date('H'), date('i'), date('s'),
-                            date("m")  , date("d"), date("Y"));
+        $current_date = strtotime('now');
         $user_premium = UserPremium::all();
-            foreach ($user_premium as $premium) {
-               if($premium->id==Auth::user()->id){
-                   if($current_date>=$premium->off_date){
-                       $user = User::find(Auth::user()->id);
-                       $user->premium = false;
-                       $user->save();
+        foreach ($user_premium as $premium) {
+            if($premium->id==Auth::user()->id){
+                if($current_date>=$premium->off_date){
+                    $user = User::find(Auth::user()->id);
+                    $user->premium = false;
+                    $user->save();
 
-                       $user_p = UserPremium::find(Auth::user()->id);
-                       $user_p->delete();
-                   }
-               }
+                    $user_p = UserPremium::find(Auth::user()->id);
+                    $user_p->delete();
+                }
             }
+        }
     }
 
     /**
@@ -277,7 +275,7 @@ class UserService{
         return $currency->eur;
     }
 
-//    public function test(){
+//   public function test(){
 //        $content = file_get_contents('http://www.avtodim.com/parts/ae-V91174/?search=1');
 //        $teg = strpos($content, 'sepator');
 //        $string = substr($content, $teg);
