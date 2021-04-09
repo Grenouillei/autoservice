@@ -12,7 +12,6 @@ use App\Models\UserComment;
 use App\Models\UserPremium;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Symfony\Component\VarDumper\Cloner\Data;
 
 class UserService{
 
@@ -140,17 +139,13 @@ class UserService{
      */
     public function checkUserPremium(){
         $current_date = strtotime('now');
-        $user_premium = UserPremium::all();
-        foreach ($user_premium as $premium) {
-            if($premium->id==Auth::user()->id){
-                if($current_date>=$premium->off_date){
-                    $user = User::find(Auth::user()->id);
-                    $user->premium = false;
-                    $user->save();
-
-                    $user_p = UserPremium::find(Auth::user()->id);
-                    $user_p->delete();
-                }
+        $user_p = UserPremium::find(Auth::user()->id);
+        if ($user_p){
+            if ($user_p->off_date <= $current_date) {
+                $user = User::find(Auth::user()->id);
+                $user->premium = false;
+                $user->save();
+                $user_p->delete();
             }
         }
     }
