@@ -46,11 +46,16 @@
                                 @if(auth()->user()->premium&&$el->able)<b style="color: limegreen">{{$el->price-$el->price*0.1 }}</b> @endif грн</h3>
                     <p style="color: red;position: absolute;margin-left: 180px; margin-top: -37px;">@if(auth()->user()->premium&&$el->able) -10% @endif</p>
 
-                    @if($el->able)
-                    <div class="Availability">
-                        <p>В наявності</p>
+                    @if($el->qty<=20)
+                    <div class="AvailabilityR">
+                        <p>Закінчується</p>
                     </div>
                     @else
+                        <div class="Availability">
+                            <p>В наявності ~{{$el->qty}} шт.</p>
+                        </div>
+                    @endif
+                    @if(!$el->able)
                         <div class="AvailabilityN">
                             <p>Нема наявності</p>
                         </div>

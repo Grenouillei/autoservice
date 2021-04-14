@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
+use App\Http\Requests\BuyRequest;
 use App\Services\GoodsService;
 use App\Services\UserService;
 use App\Services\CartService;
@@ -31,6 +32,7 @@ class GoodsController extends Controller
     public function openHomePage(){
         $this->userService->checkUserPremium();
         return view('home' , [
+            'confirm'=>false,
             'parts'=>$this->goodService->getForPageHome(),
             'res'=>$this->cartService->takeCountOfCart()]);
     }
@@ -137,6 +139,34 @@ class GoodsController extends Controller
      */
     public function openContactPage( ){
         return view('contact',[
+            'res'=>$this->cartService->takeCountOfCart()]);
+    }
+
+    /**
+     * forming an order with manipulations
+     * with the quantity of goods
+     * @param BuyRequest $reg
+     * @return mixed
+     * @throws \Exception
+     */
+    public function confirmOrder(BuyRequest $reg){
+        $array_id = $reg->id_array;
+        $array_qty = $reg->qty_array;
+        $arr_id = explode(',',$array_id);
+        $arr_qty = explode(',',$array_qty);
+            for($i=0;$i<count($arr_id);$i++){
+                $good = Good::find($arr_id[$i]);
+                $good->qty = $good->qty - $arr_qty[$i];
+                $good->save();
+            }
+        $carts = Cart::all();
+            foreach ($carts as $cart) {
+                if($cart->id_user==Auth()->user()->id)
+                    $cart->delete();
+            }
+        return view('home' , [
+            'confirm'=>true,
+            'parts'=>$this->goodService->getForPageHome(),
             'res'=>$this->cartService->takeCountOfCart()]);
     }
 }

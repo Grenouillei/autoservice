@@ -27,10 +27,10 @@
             @if($element->id_user==auth()->user()->id)
             <div class="content_item_basket">
                 <div class="content_image_basket">
-                    @if($element->id%2==0)
+                    @if($element->id%2!=0)
                     <img src="img\details.jpg" width="140" height="140" alt="" style="opacity: 70%">
                     @endif
-                        @if($element->id%2>=1)
+                        @if($element->id%2==0)
                             <img src="img\details2.jpg" width="140" height="140" alt="" style="opacity: 70%">
                         @endif
                 </div>
@@ -55,7 +55,7 @@
                     <p>{{$element->getGoods()[0]['code']}}</p>
                 </div>
                 <div class="content_navigation_basket">
-                    <form action="/del" method="GET">
+                    <form action="{{route('del_cart')}}" method="GET">
                         <input type="hidden" name="id" value="{{$element->id}}"/>
                         <button class="button_delete">ВИДАЛИТИ</button>
                     </form>
@@ -133,6 +133,7 @@
                    }
                        $('#total').html('Сума замовлення: ');
                        $('#total').append(sum.toFixed(2) + ' грн');
+                        window.localStorage.setItem('total', sum.toFixed(2));
                }
 
                $(document).ready(function () {

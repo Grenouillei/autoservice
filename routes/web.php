@@ -24,6 +24,8 @@ Route::get('/contact_page', function () {
     return view('contact');
 })->name('contact');
 
+Route::get('/confirm_order','App\Http\Controllers\GoodsController@confirmOrder' )->name('confirm_order');
+
 Route::post('/create_product','App\Http\Controllers\GoodsController@createNewProduct' )->name('create_pr');
 Route::get('/change','App\Http\Controllers\GoodsController@changeAvailabilityOfGoods' )->name('change');
 Route::get('/delete_product','App\Http\Controllers\GoodsController@removeProduct' )->name('delete_pr');

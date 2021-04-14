@@ -145,6 +145,40 @@
     background-color: royalblue;
     transition: 0.3s;
 }
+.advertising{
+    position: absolute;
+    height: 100px;
+    width: 300px;
+    background-color: orange;
+    transform: skewX(-25deg);
+    margin-left: -330px;
+}
+.advertising_text {
+    margin-top: 15px;
+    margin-left: -250px;
+    font-size: 20px;
+    position: absolute;
+    width: 250px;
+}
+.advertising_back{
+    position: absolute;
+    height: 100px;
+    width: 300px;
+    background-color: #2d3748;
+    transform: skewX(-25deg);
+    margin-left: -330px;
+    box-shadow: 0 0 10px orange;
+}
+.advertising_full{
+    position: absolute;
+    width: 300px;
+    height: 100px;
+    cursor: pointer;
+}
+.advertising_full:hover .advertising_back{
+    transition: 0.4s;
+    box-shadow: 0 0 10px white;
+}
 /*HOVER
 
 .content_item:hover{

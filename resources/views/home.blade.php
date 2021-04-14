@@ -2,11 +2,38 @@
 
 @section('main_content') <link rel="icon" type="image/png" sizes="64x64" href="img/Minilogo.svg">
     <div style="width: 100%;  height: 100%; margin-bottom: 20px;">
-
+        @if($confirm)
+            <h1 class="confirm_order" style="position:absolute;font-size: 100px;z-index: 100;margin-left: 350px;margin-top: 150px;color: limegreen;">Дякуємо за покупку!</h1>
+        @endif
+            <div class="advertising_full">
+            <a href="{{route('user')}}" style="color: black">
+                <div class="advertising_back"></div>
+                <div class="advertising"></div>
+                <p class="advertising_text">Купуйте <b>Premium</b> - акаунт та заощаджуйте 10% на покупках!</p>
+            </a>
+        </div>
+        @if(!auth()->user()->premium)
+            <script>
+                $(document).ready(function () {
+                    $(".advertising").animate({"margin-left": '+=300px'},{duration:600});
+                    $(".advertising_back").animate({"margin-left": '+=310px'},{duration:600});
+                    $(".advertising_text").animate({"margin-left": '+=265px'},{duration:600});
+                });
+                setTimeout(function(){
+                    $(".advertising").animate({"margin-left": '-=300px'},{duration:600});
+                    $(".advertising_back").animate({"margin-left": '-=310px'},{duration:600});
+                    $(".advertising_text").animate({"margin-left": '-=265px'},{duration:600});
+                    $(".advertising_full").animate({"margin-left": '-=300px'},{duration:600});
+                    }, 8000);
+                setTimeout(function(){
+                    $(".confirm_order").css('display', 'none');
+                }, 2000);
+            </script>
+        @endif
         <div class="slider">
             <div class="slider__wrapper">
                 <div class="slider__item">
-                    <img src="img\car1.jpg" height="500px" width="100%" alt="">
+                    <img src="img\car1.jpg" height="500px" width="100%" alt="" loading="lazy">
                 </div>
                 <div class="slider__item">
                     <img src="img\car3.jpg" height="500px" width="100%" alt="">

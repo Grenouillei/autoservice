@@ -24,7 +24,9 @@ class CartController extends Controller
      */
     public function openBuyPage(){
         return view('buy', [
-            'res'=>$this->cartService->takeCountOfCart(),]);
+            'res'=>$this->cartService->takeCountOfCart(),
+            'products'=>Cart::all(),
+            ]);
     }
 
     /**

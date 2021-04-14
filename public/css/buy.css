@@ -40,26 +40,26 @@
 }
 .buy_left {
     float: left;
-    width: 50%;
+    width: 55%;
     height: 100%;
     background-color: #e2e8f0;
 }
 .buy_right{
     float: right;
-    width: 50%;
+    width: 45%;
     height: 100%;
     background-color: #5471A3;
 }
 .buy_content h2{
-    margin-left: 10px;
+    margin-left: 30px;
 }
 .label{
     font-size: 20px;
-    margin-left: 20px;
+    margin-left: 60px;
     margin-top: 10px;
 }
 .input{
-    margin-left: 30px;
+    margin-left: 70px;
     margin-top: 10px;
     width: 45%;
     height: 30px;
@@ -75,7 +75,7 @@
     height: 20px;
 }
 .pay_block{
-    margin-left: 30px;
+    margin-left: 60px;
     height: 70px;
 }
 .pay_delivery{
@@ -88,5 +88,41 @@
 }
 .buy_maps{
     width: 100%;
+    height: 100%;
+}
+.product_block{
+    width: 100%;
+    height: 80px;
+    background-color: cornflowerblue;
+    margin-bottom: 10px;
+    color: white;
+}
+.product_block p {
+    margin-top: 30px;
+}
+.product_name{
+    float: left;
+    width: 60%;
+    height: 100%;
+}
+.product_name p{
+    margin-left: 20px;
+}
+.product_res p{
+    margin-left: 15px;
+    color: black;
+}
+.product_price p{
+    margin-left: 15px;
+}
+.product_res{
+    background-color: orange;
+    float: left;
+    width: 20%;
+    height: 100%;
+}
+.product_price{
+    float: left;
+    width: 20%;
     height: 100%;
 }
