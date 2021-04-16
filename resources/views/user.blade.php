@@ -8,6 +8,7 @@
             <br><br>
             @if(auth()->user()->admin)<p id="user">Користувачі</p>
             <a href="{{route('product')}}" style="text-decoration: none"><p>Ств. нової поз.</p></a>@endif
+            <a href="{{route('archive')}}" style="text-decoration: none"><p >Архів заказів</p></a>
             <p id="favorite">Обране</p>
             <p>Історія</p>
             <p>Зв'язок з менеджером</p>
@@ -92,7 +93,7 @@
             </p>
             <p>Premium : @if(auth()->user()->premium)<i>до {{$today}}</i>
                 @else
-                    <a href="/user_premium"><button class="user_premium">Купити</button></a>
+                    <a href="{{route('buy_premium')}}"><button class="user_premium">Купити</button></a>
                 @endif
             </p>
         </div>
@@ -115,7 +116,6 @@
         <div style="margin-top: 3.5%;margin-left: 10px;">
             <i><p>Зареєстрований з : {{auth()->user()->created_at}}</p></i>
         </div>
-
 
     </div>
     <script>

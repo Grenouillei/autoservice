@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ asset('css/product.css') }}">
     <link rel="stylesheet" href="{{ asset('css/about.css') }}">
     <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/archive.css') }}">
 
     <!--<script src="{{ asset('js/main.js') }}" type="text/javascript"></script>-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

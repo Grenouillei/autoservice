@@ -30,6 +30,7 @@ class BuyRequest extends FormRequest
             'city' => 'required|string|max:30',
             'id_array' => 'required|string',
             'qty_array' => 'required|string',
+            'sum_array' => 'required|string',
         ];
     }
 }

@@ -1,0 +1,103 @@
+.archive_content{
+    margin-left: auto;
+    margin-right: auto;
+    width: 85em;
+    min-height: 250px;
+    overflow: hidden;
+    background-color: #edf2f7;
+    align-items: center;
+    margin-top: 8%;
+    padding-bottom: 100px;
+}
+.archive_component{
+    margin-top: 3%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 77em;
+    height: 85px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 3px solid black;
+}
+.order_block{
+    float: left;
+    width: 24%;
+}
+.archive_slide{
+    width: 77em;
+    height: 80px;
+    position: absolute;
+}
+.archive_inner_left{
+    position: relative;
+    margin-top: 90px;
+    margin-left: 50px;
+    width: 310px;
+}
+.archive_inner_right{
+    position: relative;
+    margin-top: -165px;
+    margin-left: 450px;
+    width: 550px;
+}
+.archive_move{
+    float: right;
+    margin-top: -150px;
+    width: 110px;
+    margin-right: 10px;
+    height: 200px;
+}
+.archive_move_button_1,.archive_move_button_2{
+    width: 100%;
+    height: 28px;
+    margin-top: 20px;
+    border: 0;
+    border-radius: 6px;
+    font-size: 15px;
+    color: white;
+    cursor: pointer;transition: 0.3s;
+}
+.archive_move_button_3,.archive_move_button_4{
+    width: 100%;
+    height: 36px;
+    margin-top: 20px;
+    border: 0;
+    border-radius: 6px;
+    font-size: 15px;
+    color: white;transition: 0.3s;
+    cursor: pointer;line-height: 1;
+}
+.archive_move_button_4{
+    background-color: limegreen;
+}
+.archive_move_button_1{
+    background-color: orangered;
+}
+.archive_move_button_2,.archive_move_button_3{
+    background-color: dodgerblue;
+}
+.archive_move_button_2:hover,.archive_move_button_3:hover{
+    transition: 0.3s;
+    color:black;
+    border: 2px solid dodgerblue;
+    background-color: unset;
+}
+.archive_move_button_1:hover{
+    transition: 0.3s;
+    color:black;
+    border: 2px solid orangered;
+    background-color: unset;
+}
+.archive_move_button_4:hover{
+    transition: 0.3s;
+    color:black;
+    border: 2px solid limegreen;
+    background-color: unset;
+}
+.archive_inner_left p{
+    margin-top: 10px;
+    font-size: 18px;
+}
+.archive_inner_right{
+    font-size: 18px;
+}

@@ -46,22 +46,21 @@
                                 @if(auth()->user()->premium&&$el->able)<b style="color: limegreen">{{$el->price-$el->price*0.1 }}</b> @endif грн</h3>
                     <p style="color: red;position: absolute;margin-left: 180px; margin-top: -37px;">@if(auth()->user()->premium&&$el->able) -10% @endif</p>
 
-                    @if($el->qty<=20)
-                    <div class="AvailabilityR">
-                        <p>Закінчується</p>
-                    </div>
+                    @if($el->qty<=20&&$el->qty>10)
+                        <div class="AvailabilityR">
+                            <p>Закінчується</p>
+                        </div>
+                    @elseif(!$el->able||$el->qty<=10)
+                        <div class="AvailabilityN">
+                            <p>Нема наявності</p>
+                        </div>
                     @else
                         <div class="Availability">
                             <p>В наявності ~{{$el->qty}} шт.</p>
                         </div>
                     @endif
-                    @if(!$el->able)
-                        <div class="AvailabilityN">
-                            <p>Нема наявності</p>
-                        </div>
-                    @endif
                     <form action="{{route('add_cart')}}" method="GET">
-                        @if($el->able)
+                        @if($el->able&&$el->qty>10)
                             <input type="hidden" name="id" value="{{$el->id}}"/>
                             <button id="{{$el->id}}" class="content_button_busket_new" type="">
                                 Купити

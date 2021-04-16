@@ -8,6 +8,7 @@ use App\Services\GoodsService;
 use App\Services\UserService;
 use App\Services\CartService;
 use Illuminate\Http\Request;
+use App\Models\Order;
 use App\Models\Good;
 use App\Models\Cart;
 
@@ -149,7 +150,18 @@ class GoodsController extends Controller
      * @return mixed
      * @throws \Exception
      */
-    public function confirmOrder(BuyRequest $reg){
+    public function createNewOrder(BuyRequest $reg){
+        $order = new Order();
+        $order->id_user = Auth()->user()->id;
+        $order->name = $reg->name;
+        $order->last_name = $reg->lastName;
+        $order->phone = $reg->phone;
+        $order->city = $reg->city;
+        $order->id_goods = $reg->id_array;
+        $order->qty_goods = $reg->qty_array;
+        $order->sum_goods = $reg->sum_array;
+        $order->save();
+
         $array_id = $reg->id_array;
         $array_qty = $reg->qty_array;
         $arr_id = explode(',',$array_id);
@@ -167,6 +179,35 @@ class GoodsController extends Controller
         return view('home' , [
             'confirm'=>true,
             'parts'=>$this->goodService->getForPageHome(),
+            'res'=>$this->cartService->takeCountOfCart()]);
+    }
+
+    /**
+     * open archive of orders page
+     * @return mixed
+     */
+    public function openArchivePage(){
+        $orders = Order::all();
+        $goods = array();
+            foreach ($orders as $order){
+                if($order->id_user==Auth()->user()->id){
+                    $array_id = $order->id_goods;
+                    $array_qty = $order->qty_goods;
+                    $arr_id = explode(',', $array_id);
+                    $arr_qty = explode(',', $array_qty);
+                        for ($i = 0; $i < count($arr_id); $i++) {
+                            $good = Good::find($arr_id[$i]);
+                            $good->qty = $arr_qty[$i];
+                            $good->id = $order->id;
+                            $good->code = $good->price*$good->qty;
+                            array_push($goods, $good);
+                        }
+                }
+            }
+        return view('archive' , [
+            'orders'=>$orders,
+            'products'=>$goods,
+            'empty'=>$this->goodService->checkNullOfOrder(),
             'res'=>$this->cartService->takeCountOfCart()]);
     }
 }

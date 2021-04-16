@@ -2,8 +2,10 @@
 
 namespace App\Services;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\Good;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class GoodsService {
@@ -84,5 +86,18 @@ class GoodsService {
         $good->qty = $request->qty;
         $good->able = $request->able;
         $good->save();
+    }
+
+    /**
+     * checking if empty order table certain user
+     * @return boolean
+     */
+    public function checkNullOfOrder(){
+        $orders = Order::all();
+        foreach ($orders as $item) {
+            if($item->id_user==Auth::user()->id)
+                return true;
+        }
+        return false;
     }
 }

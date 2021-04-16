@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Cart;
+use App\Models\Order;
 use Carbon\Carbon;
 use ErrorException;
 use App\Models\User;
@@ -57,16 +58,19 @@ class UserService{
     public function UserDelete($request){
         $user = User::find($request->id);
         $carts = Cart::all();
+        $orders = Order::all();
         $comments = $this->getAllComments();
         foreach ($carts as $item) {
-                if ($item->user_id==$user->id){
-                    $item->delete();
-                }
-            }
-        foreach ($comments as $item) {
-            if ($item->id_user==$user->id){
+            if ($item->user_id==$user->id)
                 $item->delete();
-            }
+        }
+        foreach ($comments as $item) {
+            if ($item->id_user==$user->id)
+                $item->delete();
+        }
+        foreach ($orders as $item) {
+            if ($item->id_user==$user->id)
+                $item->delete();
         }
         $user_premium = UserPremium::find($request->id);
         try {
