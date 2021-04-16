@@ -14,8 +14,9 @@ class Order extends Model
         'last_name',
         'phone',
         'city',
-        'id_array',
-        'qty_array',
+        'id_goods',
+        'qty_goods',
+        'sum_goods',
     ];
 
     public function user(){
