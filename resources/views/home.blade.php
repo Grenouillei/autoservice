@@ -1,12 +1,12 @@
 @extends('dashboard')
 
-@section('main_content') <link rel="icon" type="image/png" sizes="64x64" href="img/Minilogo.svg">
+@section('main_content') <link rel="icon" type="image/png" sizes="64x64" href="{{asset('img/Minilogo.svg')}}">
     <div style="width: 100%;  height: 100%; margin-bottom: 20px;">
         @if($confirm)
             <h1 class="confirm_order" style="position:absolute;font-size: 100px;z-index: 100;margin-left: 350px;margin-top: 150px;color: limegreen;">Дякуємо за покупку!</h1>
         @endif
             <div class="advertising_full">
-            <a href="{{route('user')}}" style="color: black">
+            <a href="{{route('page.user')}}" style="color: black">
                 <div class="advertising_back"></div>
                 <div class="advertising"></div>
                 <p class="advertising_text">Купуйте <b>Premium</b> - акаунт та заощаджуйте 10% на покупках!</p>
@@ -33,16 +33,16 @@
         <div class="slider">
             <div class="slider__wrapper">
                 <div class="slider__item">
-                    <img src="img\car1.jpg" height="500px" width="100%" alt="" loading="lazy">
+                    <img src="{{asset('img\car1.jpg')}}" height="500px" width="100%" alt="" loading="lazy">
                 </div>
                 <div class="slider__item">
-                    <img src="img\car3.jpg" height="500px" width="100%" alt="">
+                    <img src="{{asset('img\car3.jpg')}}" height="500px" width="100%" alt="">
                 </div>
                 <div class="slider__item">
-                    <img src="img\car2.jpg" height="500px" width="100%" alt="">
+                    <img src="{{asset('img\car2.jpg')}}" height="500px" width="100%" alt="">
                 </div>
                 <div class="slider__item">
-                    <img src="img\car.jpg" height="500px" width="100%" alt="">
+                    <img src="{{asset('img\car.jpg')}}" height="500px" width="100%" alt="">
                 </div>
             </div>
             <a class="slider__control slider__control_left" href="#" role="button"></a>
@@ -59,7 +59,7 @@
                     Опалення і кондиціонування, Підготовка і подання повітря, Паливна симтема, Системи охолодження.
                 </p>
                 <div style="width: 100%">
-                    <img src="img\detail_1.svg" height="150px" width="150px" style="display: inline-block; margin-left: 8px;" alt="">
+                    <img src="{{asset('img\detail_1.svg')}}" height="150px" width="150px" style="display: inline-block; margin-left: 8px;" alt="">
                     <p style="position: absolute; display: inline-block; width: 200px; margin-top: 50px;">
                         Генератори, Стартера, Підвіска, Гальма, Трансмісія
                     </p>
@@ -69,10 +69,10 @@
                         Двигун, Рульове, Запалювання,
                         Опалення і кондиціонування,
                     </p>
-                    <img src="img\detail_2.svg" height="140px" width="140px" style="float: right; margin-right: 8px;" alt="">
+                    <img src="{{asset('img\detail_2.svg')}}" height="140px" width="140px" style="float: right; margin-right: 8px;" alt="">
                 </div>
                 <div style="width: 100%;">
-                    <img src="img\detail_3.svg" height="130px" width="130px" style="margin-left: 12px; color: black;" alt="">
+                    <img src="{{asset('img\detail_3.svg')}}" height="130px" width="130px" style="margin-left: 12px; color: black;" alt="">
                     <p style="position: absolute; display: inline-block; width: 200px; margin-top: 40px;">
                         Підготовка і подання повітря, Паливна симтема, Системи охолодження.
                     </p>
@@ -92,13 +92,13 @@
                 @isset($parts)
                     @foreach($parts as $el)
                         <div class="content_item">
-                                <form action="{{route('brand')}}" method="GET" style="position: relative">
+                                <form action="{{route('page.brand')}}" method="GET" style="position: relative">
                                     <input type="hidden" name="brand" value="{{$el->brand}}"/>
                                     @if($el->qty==2)
-                                        <img src="img/top.png" alt="" style="position: absolute">
+                                        <img src="{{asset('img/top.png')}}" alt="" style="position: absolute">
                                     @endif
                                     @if($el->brand=='CHAMPION')
-                                        <img src="img/new.png" alt="" style="position: absolute">
+                                        <img src="{{asset('img/new.png')}}" alt="" style="position: absolute">
                                     @endif
                                     <button>
                                         {{$el->brand}}

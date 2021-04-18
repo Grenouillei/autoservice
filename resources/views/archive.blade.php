@@ -8,7 +8,7 @@
         @foreach($orders as $order)
             @if($order->id_user==auth()->user()->id)
             <div class="archive_component" id="archive{{$order->id}}">
-                <img class="archive{{$order->id}}" src="img/right-arrow2.svg" width="25" height="25" alt="" style="float: right;transform: rotate(90deg);margin-top: 40px;margin-right: 52px;">
+                <img class="archive{{$order->id}}" src="{{asset('img/right-arrow2.svg')}}" width="25" height="25" alt="" style="float: right;transform: rotate(90deg);margin-top: 40px;margin-right: 52px;">
                     <div class="archive_slide" id="archive{{$order->id}}"></div>
                     <div class="order_block">
                             <p style="margin-top: 10px;margin-left: 10px;">№ {{rand(100000000,700000000)}} від {{$order->created_at}}</p>

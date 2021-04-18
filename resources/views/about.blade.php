@@ -3,7 +3,7 @@
 @section('main_content')
     <div id="about_block">
         <div class="about_about">
-            <img src="img/Logo2.svg" alt="" style="float: left; width: 200px; height: 200px; margin-left: 60px">
+            <img src="{{asset('img/Logo2.svg')}}" alt="" style="float: left; width: 200px; height: 200px; margin-left: 60px">
             <div class="about_text">
                 <p> -  ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
@@ -17,9 +17,9 @@
             </div>
         </div>
 
-        <div class="about_img1"><h1 class="mark1">MUSTANG</h1><img src="img/about.png" style="" alt=""></div>
-        <div class="about_img2"><h1 class="mark2" >BMW</h1><img src="img/about2.png" style="" alt=""></div>
-        <div class="about_img3"><h1 class="mark3" >AUDI</h1><img src="img/about3.png" style="" alt=""></div>
+        <div class="about_img1"><h1 class="mark1">MUSTANG</h1><img src="{{asset('img/about.png')}}" style="" alt=""></div>
+        <div class="about_img2"><h1 class="mark2" >BMW</h1><img src="{{asset('img/about2.png')}}" style="" alt=""></div>
+        <div class="about_img3"><h1 class="mark3" >AUDI</h1><img src="{{asset('img/about3.png')}}" style="" alt=""></div>
 
         <div class="about_progress">
             <p>

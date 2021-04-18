@@ -8,11 +8,11 @@
             @if($el->id==$_GET['id'])
             <div class="content_item_new">
                 @if(auth()->user()->admin)
-                    <form action="{{route('change')}}" method="get">
+                    <form action="{{route('product.change')}}" method="get">
                         <input type="hidden" name="id" value="{{$el->id}}"/>
                         <button class="change_able">Change able</button>
                     </form>
-                    <form action="{{route('delete_pr')}}" method="get">
+                    <form action="{{route('product.delete')}}" method="get">
                         <input type="hidden" name="id" value="{{$el->id}}"/>
                         <button class="delete_product">Delete product</button>
                     </form>
@@ -27,19 +27,19 @@
                 <div class="content_alias_new">
                     <h2>Заміни</h2>
                     <div class="alias_item">
-                        <img src="img\details.jpg" width="100" height="100" alt="" style="opacity: 70%">
+                        <img src="{{asset('img\details.jpg')}}" width="100" height="100" alt="" style="opacity: 70%">
                     </div>
                     <div class="alias_item">
-                        <img src="img\details.jpg" width="100" height="100" alt="" style="opacity: 70%">
+                        <img src="{{asset('img\details.jpg')}}" width="100" height="100" alt="" style="opacity: 70%">
                     </div>
                     <div class="alias_item">
-                        <img src="img\details.jpg" width="100" height="100" alt="" style="opacity: 70%">
+                        <img src="{{asset('img\details.jpg')}}" width="100" height="100" alt="" style="opacity: 70%">
                     </div>
                     <div class="alias_item">
-                        <img src="img\details.jpg" width="100" height="100" alt="" style="opacity: 70%">
+                        <img src="{{asset('img\details.jpg')}}" width="100" height="100" alt="" style="opacity: 70%">
                     </div>
                 </div>
-                <img src="img\imagecar1.jpg" width="360px" height="280" alt="" @if(!$el->able) style=" filter: grayscale(100%);" @endif><br>
+                <img src="{{asset('img\imagecar1.jpg')}}" width="360px" height="280" alt="" @if(!$el->able) style=" filter: grayscale(100%);" @endif><br>
                                 <h3> Бренд : {{$el->brand}}</h3>
                         <h3> Каталожний номер : {{$el->code}}</h3>
                             <h3> Ціна : @if(!auth()->user()->premium){{$el->price}} @endif
@@ -59,7 +59,7 @@
                             <p>В наявності ~{{$el->qty}} шт.</p>
                         </div>
                     @endif
-                    <form action="{{route('add_cart')}}" method="GET">
+                    <form action="{{route('cart.create')}}" method="GET">
                         @if($el->able&&$el->qty>10)
                             <input type="hidden" name="id" value="{{$el->id}}"/>
                             <button id="{{$el->id}}" class="content_button_busket_new" type="">
@@ -74,13 +74,13 @@
                     </form>
                     @foreach($favorites as $favorite)
                         @if($favorite->id_user==auth()->user()->id&&$favorite->id_good==$el->id)
-                            <form action="{{route('del_favor')}}" method="GET">
+                            <form action="{{route('favorite.delete')}}" method="GET">
                                 <input type="hidden" name="id" value="{{$favorite->id}}"/>
                                 <button  class="add_favorite_new1" >Обране</button>
                             </form>
                             @break
                         @else
-                            <form action="{{route('add_favor')}}" method="GET">
+                            <form action="{{route('favorite.create')}}" method="GET">
                                 <input type="hidden" name="id_good" value="{{$el->id}}"/>
                                 <button  class="add_favorite_new" >Обране</button>
                             </form>
@@ -88,15 +88,15 @@
                     @endforeach
                     <div class="new_icon">
                         <div style="float: left; text-align: center">
-                            <img src="img\cart.svg" height="19px" width="19px" alt="" >
+                            <img src="{{asset('img\cart.svg')}}" height="19px" width="19px" alt="" >
                             <p >{{$buy}}</p>
                         </div>
                         <div style="position: absolute; margin-left: 50px; text-align: center">
-                            <img src="img\like.svg" height="18px" width="18px" alt="" >
+                            <img src="{{asset('img\like.svg')}}" height="18px" width="18px" alt="" >
                             <p >{{$like}}</p>
                         </div>
                         <div style="float: right;text-align: center">
-                            <img src="img/eye.svg" width="19px" height="19px" alt="">
+                            <img src="{{asset('img/eye.svg')}}" width="19px" height="19px" alt="">
                             <p>{{$saw}}</p>
                         </div>
                     </div>
@@ -121,10 +121,10 @@
                 <div class="content_feedback_new">
                     <h3>Залиште свій коментар</h3>
                         <div class="feedback_user">
-                            <img src="img/user.svg" width="100px" height="100px" alt="" style="margin-top: 10px;">
+                            <img src="{{asset('img/user.svg')}}" width="100px" height="100px" alt="" style="margin-top: 10px;">
                             <p>{{auth()->user()->name}}</p>
                         </div>
-                    <form action="{{route('create_com')}}" method="post">
+                    <form action="{{route('comment.create')}}" method="post">
                         @csrf
                         <input type="hidden" name="id_user" value="{{auth()->user()->id}}"/>
                         <input type="hidden" name="id_good" value="{{$el->id}}"/>
@@ -158,13 +158,13 @@
                     </div>
                     <div class="feedback_settings">
                         @if(auth()->user()->admin||$comment->id_user==auth()->user()->id)
-                            <form action="{{route('remove_com')}}" method="get">
+                            <form action="{{route('comment.remove')}}" method="get">
                                 <input type="hidden" name="id" value="{{$comment->id}}"/>
                                 <button class="delete_comment">Видалити</button>
                             </form>
                         @endif
                         @if($comment->id_user==auth()->user()->id)
-                            <form action="{{route('update_com')}}" method="get" id="form_change_comment" class="form_change_comment{{$comment->id}}" style="display: none;">
+                            <form action="{{route('comment.update')}}" method="get" id="form_change_comment" class="form_change_comment{{$comment->id}}" style="display: none;">
                                 <input type="hidden" id="comment{{$comment->id}}" name="comment" value=""/>
                                 <input type="hidden" name="id" value="{{$comment->id}}"/>
                                 <button id="{{$comment->id}}" class="change_comment1" >Змінити</button>
@@ -172,8 +172,8 @@
                                 <button id="{{$comment->id}}" class="change_comment">Змінити</button>
                         @endif
                             <div class="likes_comment">
-                                <img src="img\like.svg" height="18px" width="18px" alt="" >
-                                <img src="img\like.svg" height="18px" width="18px" style="transform: rotate(180deg);" alt="" >
+                                <img src="{{asset('img\like.svg')}}" height="18px" width="18px" alt="" >
+                                <img src="{{asset('img\like.svg')}}" height="18px" width="18px" style="transform: rotate(180deg);" alt="" >
                             </div>
 
                     </div>

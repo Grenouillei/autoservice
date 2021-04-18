@@ -8,7 +8,7 @@
             СУММА:
         </p>
         <div id="buy_confirm">
-            <a href="{{route('buy')}}"><button>
+            <a href="{{route('page.buy')}}"><button>
                 ОФОРМИТИ ЗАМОВЛЕННЯ
             </button></a>
         </div>
@@ -28,10 +28,10 @@
             <div class="content_item_basket">
                 <div class="content_image_basket">
                     @if($element->id%2!=0)
-                    <img src="img\details.jpg" width="140" height="140" alt="" style="opacity: 70%">
+                    <img src="{{asset('img\details.jpg')}}" width="140" height="140" alt="" style="opacity: 70%">
                     @endif
                         @if($element->id%2==0)
-                            <img src="img\details2.jpg" width="140" height="140" alt="" style="opacity: 70%">
+                            <img src="{{asset('img\details2.jpg')}}" width="140" height="140" alt="" style="opacity: 70%">
                         @endif
                 </div>
                  <div class="content_name_basket">
@@ -55,11 +55,11 @@
                     <p>{{$element->getGoods()[0]['code']}}</p>
                 </div>
                 <div class="content_navigation_basket">
-                    <form action="{{route('del_cart')}}" method="GET">
+                    <form action="{{route('cart.delete')}}" method="GET">
                         <input type="hidden" name="id" value="{{$element->id}}"/>
                         <button class="button_delete">ВИДАЛИТИ</button>
                     </form>
-                    <form action="{{route('new')}}" method="GET">
+                    <form action="{{route('page.new')}}" method="GET">
                         <input type="hidden" name="id" value="{{$element->id_good}}"/>
                         <button class="button_more">БІЛЬШЕ</button>
                     </form>

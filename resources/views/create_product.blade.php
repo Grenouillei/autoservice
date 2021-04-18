@@ -4,7 +4,7 @@
     <div class="product_content">
         <h1 style="text-align: center; padding-top: 5%; margin-bottom: 30px;">Створення нової позициї</h1>
         <div class="form_create_product">
-            <form action="{{route('create_pr')}}" method="post" >
+            <form action="{{route('product.create')}}" method="post" >
                 @csrf
                 <label for="name" >Name</label><br>
                 <input  type="text" name="name" @error('name')style="border: 1px solid orangered"@enderror ><br><br>
@@ -28,7 +28,7 @@
                 <input  type="text" name="able" @error('able')style="border: 1px solid orangered"@enderror value="1"><br><br>
                 <button type="submit" class="buy_button_confirm">Створити</button>
             </form>
-            <a href="{{route('user')}}"><button type="submit" class="buy_button_back">Назад</button></a>
+            <a href="{{route('page.user')}}"><button type="submit" class="buy_button_back">Назад</button></a>
         </div>
     </div>
 @endsection

@@ -7,15 +7,15 @@
         <div class="user_admin_settings">
             <br><br>
             @if(auth()->user()->admin)<p id="user">Користувачі</p>
-            <a href="{{route('product')}}" style="text-decoration: none"><p>Ств. нової поз.</p></a>@endif
-            <a href="{{route('archive')}}" style="text-decoration: none"><p >Архів заказів</p></a>
+            <a href="{{route('page.product')}}" style="text-decoration: none"><p>Ств. нової поз.</p></a>@endif
+            <a href="{{route('page.archive')}}" style="text-decoration: none"><p >Архів заказів</p></a>
             <p id="favorite">Обране</p>
             <p>Історія</p>
             <p>Зв'язок з менеджером</p>
 
             <div class="user_change">
                 @if(auth()->user()->id==1)<button id="change_admin_pass">ChangeAdmPas</button>@endif
-                <a href="{{route('user_s')}}"><button>Змінити Ім'я</button></a>
+                <a href="{{route('page.user-set')}}"><button>Змінити Ім'я</button></a>
                 <button>Змінити Пароль</button>
             </div>
         </div>
@@ -28,7 +28,7 @@
                             <p style="font-size: 10px; text-align: left;margin-left: 10px;">{{$user->created_at}}</p>
                             <div>
                                 <div class="block_button_delete">
-                                    <form action="{{route('remove')}}" method="get">
+                                    <form action="{{route('user.remove')}}" method="get">
                                         <input type="hidden" name="id" value="{{$user->id}}"/>
                                         <button class="user_delete_button">Видалити</button>
                                     </form>
@@ -41,8 +41,8 @@
                         </div>
                     @endif
                 @endforeach
-                <a href="{{route('new_user')}}"><button class="user_create_button">Новий Корист.</button></a>
-                <form action="{{route('admin')}}" method="POST" >
+                <a href="{{route('page.user-new')}}"><button class="user_create_button">Новий Корист.</button></a>
+                <form action="{{route('user.admin')}}" method="POST" >
                     @csrf
                         <input class="check_id" type="hidden" name="id" value=""/>
                     <button class="button_admin_update" onclick="getCheckedCheckBoxes()">Готово</button>
@@ -54,7 +54,7 @@
                 @foreach($favorites as $favorite)
                     @if($favorite->id_user==auth()->user()->id)
                         <div class="favorite_content">
-                            <form action="{{route('new')}}" method="get">
+                            <form action="{{route('page.new')}}" method="get">
                                 <input type="hidden" name="id" value="{{$favorite->id_good}}"/>
                                 <button class="favorite_inner">
                                     <p>{{$favorite->getGood()[0]['name']}}</p>
@@ -63,7 +63,7 @@
                                                     <p>{{$favorite->getGood()[0]['price']-$favorite->getGood()[0]['price']*0.1}} ₴</p>@endif
                                 </button>
                             </form>
-                            <form action="{{route('del_favor')}}" method="get">
+                            <form action="{{route('favorite.delete')}}" method="get">
                                 <input type="hidden" name="id" value="{{$favorite->id}}"/>
                                 <button class="favorite_delete">
                                     Видалити
@@ -83,7 +83,7 @@
              </div>
          </div>-->
         <div class="user_foto">
-            <img src="img/user.svg" width="150px" height="150px" alt="" style="margin-top: 10px;">
+            <img src="{{asset('img/user.svg')}}" width="150px" height="150px" alt="" style="margin-top: 10px;">
             <p class="user_name">{{auth()->user()->name}}</p>
         </div>
 
@@ -93,7 +93,7 @@
             </p>
             <p>Premium : @if(auth()->user()->premium)<i>до {{$today}}</i>
                 @else
-                    <a href="{{route('buy_premium')}}"><button class="user_premium">Купити</button></a>
+                    <a href="{{route('user.premium')}}"><button class="user_premium">Купити</button></a>
                 @endif
             </p>
         </div>

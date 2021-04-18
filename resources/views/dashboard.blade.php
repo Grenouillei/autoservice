@@ -29,7 +29,7 @@
 <div class="header">
 
     <div class="search">
-        <form action="{{route('search')}}" method="GET">
+        <form action="{{route('page.search')}}" method="GET">
             <div class="search_content">
                 <input type="text" name="search_text"  value="" placeholder="  Пошук">
             </div>
@@ -39,20 +39,20 @@
 
 
 
-    <img src="img/Logo2.svg" alt="" style="float: left; position: absolute; width: 100px; height: 100px; margin-left: 50px">
+    <img src="{{asset('img/Logo2.svg')}}" alt="" style="float: left; position: absolute; width: 100px; height: 100px; margin-left: 50px">
 
     <div class="container_menu">
         <div class="main_menu">
-            <a href="{{route('home')}}">Головна</a>
-            <a href="{{route('about')}}">Про нас</a>
-            <a href="{{route('contact')}}">Контакти</a>
+            <a href="{{route('page.home')}}">Головна</a>
+            <a href="{{route('page.about')}}">Про нас</a>
+            <a href="{{route('page.contact')}}">Контакти</a>
             <a href="">Більше</a>
         </div>
     </div>
 
     <div class="basket_block">
         <p></p>
-        <a href="{{route('basket')}}">Кошик
+        <a href="{{route('page.basket')}}">Кошик
             <b style="color: dodgerblue;">
                 {{$res}}
             </b>
@@ -62,7 +62,7 @@
 
     <div class="reg_menu" style="margin-right: 110px;">
         <form method="POST" action="{{ route('logout') }}">
-            <a class="reg_name" href="{{route('user')}}" @if(auth()->user()->premium)style="color: orange" @endif>
+            <a class="reg_name" href="{{route('page.user')}}" @if(auth()->user()->premium)style="color: orange" @endif>
                 {{auth()->user()->name}}
             </a>
             <a>/</a>

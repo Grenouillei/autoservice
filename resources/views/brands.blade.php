@@ -10,7 +10,7 @@
                 Опалення і кондиціонування, Підготовка і подання повітря, Паливна симтема, Системи охолодження.
             </p>
             <div style="width: 100%">
-                <img src="img\detail_1.svg" height="150px" width="150px" style="display: inline-block; margin-left: 8px;" alt="">
+                <img src="{{asset('img\detail_1.svg')}}" height="150px" width="150px" style="display: inline-block; margin-left: 8px;" alt="">
                 <p style="position: absolute; display: inline-block; width: 200px; margin-top: 50px;">
                     Генератори, Стартера, Підвіска, Гальма, Трансмісія
                 </p>
@@ -20,10 +20,10 @@
                     Двигун, Рульове, Запалювання,
                     Опалення і кондиціонування,
                 </p>
-                <img src="img\detail_2.svg" height="140px" width="140px" style="float: right; margin-right: 8px;" alt="">
+                <img src="{{asset('img\detail_2.svg')}}" height="140px" width="140px" style="float: right; margin-right: 8px;" alt="">
             </div>
             <div style="width: 100%;">
-                <img src="img\detail_3.svg" height="130px" width="130px" style="margin-left: 12px; color: black;" alt="">
+                <img src="{{asset('img\detail_3.svg')}}" height="130px" width="130px" style="margin-left: 12px; color: black;" alt="">
                 <p style="position: absolute; display: inline-block; width: 200px; margin-top: 40px;">
                     Підготовка і подання повітря, Паливна симтема, Системи охолодження.
                 </p>
@@ -33,7 +33,7 @@
         @foreach($parts as $el)
             <div class="content_item_brand" id="id{{$el->id}}">
                         <div class="content_img_brand">
-                            <img src="img/imagecar1.jpg" width="100%" height="100%" alt="" @if(!$el->able) style=" filter: grayscale(100%);" @endif>
+                            <img src="{{asset('img/imagecar1.jpg')}}" width="100%" height="100%" alt="" @if(!$el->able) style=" filter: grayscale(100%);" @endif>
                         </div>
                 <div style="height: 15%">
                     <h1 class="content_name_search">{{$el->name}}</h1>
@@ -55,7 +55,7 @@
                         <p style="color: red;position: absolute;margin-left: 70px;">@if(auth()->user()->premium&&$el->able) -10% @endif</p>
                     </div>
                 </div>
-                <form action="{{route('new')}}" method="GET">
+                <form action="{{route('page.new')}}" method="GET">
                     <input type="hidden" name="brand" value="{{$el->brand}}"/>
                     <input type="hidden" name="id" value="{{$el->id}}"/>
                     <button id="{{$el->id}}" class="content_button_search"  @if(!$el->able) style=" background-color: #a0aec0" @endif>Більше</button>

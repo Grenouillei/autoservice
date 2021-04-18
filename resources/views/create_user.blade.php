@@ -3,7 +3,7 @@
 @section('main_content')
     <div class="new_user_content">
         <h1>Створення нового користувача</h1>
-        <form action="{{route('create_us')}}" method="post" >
+        <form action="{{route('user.create')}}" method="post" >
             @csrf
             <label for="name">Name</label><br>
             <input type="text" name="name" @error('name')style="border: 1px solid orangered"@enderror placeholder="Name"><br><br>
@@ -15,7 +15,7 @@
             <input type="password" name="confirm_password"  placeholder="Confirm password"><br><br>
             <button type="submit" class="user_button_confirm">Підтвердити</button>
         </form>
-        <a href="{{route('user')}}"><button type="submit" class="user_button_back">Назад</button></a>
+        <a href="{{route('page.user')}}"><button type="submit" class="user_button_back">Назад</button></a>
     </div>
 
 @endsection

@@ -39,7 +39,7 @@
                     </div>
                 <button type="" class="buy_button_confirm">Замовити</button>
             </form>
-            <a href="{{route('basket')}}"><button type="submit" class="buy_button_back">Назад</button></a>
+            <a href="{{route('page.basket')}}"><button type="submit" class="buy_button_back">Назад</button></a>
         </div>
         <div class="buy_right">
             <h2 style="color: white;margin-left: 20px;">Список покупок :</h2>

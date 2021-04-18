@@ -2,7 +2,7 @@
 
 @section('main_content')
     <div id="contact_block">
-        <img src="img/Logo2.svg" alt="" style="float: left; width: 200px; height: 200px; margin-left: 60px">
+        <img src="{{asset('img/Logo2.svg')}}" alt="" style="float: left; width: 200px; height: 200px; margin-left: 60px">
         <h1 style="position: absolute;margin-top: 200px;margin-left: 60px;">+ (380) 800 500 29</h1>
         <h1 style="position: absolute;margin-top: 250px;margin-left: 60px;">+ (380) 500 123 00</h1>
         <h1 style="position: absolute;margin-top: 300px;margin-left: 60px;">carsSP@inst</h1>
