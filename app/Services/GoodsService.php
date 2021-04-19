@@ -88,6 +88,17 @@ class GoodsService {
         $good->save();
     }
 
+    public function updateProduct($req){
+        $product = Good::find($req->id);
+        $product->name = $req->name;
+        $product->brand = $req->brand;
+        $product->code = $req->code;
+        $product->price = $req->price;
+        $product->qty = $req->qty;
+        $product->able = $req->able;
+        $product->save();
+    }
+
     /**
      * checking if empty order table certain user
      * @return boolean

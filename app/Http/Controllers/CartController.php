@@ -50,7 +50,7 @@ class CartController extends Controller
     public function removeCart(Request $request){
         $cart = Cart::find($request->id);
         $cart->delete();
-        return redirect()->route('basket');
+        return redirect()->route('page.basket');
     }
 
     /**

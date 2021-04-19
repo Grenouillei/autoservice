@@ -12,13 +12,11 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     private $cartService;
-    private $goodService;
     private $userService;
 
-    public function __construct(CartService $cartService,GoodsService $goodsService,UserService $userService)
+    public function __construct(CartService $cartService,UserService $userService)
     {
         $this->cartService = $cartService;
-        $this->goodService = $goodsService;
         $this->userService = $userService;
     }
 
@@ -63,7 +61,7 @@ class UserController extends Controller
      */
     public function updateUser(UserRequest $req){
         $this->userService->UserUpdate($req);
-        return redirect()->route('user');
+        return redirect()->route('page.user');
     }
 
     /**
@@ -73,7 +71,7 @@ class UserController extends Controller
      */
     public function removeUser(Request $request){
         $this->userService->UserDelete($request);
-        return redirect()->route('user');
+        return redirect()->route('page.user');
     }
 
     /**
@@ -82,7 +80,7 @@ class UserController extends Controller
      */
     public function createUser(UserRequest $request){
         $this->userService->UserAdd($request);
-        return redirect()->route('user');
+        return redirect()->route('page.user');
     }
 
     /**
@@ -90,7 +88,7 @@ class UserController extends Controller
      */
     public function buyUserPremium(){
         $this->userService->setUserPremium();
-        return redirect()->route('user');
+        return redirect()->route('page.user');
     }
 
     /**
@@ -99,7 +97,7 @@ class UserController extends Controller
      */
     public function takeUserAdmin(Request $request){
         $this->userService->setUserAdmin($request);
-        return redirect()->route('user');
+        return redirect()->route('page.user');
     }
 
     /**

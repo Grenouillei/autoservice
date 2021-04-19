@@ -5,7 +5,7 @@
     <div id="content_block_new">
 
         @foreach($news as $el)
-            @if($el->id==$_GET['id'])
+            @if($el->id==request()->id)
             <div class="content_item_new">
                 @if(auth()->user()->admin)
                     <form action="{{route('product.change')}}" method="get">
@@ -15,6 +15,10 @@
                     <form action="{{route('product.delete')}}" method="get">
                         <input type="hidden" name="id" value="{{$el->id}}"/>
                         <button class="delete_product">Delete product</button>
+                    </form>
+                    <form action="{{route('page.product-update')}}" method="get">
+                        <input type="hidden" name="id" value="{{$el->id}}"/>
+                        <button class="update_product">Change product</button>
                     </form>
                 @endif
                 <h1  class="content_name_new">{{$el->name}}</h1>
@@ -39,7 +43,7 @@
                         <img src="{{asset('img\details.jpg')}}" width="100" height="100" alt="" style="opacity: 70%">
                     </div>
                 </div>
-                <img src="{{asset('img\imagecar1.jpg')}}" width="360px" height="280" alt="" @if(!$el->able) style=" filter: grayscale(100%);" @endif><br>
+                    <img src="{{asset('img\imagecar1.jpg')}}" width="360px" height="280" alt="" @if(!$el->able) style=" filter: grayscale(100%);" @endif><br>
                                 <h3> Бренд : {{$el->brand}}</h3>
                         <h3> Каталожний номер : {{$el->code}}</h3>
                             <h3> Ціна : @if(!auth()->user()->premium){{$el->price}} @endif
@@ -107,12 +111,12 @@
                  @foreach($product as $element)
                   temp = {{$element->id_good}};
                      @if($el->id==$element->id_good&&$element->id_user==auth()->user()->id)
-                                $('#'+temp+'').prop('disabled', true);
-                                $('#'+temp+'').css('background-color', '#edf2f7');
-                                $('#'+temp+'').css('border', '3px solid limegreen');
-                                $('#'+temp+'').css('color', 'black');
-                                $('#'+temp+'').css('cursor', 'auto');
-                                $('#'+temp+'').html('В кошику');
+                        $('#'+temp+'').prop('disabled', true);
+                        $('#'+temp+'').css('background-color', '#edf2f7');
+                        $('#'+temp+'').css('border', '3px solid limegreen');
+                        $('#'+temp+'').css('color', 'black');
+                        $('#'+temp+'').css('cursor', 'auto');
+                        $('#'+temp+'').html('В кошику');
                      @endif
                  @endforeach
                 </script>
@@ -140,18 +144,18 @@
             @endif
         @endforeach
             @foreach($comments as $comment)
-                @if($comment->id_good==$_GET['id'])
+                @if($comment->id_good==request()->id)
                     <div class="all_feedback">
                         <h2>Всі коментарі</h2>
                         @break
                 @endif
             @endforeach
         @foreach($comments as $comment)
-            @if($comment->id_good==$_GET['id'])
+            @if($comment->id_good==request()->id)
                 <div class="feedback_content">
                     <div class="feedback_inner">
                         <p class="feedback_name">{{$comment->getUser()[0]['name']}}</p>
-                        <p style="float: right;font-size: 15px;margin-top: 20px;margin-right: 10px;">{{$comment->created_at}}</p>
+                        <p style="float: right;font-size: 15px;margin-top: 20px;margin-right: 5px;">{{$comment->created_at}}</p>
                     </div>
                     <div class="feedback_inner2">
                         <textarea id="textarea" class="text{{$comment->id}}" name="comment" placeholder="" disabled>{{$comment->comment}}</textarea>
@@ -178,7 +182,6 @@
 
                     </div>
                 </div>
-
             @endif
         @endforeach
         <script>

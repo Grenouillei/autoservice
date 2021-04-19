@@ -59,7 +59,7 @@
                         <input type="hidden" name="id" value="{{$element->id}}"/>
                         <button class="button_delete">ВИДАЛИТИ</button>
                     </form>
-                    <form action="{{route('page.new')}}" method="GET">
+                    <form action="{{route('page.product')}}" method="GET">
                         <input type="hidden" name="id" value="{{$element->id_good}}"/>
                         <button class="button_more">БІЛЬШЕ</button>
                     </form>

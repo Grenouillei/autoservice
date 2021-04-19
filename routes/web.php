@@ -31,6 +31,7 @@ Route::name('user.')->prefix('user')->group(function (){
 Route::name('product.')->prefix('product')->group(function (){
     Route::get('/change','App\Http\Controllers\GoodsController@changeAvailabilityOfGoods' )->name('change');
     Route::post('/create','App\Http\Controllers\GoodsController@createNewProduct' )->name('create');
+    Route::post('/update','App\Http\Controllers\GoodsController@updateProduct' )->name('update');
     Route::get('/delete','App\Http\Controllers\GoodsController@removeProduct' )->name('delete');
 });
 
@@ -53,7 +54,6 @@ Route::name('cart.')->prefix('cart')->group(function (){
 Route::middleware('auth')->group(function (){
     Route::name('page.')->prefix('page')->group(function (){
         Route::get('/buy','App\Http\Controllers\CartController@openBuyPage' )->name('buy');
-        Route::get('/new','App\Http\Controllers\GoodsController@openNewPage' )->name('new');
         Route::get('/user','App\Http\Controllers\UserController@openUserPage')->name('user');
         Route::get('/home','App\Http\Controllers\GoodsController@openHomePage' )->name('home');
         Route::get('/cart','App\Http\Controllers\CartController@openCartPage' )->name('basket');
@@ -62,9 +62,11 @@ Route::middleware('auth')->group(function (){
         Route::get('/contact','App\Http\Controllers\GoodsController@openContactPage' )->name('contact');
         Route::get('/brand','App\Http\Controllers\GoodsController@openSortByBrandPage' )->name('brand');
         Route::get('/archive','App\Http\Controllers\GoodsController@openArchivePage' )->name('archive');
+        Route::get('/product','App\Http\Controllers\GoodsController@openProductPage' )->name('product');
         Route::get('/user/new','App\Http\Controllers\UserController@openNewUserPage' )->name('user-new');
-        Route::get('/product','App\Http\Controllers\GoodsController@openNewProductPage' )->name('product');
         Route::get('/user/setting','App\Http\Controllers\UserController@openUserSettingsPage')->name('user-set');
+        Route::get('/product/create','App\Http\Controllers\GoodsController@openNewProductPage' )->name('product-create');
+        Route::get('/product/update','App\Http\Controllers\GoodsController@openUpdateProductPage' )->name('product-update');
     });
 });
 

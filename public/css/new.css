@@ -239,7 +239,7 @@
 }
 .change_able{
     position: absolute;
-    margin-top: 40px;
+    margin-top: 60px;
     margin-left: 20px;
     border: 0;
     height: 25px;
@@ -248,11 +248,20 @@
 }
 .delete_product{
     position: absolute;
-    margin-top: 40px;
-    margin-left: 140px;
+    margin-top: 60px;
+    margin-left: 120px;
     border: 0;
     height: 25px;
     background-color: orangered;
+    border-radius: 4px;color: white;
+}
+.update_product{
+    position: absolute;
+    margin-top: 60px;
+    margin-left: 230px;
+    border: 0;
+    height: 25px;
+    background-color: limegreen;
     border-radius: 4px;color: white;
 }
 #button_disabled{

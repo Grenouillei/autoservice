@@ -52,11 +52,11 @@
 
                             @if(auth()->user()->premium){{$el->price-$el->price*0.1 }} @endif
                             грн </p>
-                        <p style="color: red;position: absolute;margin-left: 70px;">@if(auth()->user()->premium&&$el->able) -10% @endif</p>
+                        <p style="color: red;position: absolute;">@if(auth()->user()->premium&&$el->able)ЗНИЖКА  -10% @endif</p>
                     </div>
                 </div>
-                <form action="{{route('page.new')}}" method="GET">
-                    <input type="hidden" name="brand" value="{{$el->brand}}"/>
+                <form action="{{route('page.product')}}" method="GET">
+                    <!--<input type="hidden" name="brand" value="{{$el->brand}}"/>-->
                     <input type="hidden" name="id" value="{{$el->id}}"/>
                     <button id="{{$el->id}}" class="content_button_search"  @if(!$el->able) style=" background-color: #a0aec0" @endif>Більше</button>
                 </form>

@@ -7,7 +7,7 @@
         <div class="user_admin_settings">
             <br><br>
             @if(auth()->user()->admin)<p id="user">Користувачі</p>
-            <a href="{{route('page.product')}}" style="text-decoration: none"><p>Ств. нової поз.</p></a>@endif
+            <a href="{{route('page.product-create')}}" style="text-decoration: none"><p>Ств. нової поз.</p></a>@endif
             <a href="{{route('page.archive')}}" style="text-decoration: none"><p >Архів заказів</p></a>
             <p id="favorite">Обране</p>
             <p>Історія</p>
@@ -54,7 +54,7 @@
                 @foreach($favorites as $favorite)
                     @if($favorite->id_user==auth()->user()->id)
                         <div class="favorite_content">
-                            <form action="{{route('page.new')}}" method="get">
+                            <form action="{{route('page.product')}}" method="get">
                                 <input type="hidden" name="id" value="{{$favorite->id_good}}"/>
                                 <button class="favorite_inner">
                                     <p>{{$favorite->getGood()[0]['name']}}</p>

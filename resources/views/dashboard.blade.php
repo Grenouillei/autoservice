@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" sizes="64x64" href="img/Minilogo.svg">
+    <link rel="icon" type="image/png" sizes="64x64" href="{{asset('img/Minilogo.svg')}}">
     <link rel="stylesheet" href="{{ asset("css/contact.css") }}">
     <link rel="stylesheet" href="{{ asset("css/home.css") }}">
     <link rel="stylesheet" href="{{ asset("css/new.css") }}">

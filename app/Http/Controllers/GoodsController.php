@@ -42,7 +42,7 @@ class GoodsController extends Controller
      * open certain product page
      * @return mixed
      */
-    public function openNewPage(){
+    public function openProductPage(){
         $this->userService->checkUserPremium();
         return view('new',[
             'product'=>Cart::all(),
@@ -95,7 +95,7 @@ class GoodsController extends Controller
      */
     public function createNewProduct(ProductRequest $request){
         $this->goodService->setNewProduct($request);
-        return redirect()->route('user');
+        return redirect()->route('page.user');
     }
 
     /**
@@ -113,7 +113,27 @@ class GoodsController extends Controller
                     }
                 }
         $product->delete();
-        return redirect()->route('home');
+        return redirect()->route('page.home');
+    }
+
+    /**
+     * open page to change value product
+     * @return mixed
+     */
+    public function openUpdateProductPage(){
+        return view('product_setting',[
+            'products'=>$this->goodService->getAllOfGoods(),
+            'res'=>$this->cartService->takeCountOfCart()]);
+    }
+
+    /**
+     * update product in goods table
+     * @param ProductRequest $req
+     * @return mixed
+     */
+    public function updateProduct(ProductRequest $req){
+        $this->goodService->updateProduct($req);
+        return redirect()->route('page.home');
     }
 
     /**
