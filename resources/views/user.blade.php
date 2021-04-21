@@ -3,16 +3,16 @@
 @section('main_content')
     <div class="user_block">
 
-
         <div class="user_admin_settings">
             <br><br>
-            @if(auth()->user()->admin)<p id="user">Користувачі</p>
-            <a href="{{route('page.product-create')}}" style="text-decoration: none"><p>Ств. нової поз.</p></a>@endif
-            <a href="{{route('page.archive')}}" style="text-decoration: none"><p >Архів заказів</p></a>
-            <p id="favorite">Обране</p>
-            <p>Історія</p>
-            <p>Зв'язок з менеджером</p>
-
+            <div class="user_list">
+                @if(auth()->user()->admin)<p id="user">Користувачі</p>
+                <a href="{{route('page.product-create')}}" style="text-decoration: none"><p>Ств. нової поз.</p></a>@endif
+                <a href="{{route('page.archive')}}" style="text-decoration: none"><p >Архів заказів</p></a>
+                <p id="favorite">Обране</p>
+                <p>Історія</p>
+                <p>Зв'язок з менеджером</p>
+            </div>
             <div class="user_change">
                 @if(auth()->user()->id==1)<button id="change_admin_pass">ChangeAdmPas</button>@endif
                 <a href="{{route('page.user-set')}}"><button>Змінити Ім'я</button></a>
@@ -51,27 +51,27 @@
              </div>
             <div class="user_favorite_block" style="display: none">
                 @isset($favorites)
-                @foreach($favorites as $favorite)
-                    @if($favorite->id_user==auth()->user()->id)
-                        <div class="favorite_content">
-                            <form action="{{route('page.product')}}" method="get">
-                                <input type="hidden" name="id" value="{{$favorite->id_good}}"/>
-                                <button class="favorite_inner">
-                                    <p>{{$favorite->getGood()[0]['name']}}</p>
-                                    <p>{{$favorite->getGood()[0]['code']}}</p>
-                                    @if(!auth()->user()->premium)<p>{{$favorite->getGood()[0]['price']}} ₴</p>@else
-                                                    <p>{{$favorite->getGood()[0]['price']-$favorite->getGood()[0]['price']*0.1}} ₴</p>@endif
-                                </button>
-                            </form>
-                            <form action="{{route('favorite.delete')}}" method="get">
-                                <input type="hidden" name="id" value="{{$favorite->id}}"/>
-                                <button class="favorite_delete">
-                                    Видалити
-                                </button>
-                            </form>
-                        </div>
-                    @endif
-                @endforeach
+                    @foreach($favorites as $favorite)
+                        @if($favorite->id_user==auth()->user()->id)
+                            <div class="favorite_content">
+                                <form action="{{route('page.product')}}" method="get">
+                                    <input type="hidden" name="id" value="{{$favorite->id_good}}"/>
+                                    <button class="favorite_inner">
+                                        <p>{{$favorite->getGood()[0]['name']}}</p>
+                                        <p>{{$favorite->getGood()[0]['code']}}</p>
+                                        @if(!auth()->user()->premium)<p>{{$favorite->getGood()[0]['price']}} ₴</p>@else
+                                                        <p>{{$favorite->getGood()[0]['price']-$favorite->getGood()[0]['price']*0.1}} ₴</p>@endif
+                                    </button>
+                                </form>
+                                <form action="{{route('favorite.delete')}}" method="get">
+                                    <input type="hidden" name="id" value="{{$favorite->id}}"/>
+                                    <button class="favorite_delete">
+                                        Видалити
+                                    </button>
+                                </form>
+                            </div>
+                        @endif
+                    @endforeach
                 @endisset
             </div>
          </div>

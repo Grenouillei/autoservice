@@ -2,10 +2,10 @@
 #content_block_search{
     margin-left: auto;
     margin-right: auto;
+    padding-bottom: 100px;
     width: 90em;
     margin-top: 5%;
     padding-top: 40px;
-    height: 2100px;
     align-items: center;
     background-color: #edf2f7;
 }

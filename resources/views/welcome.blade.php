@@ -11,7 +11,7 @@
         <div class="welcome" >
             @if (Route::has('login'))
                 @auth
-                    <a href="{{ url('/home_page') }}">{{ Auth::user()->name }}</a>
+                    <a href="{{route('page.home')}}">{{ Auth::user()->name }}</a>
                 @else
                     <a href="{{ route('login') }}" class="in">Вхід</a><a> / </a>
                     @if (Route::has('register'))

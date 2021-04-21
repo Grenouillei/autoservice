@@ -1,8 +1,8 @@
 @extends('dashboard')
 
 @section('main_content')
-    @if(!$empty)<div style="height: 460px"> <h1 style="text-align: center;">Ваш кошик порожній!</h1></div> @endif
-    @if($empty)
+    @if(!$res)<div style="height: 460px"> <h1 style="text-align: center;">Ваш кошик порожній!</h1></div> @endif
+    @if($res)
     <DIV class="summa_basket">
         <p id="total" style="font-size: 40px;position: absolute;margin-top: 50px; font-weight: bold; color: white;">
             СУММА:

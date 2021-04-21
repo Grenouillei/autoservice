@@ -16,34 +16,34 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::post('/confirm_order','App\Http\Controllers\GoodsController@createNewOrder' )->name('confirm_order');
-Route::get('/change_admin_pass','App\Http\Controllers\UserController@updateAdminPassword')->name('change_pass');
-Route::get('/currency_update','App\Http\Controllers\UserController@updateCurrencies')->name('update_curr');
+Route::get('/change_admin_pass','App\Http\Controllers\Admin\ACurrencyController@updateAdminPassword')->name('change_pass');
+Route::get('/currency_update','App\Http\Controllers\Admin\ACurrencyController@updateCurrencies')->name('update_curr');
+Route::post('/confirm_order','App\Http\Controllers\OrderController@createNewOrder' )->name('confirm_order');
 
 Route::name('user.')->prefix('user')->group(function (){
-    Route::get('/premium','App\Http\Controllers\UserController@buyUserPremium')->name('premium');
-    Route::post('/create','App\Http\Controllers\UserController@createUser' )->name('create');
-    Route::post('/admin','App\Http\Controllers\UserController@takeUserAdmin')->name('admin');
+    Route::get('/premium','App\Http\Controllers\PremiumController@buyUserPremium')->name('premium');
+    Route::post('/create','App\Http\Controllers\Admin\AUsersController@createUser' )->name('create');
+    Route::post('/admin','App\Http\Controllers\Admin\AUsersController@takeUserAdmin')->name('admin');
+    Route::get('/remove','App\Http\Controllers\Admin\AUsersController@removeUser')->name('remove');
     Route::post('/update','App\Http\Controllers\UserController@updateUser')->name('update');
-    Route::get('/remove','App\Http\Controllers\UserController@removeUser')->name('remove');
 });
 
 Route::name('product.')->prefix('product')->group(function (){
-    Route::get('/change','App\Http\Controllers\GoodsController@changeAvailabilityOfGoods' )->name('change');
-    Route::post('/create','App\Http\Controllers\GoodsController@createNewProduct' )->name('create');
-    Route::post('/update','App\Http\Controllers\GoodsController@updateProduct' )->name('update');
-    Route::get('/delete','App\Http\Controllers\GoodsController@removeProduct' )->name('delete');
+    Route::get('/change','App\Http\Controllers\Admin\AGoodsController@changeAvailableProduct' )->name('change');
+    Route::post('/create','App\Http\Controllers\Admin\AGoodsController@createProduct' )->name('create');
+    Route::post('/update','App\Http\Controllers\Admin\AGoodsController@updateProduct' )->name('update');
+    Route::get('/delete','App\Http\Controllers\Admin\AGoodsController@removeProduct' )->name('delete');
 });
 
 Route::name('comment.')->prefix('comment')->group(function (){
-    Route::post('/create','App\Http\Controllers\UserController@createComment')->name('create');
-    Route::get('/update','App\Http\Controllers\UserController@updateComment')->name('update');
-    Route::get('/delete','App\Http\Controllers\UserController@removeComment')->name('remove');
+    Route::post('/create','App\Http\Controllers\CommentController@createComment')->name('create');
+    Route::get('/update','App\Http\Controllers\CommentController@updateComment')->name('update');
+    Route::get('/delete','App\Http\Controllers\CommentController@removeComment')->name('remove');
 });
 
 Route::name('favorite.')->prefix('favorite')->group(function (){
-    Route::get('/delete','App\Http\Controllers\UserController@deleteFavorite')->name('delete');
-    Route::get('/create','App\Http\Controllers\UserController@addFavorite')->name('create');
+    Route::get('/delete','App\Http\Controllers\FavoriteController@deleteFavorite')->name('delete');
+    Route::get('/create','App\Http\Controllers\FavoriteController@addFavorite')->name('create');
 });
 
 Route::name('cart.')->prefix('cart')->group(function (){
@@ -60,13 +60,13 @@ Route::middleware('auth')->group(function (){
         Route::get('/about','App\Http\Controllers\GoodsController@openAboutPage' )->name('about');
         Route::get('/search','App\Http\Controllers\GoodsController@openSearchPage' )->name('search');
         Route::get('/contact','App\Http\Controllers\GoodsController@openContactPage' )->name('contact');
-        Route::get('/brand','App\Http\Controllers\GoodsController@openSortByBrandPage' )->name('brand');
-        Route::get('/archive','App\Http\Controllers\GoodsController@openArchivePage' )->name('archive');
+        Route::get('/brand','App\Http\Controllers\GoodsController@openBrandPage' )->name('brand');
+        Route::get('/archive','App\Http\Controllers\OrderController@openArchivePage' )->name('archive');
         Route::get('/product','App\Http\Controllers\GoodsController@openProductPage' )->name('product');
-        Route::get('/user/new','App\Http\Controllers\UserController@openNewUserPage' )->name('user-new');
+        Route::get('/user/new','App\Http\Controllers\Admin\AUsersController@openNewUserPage' )->name('user-new');
         Route::get('/user/setting','App\Http\Controllers\UserController@openUserSettingsPage')->name('user-set');
-        Route::get('/product/create','App\Http\Controllers\GoodsController@openNewProductPage' )->name('product-create');
-        Route::get('/product/update','App\Http\Controllers\GoodsController@openUpdateProductPage' )->name('product-update');
+        Route::get('/product/create','App\Http\Controllers\Admin\AGoodsController@openNewProductPage' )->name('product-create');
+        Route::get('/product/update','App\Http\Controllers\Admin\AGoodsController@openUpdateProductPage' )->name('product-update');
     });
 });
 

@@ -42,10 +42,12 @@
     margin-top: 10px;
     font-size: 22px;
 }
+.user_list{
+    height: 64%;
+}
 .user_change{
-    margin-top: 150px;
     width: 180px;
-    height: 100px;
+    height: 30%;
     margin-left: 13px;
 }
 .user_change button{

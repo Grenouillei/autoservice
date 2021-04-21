@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
-use Illuminate\Http\Request;
+use App\Services\PremiumService;
 use App\Services\CartService;
-use App\Services\UserService;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\Models\Cart;
 
 class CartController extends Controller
 {
     private $cartService;
-    private $userService;
+    private $premiumService;
 
-    public function __construct(CartService $cartService,UserService $userService){
+    public function __construct(CartService $cartService,PremiumService $premiumService){
         $this->cartService = $cartService;
-        $this->userService = $userService;
+        $this->premiumService = $premiumService;
     }
 
     /**
@@ -34,12 +33,20 @@ class CartController extends Controller
      * @return mixed
      */
     public function openCartPage(){
-        $this->userService->checkUserPremium();
+        $this->premiumService->checkUserPremium();
         return view('basket', [
-            'empty'=>$this->cartService->checkNullOfCart(),
-            'res'=>$this->cartService->takeCountOfCart(),
-            'product'=>Cart::all()
-        ]);
+            'product'=>Cart::all(),
+            'res'=>$this->cartService->takeCountOfCart()]);
+    }
+
+    /**
+     * add product to cart table
+     * @param Request $request
+     * @return mixed
+     */
+    public function addCart(Request $request){
+        $this->cartService->createCart($request);
+        return redirect()->back();
     }
 
     /**
@@ -48,21 +55,7 @@ class CartController extends Controller
      * @return mixed
      */
     public function removeCart(Request $request){
-        $cart = Cart::find($request->id);
-        $cart->delete();
+        $this->cartService->deleteCart($request);
         return redirect()->route('page.basket');
-    }
-
-    /**
-     * add element to cart table
-     * @param Request $request
-     * @return mixed
-     */
-    public function addCart(Request $request){
-        $cart = new Cart();
-        $cart->id_user = Auth::user()->id;
-        $cart->id_good = $request->id;
-        $cart->save();
-        return redirect()->back();
     }
 }
