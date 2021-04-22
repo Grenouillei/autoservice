@@ -4,9 +4,10 @@ namespace App\Services;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use App\Interfaces\EditorInterface;
 use App\Models\Favorite;
 
-class FavoriteService
+class FavoriteService implements EditorInterface
 {
     /**
      * return all favorites
@@ -18,21 +19,21 @@ class FavoriteService
 
     /**
      * add product to favorites
-     * @param $reg
+     * @param $req
      */
-    public function setFavorite($reg){
+    public function create($req){
         $favorite = new Favorite();
-        $favorite->id_good = $reg->id_good;
+        $favorite->id_good = $req->id_good;
         $favorite->id_user = Auth::user()->id;
         $favorite->save();
     }
 
     /**
      * remove product from favorites
-     * @param $reg
+     * @param $req
      */
-    public function deleteFavorite($reg){
-        $favorite = Favorite::find($reg->id);
+    public function delete($req){
+        $favorite = Favorite::find($req->id);
         $favorite->delete();
     }
 }

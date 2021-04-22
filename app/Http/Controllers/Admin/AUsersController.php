@@ -35,7 +35,7 @@ class AUsersController extends Controller
      * @return mixed
      */
     public function removeUser(Request $request){
-        $this->adminUserService->deleteUser($request);
+        $this->adminUserService->delete($request);
         return redirect()->route('page.user');
     }
 
@@ -45,7 +45,7 @@ class AUsersController extends Controller
      * @return mixed
      */
     public function createUser(UserRequest $request){
-        $this->adminUserService->createUser($request);
+        $this->adminUserService->create($request);
         return redirect()->route('page.user');
     }
 

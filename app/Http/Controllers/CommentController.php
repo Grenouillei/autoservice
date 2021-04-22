@@ -20,7 +20,7 @@ class CommentController extends Controller
      * @return mixed
      */
     public function createComment(CommentRequest $reg){
-        $this->commentService->setComment($reg);
+        $this->commentService->create($reg);
         return redirect()->back();
     }
 
@@ -30,7 +30,7 @@ class CommentController extends Controller
      * @return mixed
      */
     public function removeComment(Request $reg){
-        $this->commentService->deleteComment($reg);
+        $this->commentService->delete($reg);
         return redirect()->back();
     }
 
@@ -40,7 +40,7 @@ class CommentController extends Controller
      * @return mixed
      */
     public function updateComment(Request $reg){
-        $this->commentService->updateComment($reg);
+        $this->commentService->update($reg);
         return redirect()->back();
     }
 }

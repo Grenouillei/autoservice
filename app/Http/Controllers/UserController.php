@@ -58,7 +58,7 @@ class UserController extends Controller
      * @return mixed
      */
     public function updateUser(UserRequest $req){
-        $this->userService->updateUser($req);
+        $this->userService->update($req);
         return redirect()->route('page.user');
     }
 }

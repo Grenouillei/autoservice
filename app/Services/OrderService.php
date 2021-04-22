@@ -7,8 +7,8 @@ use App\Models\Order;
 use App\Models\Cart;
 use App\Models\Good;
 
-class OrderService{
-
+class OrderService
+{
     /**
      * return all orders certain user
      * @return array
@@ -40,7 +40,7 @@ class OrderService{
      * @param  $reg
      * @throws \Exception
      */
-    public function createNewOrder($reg){
+    public function createOrder($reg){
         $order = new Order();
         $order->id_user = Auth()->user()->id;
         $order->name = $reg->name;

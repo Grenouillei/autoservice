@@ -19,7 +19,7 @@ class FavoriteController extends Controller
      * @return mixed
      */
     public function addFavorite(Request $reg){
-        $this->favoriteService->setFavorite($reg);
+        $this->favoriteService->create($reg);
         return redirect()->back();
     }
 
@@ -28,7 +28,7 @@ class FavoriteController extends Controller
      * @return mixed
      */
     public function deleteFavorite(Request $reg){
-        $this->favoriteService->deleteFavorite($reg);
+        $this->favoriteService->delete($reg);
         return redirect()->back();
     }
 }

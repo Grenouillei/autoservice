@@ -5,33 +5,34 @@ namespace App\Services\Admin;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Interfaces\EditorInterface;
 use App\Models\UserPremium;
 use App\Models\UserComment;
 use App\Models\Order;
 use App\Models\User;
 use App\Models\Cart;
 
-class AdminUserService
+class AdminUserService implements EditorInterface
 {
     /**
      * create new user
-     * @param $request
+     * @param $req
      */
-    public function createUser($request){
+    public function create($req){
         $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
+        $user->name = $req->name;
+        $user->email = $req->email;
+        $user->password = Hash::make($req->password);
         $user->save();
     }
 
     /**
      * remove user and everything related with
-     * @param $request
+     * @param $req
      * @throws \Exception
      */
-    public function deleteUser($request){
-        $user = User::find($request->id);
+    public function delete($req){
+        $user = User::find($req->id);
         $carts = Cart::all();
         $orders = Order::all();
         $comments = UserComment::all();
@@ -47,7 +48,7 @@ class AdminUserService
             if ($item->id_user==$user->id)
                 $item->delete();
         }
-        $user_premium = UserPremium::find($request->id);
+        $user_premium = UserPremium::find($req->id);
         try {
             if ($user_premium->id==$user->id)
                 $user_premium->delete();

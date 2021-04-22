@@ -2,10 +2,11 @@
 
 namespace App\Services;
 
+use App\Interfaces\UpdaterInterface;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
-class UserService
+class UserService implements UpdaterInterface
 {
     /**
      * get all users
@@ -19,7 +20,7 @@ class UserService
      * change user name
      * @param $req
      */
-    public function updateUser($req){
+    public function update($req){
         $user = User::find(Auth::user()->id);
         $user->name = $req->name;
         $user->save();

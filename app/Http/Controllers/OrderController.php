@@ -39,7 +39,7 @@ class OrderController extends Controller
      * @throws \Exception
      */
     public function createNewOrder(BuyRequest $reg){
-        $this->orderService->createNewOrder($reg);
+        $this->orderService->createOrder($reg);
         return view('home' , [
             'confirm'=>true,
             'parts'=>$this->goodService->getForPageHome(),

@@ -2,35 +2,36 @@
 
 namespace App\Services;
 
+use App\Interfaces\EditorInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
 
-class CartService
+class CartService implements EditorInterface
 {
     /**
      * create new cart element
-     * @param $request
+     * @param $req
      */
-    public function createCart($request){
+    public function create($req){
         $cart = new Cart();
         $cart->id_user = Auth::user()->id;
-        $cart->id_good = $request->id;
+        $cart->id_good = $req->id;
         $cart->save();
     }
 
     /**
      * delete cart
-     * @param $request
+     * @param $req
      */
-    public function deleteCart($request){
-        $cart = Cart::find($request->id);
+    public function delete($req){
+        $cart = Cart::find($req->id);
         $cart->delete();
     }
 
     /**
      * return quantity of elements in carts table certain user
-     * @return mixed
+     * @return bool|int
      */
     public  function takeCountOfCart(){
         $carts = Cart::all();

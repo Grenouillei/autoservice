@@ -57,7 +57,7 @@ class AGoodsController extends Controller
      * @return mixed
      */
     public function createProduct(ProductRequest $request){
-        $this->adminGoodService->createProduct($request);
+        $this->adminGoodService->create($request);
         return redirect()->route('page.user');
     }
 
@@ -67,7 +67,7 @@ class AGoodsController extends Controller
      * @return mixed
      */
     public function updateProduct(ProductRequest $req){
-        $this->adminGoodService->updateProduct($req);
+        $this->adminGoodService->update($req);
         return redirect()->route('page.home');
     }
 
@@ -78,7 +78,7 @@ class AGoodsController extends Controller
      * @throws \Exception
      */
     public function removeProduct(Request $request){
-        $this->adminGoodService->deleteProduct($request);
+        $this->adminGoodService->delete($request);
         return redirect()->route('page.home');
     }
 }

@@ -2,10 +2,14 @@
 
 namespace App\Services;
 
+use App\Interfaces\EditorInterface;
+use App\Interfaces\UpdaterInterface;
 use App\Models\UserComment;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
 
-class CommentService{
-
+class   CommentService implements EditorInterface,UpdaterInterface
+{
     /**
      * return all comments
      * @return mixed
@@ -16,32 +20,32 @@ class CommentService{
 
     /**
      * create new comment by user
-     * @param $reg
+     * @param $req
      */
-    public function setComment($reg){
+    public function create($req){
         $comment = new UserComment();
-        $comment->id_user = $reg->id_user;
-        $comment->id_good = $reg->id_good;
-        $comment->comment = $reg->comment;
+        $comment->id_user = $req->id_user;
+        $comment->id_good = $req->id_good;
+        $comment->comment = $req->comment;
         $comment->save();
     }
 
     /**
      * update comment
-     * @param $reg
+     * @param $req
      */
-    public function updateComment($reg){
-        $comment = UserComment::find($reg->id);
-        $comment->comment = $reg->comment;
+    public function update($req){
+        $comment = UserComment::find($req->id);
+        $comment->comment = $req->comment;
         $comment->save();
     }
 
     /**
      * remove comment
-     * @param $reg
+     * @param $req
      */
-    public function deleteComment($reg){
-        $comment = UserComment::find($reg->id);
+    public function delete($req){
+        $comment = UserComment::find($req->id);
         $comment->delete();
     }
 }

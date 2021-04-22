@@ -45,7 +45,7 @@ class CartController extends Controller
      * @return mixed
      */
     public function addCart(Request $request){
-        $this->cartService->createCart($request);
+        $this->cartService->create($request);
         return redirect()->back();
     }
 
@@ -55,7 +55,7 @@ class CartController extends Controller
      * @return mixed
      */
     public function removeCart(Request $request){
-        $this->cartService->deleteCart($request);
+        $this->cartService->delete($request);
         return redirect()->route('page.basket');
     }
 }
