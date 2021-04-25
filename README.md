@@ -11,8 +11,6 @@ Open project and run:
 
 -npm install
 
--npm run dev
-
 -php artisan migrate
 
 -php artisan db:seed
