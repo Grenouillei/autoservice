@@ -6,7 +6,7 @@ To install the project you need:
 
 Open project and run:
 -npm install
--npm run dev in the proj folder
+-npm run dev
 -php artisan migrate
 -php artisan db:seed
 -php artisan serve
