@@ -16,3 +16,11 @@ Open project and run:
 -php artisan db:seed
 
 -php artisan serve
+
+The site uses an admin system. To get an administrator, you have:
+
+login : admin
+
+email: admin@gmail.com
+
+password: admin
