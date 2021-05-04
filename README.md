@@ -9,7 +9,7 @@ To install the project you need:
 
 Open project and run:
 
--npm install
+-composer install
 
 -php artisan migrate
 
