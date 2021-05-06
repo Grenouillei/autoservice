@@ -25,7 +25,7 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:15',
-            'email' => 'required|string|email|max:40|unique:users',
+            'email' => 'required|string|email|max:40',
             'password' => 'required|string|min:8',
         ];
     }
@@ -39,11 +39,11 @@ class UserRequest extends FormRequest
     {
         return [
             'name.required'=>"Поле ім'я має бути заповнене!",
-            'name.max:15'=>"Ім'я має мати не більше 15 символів!",
+            'name.max'=>"Ім'я має мати не більше 15 символів!",
             'email.required'=>"Поле email має бути заповнене!",
-            'email.max:40'=>"Email має мати не більше 40 символів!",
+            'email.max'=>"Email має мати не більше 40 символів!",
             'password.required'=>"Поле пароль має бути заповнене!",
-            'password.min:8'=>"Пароль має мати не менше 8 символів!"
+            'password.min'=>"Пароль має мати не менше 8 символів!"
         ];
     }
 }

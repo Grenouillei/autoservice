@@ -8,7 +8,7 @@
         @foreach($array as $ele)
              <div class="content_item_search">
                  <div class="content_inner_search">
-                         <img src="{{asset('img/imagecar1.jpg')}}" width="100%" height="100%" alt="" @if(!$ele->able) style=" filter: grayscale(100%);" @endif>
+                         <img src="{{asset('img/imagecar1.jpg')}}" width="100%" height="100%" alt="" @if(!$ele->able||$ele->qty<11) style=" filter: grayscale(100%);" @endif>
                  </div>
                  <div style="height: 15%">
                      <h1 class="content_name_search">{{$ele->name}}</h1>
@@ -32,7 +32,7 @@
                  <form action="{{route('page.product')}}" method="GET">
                      <input type="hidden" name="brand" value="{{$ele->brand}}"/>
                      <input type="hidden" name="id" value="{{$ele->id}}"/>
-                     <button id="{{$ele->id}}" class="content_button_search"  @if(!$ele->able) style=" background-color: #a0aec0" @endif >Більше</button>
+                     <button id="{{$ele->id}}" class="content_button_search"  @if(!$ele->able||$ele->qty<11) style=" background-color: #a0aec0" @endif >Більше</button>
                  </form>
              </div>
         @endforeach

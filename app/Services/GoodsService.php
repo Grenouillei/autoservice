@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Good;
 use Illuminate\Support\Facades\DB;
 
-class GoodsService {
-
+class GoodsService
+{
     /**
      * return all goods
      * @return mixed

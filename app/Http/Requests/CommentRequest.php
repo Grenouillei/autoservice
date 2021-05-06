@@ -33,8 +33,8 @@ class CommentRequest extends FormRequest
     {
         return [
             'comment.required'=>"Поле має бути заповнене!",
-            'comment.min:15'=>"Поле має мати не менше 15 символів!",
-            'comment.max:150'=>"Поле має мати не більше 350 символів!",
+            'comment.min'=>"Поле має мати не менше 15 символів!",
+            'comment.max'=>"Поле має мати не більше 350 символів!",
         ];
     }
 }

@@ -57,12 +57,13 @@ Route::middleware('auth')->group(function (){
         Route::get('/user','App\Http\Controllers\UserController@openUserPage')->name('user');
         Route::get('/home','App\Http\Controllers\GoodsController@openHomePage' )->name('home');
         Route::get('/cart','App\Http\Controllers\CartController@openCartPage' )->name('basket');
+        Route::get('/brand','App\Http\Controllers\GoodsController@openBrandPage' )->name('brand');
         Route::get('/about','App\Http\Controllers\GoodsController@openAboutPage' )->name('about');
         Route::get('/search','App\Http\Controllers\GoodsController@openSearchPage' )->name('search');
         Route::get('/contact','App\Http\Controllers\GoodsController@openContactPage' )->name('contact');
-        Route::get('/brand','App\Http\Controllers\GoodsController@openBrandPage' )->name('brand');
         Route::get('/archive','App\Http\Controllers\OrderController@openArchivePage' )->name('archive');
         Route::get('/product','App\Http\Controllers\GoodsController@openProductPage' )->name('product');
+        Route::get('/premium','App\Http\Controllers\PremiumController@openPremiumPage')->name('premium');
         Route::get('/user/new','App\Http\Controllers\Admin\AUsersController@openNewUserPage' )->name('user-new');
         Route::get('/user/setting','App\Http\Controllers\UserController@openUserSettingsPage')->name('user-set');
         Route::get('/product/create','App\Http\Controllers\Admin\AGoodsController@openNewProductPage' )->name('product-create');

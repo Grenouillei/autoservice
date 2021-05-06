@@ -8,7 +8,7 @@ use App\Models\UserComment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 
-class   CommentService implements EditorInterface,UpdaterInterface
+class CommentService implements EditorInterface,UpdaterInterface
 {
     /**
      * return all comments

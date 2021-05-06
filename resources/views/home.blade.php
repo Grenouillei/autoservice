@@ -6,7 +6,7 @@
             <h1 class="confirm_order" style="position:absolute;font-size: 100px;z-index: 100;margin-left: 350px;margin-top: 150px;color: limegreen;">Дякуємо за покупку!</h1>
         @endif
             <div class="advertising_full">
-            <a href="{{route('page.user')}}" style="color: black">
+            <a href="{{route('page.premium')}}" style="color: black">
                 <div class="advertising_back"></div>
                 <div class="advertising"></div>
                 <p class="advertising_text">Купуйте <b>Premium</b> - акаунт та заощаджуйте 10% на покупках!</p>

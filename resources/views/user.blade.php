@@ -93,7 +93,7 @@
             </p>
             <p>Premium : @if(auth()->user()->premium)<i>до {{$today}}</i>
                 @else
-                    <a href="{{route('user.premium')}}"><button class="user_premium">Купити</button></a>
+                    <a href="{{route('page.premium')}}"><button class="user_premium">Купити</button></a>
                 @endif
             </p>
         </div>
@@ -104,15 +104,15 @@
             </form>
             <button id="pass_cancel">Cancel</button>
         </div>
-        <div style="margin-left: 30px;">
+        <div style="margin-left: 30px;height: 83px;">
             <p style="margin-top: 10px;" class="dollar">1$ - {{$usd}} грн</p>
             <p style="margin-top: 10px;" class="euro">1€ - {{$eur}} грн</p>
+            @if(auth()->user()->admin)
+                <div class="update_currency">
+                    <a href="{{route('update_curr')}}"><button>Оновити</button></a>
+                </div>
+            @endif
         </div>
-        @if(auth()->user()->admin)
-            <div class="update_currency">
-                <a href="{{route('update_curr')}}"><button>Оновити</button></a>
-            </div>
-        @endif
         <div style="margin-top: 3.5%;margin-left: 10px;">
             <i><p>Зареєстрований з : {{auth()->user()->created_at}}</p></i>
         </div>

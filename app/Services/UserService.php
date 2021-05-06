@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Interfaces\UpdaterInterface;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
 class UserService implements UpdaterInterface
 {
