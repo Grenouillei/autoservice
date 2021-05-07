@@ -64,10 +64,12 @@ Route::middleware('auth')->group(function (){
         Route::get('/archive','App\Http\Controllers\OrderController@openArchivePage' )->name('archive');
         Route::get('/product','App\Http\Controllers\GoodsController@openProductPage' )->name('product');
         Route::get('/premium','App\Http\Controllers\PremiumController@openPremiumPage')->name('premium');
-        Route::get('/user/new','App\Http\Controllers\Admin\AUsersController@openNewUserPage' )->name('user-new');
         Route::get('/user/setting','App\Http\Controllers\UserController@openUserSettingsPage')->name('user-set');
-        Route::get('/product/create','App\Http\Controllers\Admin\AGoodsController@openNewProductPage' )->name('product-create');
-        Route::get('/product/update','App\Http\Controllers\Admin\AGoodsController@openUpdateProductPage' )->name('product-update');
+        Route::middleware('admin')->group(function (){
+            Route::get('/user/new','App\Http\Controllers\Admin\AUsersController@openNewUserPage' )->name('user-new');
+            Route::get('/product/create','App\Http\Controllers\Admin\AGoodsController@openNewProductPage' )->name('product-create');
+            Route::get('/product/update','App\Http\Controllers\Admin\AGoodsController@openUpdateProductPage' )->name('product-update');
+        });
     });
 });
 

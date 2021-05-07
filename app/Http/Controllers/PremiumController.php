@@ -32,6 +32,6 @@ class PremiumController extends Controller
      */
     public function buyUserPremium(){
         $this->premiumService->setUserPremium();
-        return redirect()->back();
+        return redirect()->route('page.user');
     }
 }
