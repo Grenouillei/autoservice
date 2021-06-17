@@ -32,15 +32,19 @@
                     <h2>Заміни</h2>
                     <div class="alias_item">
                         <img src="{{asset('img\details.jpg')}}" width="100" height="100" alt="" style="opacity: 70%">
+                        <p style="float:right; width: 180px;color: white;margin: 20px;margin-top: 30px;">{{$el->name}}{{ rand(10000,90000)}}</p>
+                    </div>
+                    <div class="alias_item">
+                        <img src="{{asset('img\details2.jpg')}}" width="100" height="100" alt="" style="opacity: 70%">
+                        <p style="float:right; width: 180px;color: white;margin: 20px;margin-top: 30px;">{{$el->name}}{{ rand(10000,90000)}}</p>
+                    </div>
+                    <div class="alias_item">
+                        <img src="{{asset('img\details2.jpg')}}" width="100" height="100" alt="" style="opacity: 70%">
+                        <p style="float:right; width: 180px;color: white;margin: 20px;margin-top: 30px;">{{$el->name}}{{ rand(10000,90000)}}</p>
                     </div>
                     <div class="alias_item">
                         <img src="{{asset('img\details.jpg')}}" width="100" height="100" alt="" style="opacity: 70%">
-                    </div>
-                    <div class="alias_item">
-                        <img src="{{asset('img\details.jpg')}}" width="100" height="100" alt="" style="opacity: 70%">
-                    </div>
-                    <div class="alias_item">
-                        <img src="{{asset('img\details.jpg')}}" width="100" height="100" alt="" style="opacity: 70%">
+                        <p style="float:right; width: 180px;color: white;margin: 20px;margin-top: 30px;">{{$el->name}}{{ rand(10000,90000)}}</p>
                     </div>
                 </div>
                     <img src="{{asset('img\imagecar1.jpg')}}" width="360px" height="280" alt="" @if(!$el->able) style=" filter: grayscale(100%);" @endif><br>

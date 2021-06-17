@@ -26,14 +26,14 @@ class AdminCurrencyService
         $usd = strpos($content, '<span>');
         $rate_usd= substr($content, $usd);
         $usd = strpos($rate_usd, '</span>');
-        $rate_usd = substr($rate_usd, 106, $usd);
+        $rate_usd = substr($rate_usd, 0, $usd);
         $usd = substr($rate_usd, 6);
         $result_usd = substr($usd, 0, -2);
 
         $eur = strpos($content, 'EUR');
         $rate_eur = substr($content, $eur);
         $eur = strpos($rate_eur, '</span>');
-        $rate_eur = substr($rate_eur, 106, $eur);
+        $rate_eur = substr($rate_eur, 0, $eur);
         $eur = substr($rate_eur, 48);
         $result_eur = substr($eur, 0, -2);
 
