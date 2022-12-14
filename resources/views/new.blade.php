@@ -73,6 +73,14 @@
                             <button id="{{$el->id}}" class="content_button_busket_new" type="">
                                 Купити
                             </button>
+                            <button id="" class="content_button_busket_new" style="margin-left: 200px;font-size: 16px;@if(auth()->user()->id == (integer)$el->telegram_status)     border: 3px solid limegreen;
+                                background-color: #edf2f7;
+                                transition: 0.3s; cursor: default;
+                                color: black;  @endif" name="telegram" value="{{$el->id}}"
+                            @if(auth()->user()->id == (integer)$el->telegram_status) disabled @endif
+                            >
+                                Потребую консультацію
+                            </button>
                         @else
                             <input type="hidden" name="id" value="{{$el->id}}"/>
                             <button id="button_disabled" type="" disabled >
